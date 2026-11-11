@@ -2,7 +2,7 @@
 
 Scope: the whole single-page portfolio (src/App.jsx and its sections). Visitor mode: Experience — the work itself leads.
 
-Audience: recruiters, professors, classmates, clients evaluating a 4th-year web-development student at Pamantasan ng Lungsod ng Pasig. Job: judge front-end and UI/UX craft. Action: contact via email/social after scanning projects, skills, school. Proof: motion-rich execution of the site itself; template content clearly replaceable. Constraints: design1.md monochrome tokens binding, design2.md secondary; light+dark themes with toggle; W3C-valid semantic HTML; mobile responsive; reduced-motion honored.
+Audience: recruiters, professors, classmates, clients evaluating a 4th-year web-development student at Pamantasan ng Lungsod ng Pasig. Job: judge front-end and UI/UX craft. Action: contact via email/social after scanning projects, skills, school. Proof: motion-rich execution of the site itself; template content clearly replaceable. Constraints: design1.md monochrome tokens binding, design2.md secondary; fixed light color scheme; W3C-valid semantic HTML; mobile responsive; reduced-motion honored.
 
 ## Direction contract
 
@@ -12,7 +12,7 @@ OWN-WORLD: design1 palette (#000/#F5F3F1 light; #F5F5F5/#0F0F10 dark; surfaces #
 
 STORY: Kinetic JALGORITHM display assembles; visitor reads role line, scans About, Skills, Projects, Experience, School, Contact via per-section nav; leaves convinced the owner builds motion-rich modern interfaces; primary action is the contact CTA.
 
-FIRST VIEWPORT: Sticky nav with mono wordmark and scroll-spy links + theme toggle; mono eyebrow label; JALGORITHM display near 10vw uppercase, -3px tracking, staggered letter reveal, scroll-linked; role line; primary black button + text button; skills marquee band entering below. Hairline scroll-progress bar at top.
+FIRST VIEWPORT: Sticky nav with mono wordmark and scroll-spy links; mono eyebrow label; JALGORITHM display near 10vw uppercase, -3px tracking, staggered letter reveal, scroll-linked; role line; primary black button + text button; skills marquee band entering below. Hairline scroll-progress bar at top.
 
 FORM: Kinetic type hero — user-locked choice, first of [kinetic type, terminal, split intro]. seed: none (unavailable)
 

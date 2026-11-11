@@ -9,7 +9,7 @@ related_targets: ["src/index.css","src/App.css"]
 
 Scope: the whole single-page portfolio (src/App.jsx and its sections). Visitor mode: Experience — the work itself leads.
 
-Audience: recruiters, professors, classmates, clients evaluating a 4th-year web-development student at Pamantasan ng Lungsod ng Pasig. Job: judge front-end and UI/UX craft. Action: contact via email/social after scanning projects, skills, school. Proof: motion-rich execution of the site itself; template content clearly replaceable. Constraints: owner-pinned to bold sans + algorithm palette (no serif, no orange); light+dark themes with toggle, dark signature; W3C-valid semantic HTML; mobile responsive; reduced-motion honored.
+Audience: recruiters, professors, classmates, clients evaluating a 4th-year web-development student at Pamantasan ng Lungsod ng Pasig. Job: judge front-end and UI/UX craft. Action: contact via email/social after scanning projects, skills, school. Proof: motion-rich execution of the site itself; template content clearly replaceable. Constraints: owner-pinned to bold sans + algorithm palette (no serif, no orange); fixed light color scheme; W3C-valid semantic HTML; mobile responsive; reduced-motion honored.
 
 ## Direction contract
 
@@ -19,7 +19,7 @@ OWN-WORLD: near-black #0a0a0f ground, #0f0f1a panels, #ffffff display type, #00e
 
 STORY: Hero fills viewport with JALGORITHM at 180px 800-weight; counter badge, access card, and terminal card in the right column; cyan signals the interactive layer throughout; skills show bar segments; projects scroll horizontally; experience draws a timeline; contact has three cards; footer anchors with the wordmark + logo.
 
-FIRST VIEWPORT: Sticky nav with SVG logo mark (cyan rounded-square + J + diamond), Inter 700 wordmark, JetBrains Mono nav links, theme toggle; hero hero-name in Inter 800; thesis in Inter 500; CTA row; right column with AccessCard and TerminalCard over DotGrid; marquee at the bottom.
+FIRST VIEWPORT: Sticky nav with SVG logo mark (cyan rounded-square + J + diamond), Inter 700 wordmark, JetBrains Mono nav links; hero hero-name in Inter 800; thesis in Inter 500; CTA row; right column with AccessCard and TerminalCard over DotGrid; marquee at the bottom.
 
 FORM: Owner-pinned. No re-roll.
 

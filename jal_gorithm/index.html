@@ -28,27 +28,17 @@
       content="Full-stack developer and UI/UX designer building thoughtful, interactive web experiences."
     />
     <meta name="twitter:image" content="/og-logo.png" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" />
     <script>
       ;(function () {
-        // CLI is the signature; fall back to system preference for theme
+        // Keep the site light regardless of saved or system theme preferences.
         var style = 'cli'
-        var theme = 'dark'
         try {
           var storedStyle = localStorage.getItem('jal-style')
           if (storedStyle === 'cli' || storedStyle === 'd4') style = storedStyle
-          var storedTheme = localStorage.getItem('jal-theme')
-          if (storedTheme === 'light' || storedTheme === 'dark') {
-            theme = storedTheme
-          } else {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-          }
         } catch (e) { /* noop */ }
         document.documentElement.dataset.style = style
-        document.documentElement.dataset.theme = theme
-        var forced = /[?&]theme=(dark|light)/.exec(window.location.search)
-        if (forced) document.documentElement.dataset.theme = forced[1]
+        document.documentElement.dataset.theme = 'light'
         var forcedStyle = /[?&]style=(cli|d4)/.exec(window.location.search)
         if (forcedStyle) document.documentElement.dataset.style = forcedStyle[1]
       })()

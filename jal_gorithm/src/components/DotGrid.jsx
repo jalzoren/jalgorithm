@@ -25,13 +25,6 @@ function DotGrid({ className = 'dot-grid' }) {
     const R = 1.4
     const PROXIMITY = 100
 
-    const getColors = () => {
-      const theme = document.documentElement.dataset.theme
-      return theme === 'dark'
-        ? { dot: 'rgba(255,255,255,0.07)', highlight: 'rgba(0,229,255,0.75)' }
-        : { dot: 'rgba(13,13,26,0.09)',   highlight: 'rgba(0,168,187,0.65)' }
-    }
-
     const resize = () => {
       const rect = canvas.getBoundingClientRect()
       w = Math.max(1, rect.width)
@@ -44,7 +37,6 @@ function DotGrid({ className = 'dot-grid' }) {
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h)
-      const colors = getColors()
       const cols = Math.ceil(w / GAP) + 1
       const rows = Math.ceil(h / GAP) + 1
       for (let r = 0; r < rows; r++) {
@@ -54,7 +46,9 @@ function DotGrid({ className = 'dot-grid' }) {
           const dist = Math.hypot(x - pointer.x, y - pointer.y)
           const factor = reduce ? 0 : Math.max(0, 1 - dist / PROXIMITY)
           const radius = R + factor * 2.2
-          ctx.fillStyle = factor > 0.05 ? colors.highlight : colors.dot
+          ctx.fillStyle = factor > 0.05
+            ? 'rgba(0, 0, 0, 0.65)'
+            : 'rgba(13,13,26,0.09)'
           ctx.globalAlpha = 0.6 + factor * 0.4
           ctx.beginPath()
           ctx.arc(x, y, radius, 0, Math.PI * 2)
@@ -78,9 +72,6 @@ function DotGrid({ className = 'dot-grid' }) {
     ro.observe(canvas)
     resize()
 
-    const themeObs = new MutationObserver(draw)
-    themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
-
     if (!reduce) {
       window.addEventListener('pointermove', onMove, { passive: true })
       raf = requestAnimationFrame(tick)
@@ -91,7 +82,6 @@ function DotGrid({ className = 'dot-grid' }) {
     return () => {
       cancelAnimationFrame(raf)
       ro.disconnect()
-      themeObs.disconnect()
       window.removeEventListener('pointermove', onMove)
     }
   }, [])

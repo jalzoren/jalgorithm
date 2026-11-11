@@ -6,9 +6,8 @@
  *   – 8-direction outline expansion fills staircase corners
  *   – No background tile, no color — pure black/white
  *
- * Theme response via CSS variables set in index.css:
- *   Light mode: --logo-fill #0a0a0f (black J)  --logo-outline #ffffff (white separation)
- *   Dark  mode: --logo-fill #ffffff (white J)   --logo-outline #000000 (black separation)
+ * Light palette via CSS variables set in index.css:
+ *   --logo-fill #0a0a0f (black J)  --logo-outline #ffffff (white separation)
  *
  * Props:
  *   size      — height in px (default 28)
@@ -100,10 +99,7 @@ function Logo({ size = 28, wordmark = false, className = '' }) {
         focusable="false"
         style={{ display: 'block' }}
       >
-        {/*
-          Drop-shadow — 1 unit offset down-right, matches the reference
-          In dark mode this is near-transparent; in light it's a soft grey
-        */}
+        {/* Drop-shadow — 1 unit offset down-right, matches the reference. */}
         <g transform="translate(2 2)">
           <PixelJ fill="var(--logo-shadow)" />
         </g>

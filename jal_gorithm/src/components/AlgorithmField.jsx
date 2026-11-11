@@ -2,18 +2,10 @@ import { useEffect, useRef } from 'react'
 import { prefersReducedMotion } from '../lib/gsap.js'
 
 const PALETTE = {
-  light: {
-    line: 'rgba(0, 168, 187, 0.3)',
-    node: 'rgba(13, 13, 26, 0.5)',
-    signal: 'rgba(0, 229, 255, 0.7)',
-    soft: 'rgba(0, 229, 255, 0.12)',
-  },
-  dark: {
-    line: 'rgba(0, 229, 255, 0.22)',
-    node: 'rgba(200, 200, 216, 0.5)',
-    signal: 'rgba(0, 229, 255, 0.85)',
-    soft: 'rgba(0, 229, 255, 0.1)',
-  },
+  line: 'rgba(0, 168, 187, 0.3)',
+  node: 'rgba(13, 13, 26, 0.5)',
+  signal: 'rgba(0, 229, 255, 0.7)',
+  soft: 'rgba(0, 229, 255, 0.12)',
 }
 
 function AlgorithmField() {
@@ -33,7 +25,6 @@ function AlgorithmField() {
     let raf = 0
     let last = 0
     let visible = true
-    let colors = PALETTE[document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light']
     const pointer = { x: -9999, y: -9999, active: false }
 
     const buildNodes = () => {
@@ -73,7 +64,7 @@ function AlgorithmField() {
           if (distance < 160) {
             const alpha = 1 - distance / 160
             ctx.globalAlpha = alpha * 0.55
-            ctx.strokeStyle = colors.line
+            ctx.strokeStyle = PALETTE.line
             ctx.lineWidth = 1
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
@@ -85,13 +76,13 @@ function AlgorithmField() {
 
       ctx.globalAlpha = 1
       for (const node of nodes) {
-        ctx.fillStyle = node.signal ? colors.signal : colors.node
+        ctx.fillStyle = node.signal ? PALETTE.signal : PALETTE.node
         ctx.beginPath()
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2)
         ctx.fill()
 
         if (node.signal) {
-          ctx.strokeStyle = colors.soft
+          ctx.strokeStyle = PALETTE.soft
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.arc(node.x, node.y, node.r + 7, 0, Math.PI * 2)
@@ -156,15 +147,6 @@ function AlgorithmField() {
     )
     visibilityObserver.observe(canvas)
 
-    const themeObserver = new MutationObserver(() => {
-      colors = PALETTE[document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light']
-      if (reduce) draw()
-    })
-    themeObserver.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    })
-
     window.addEventListener('pointermove', onPointerMove, { passive: true })
     window.addEventListener('pointerleave', onPointerLeave)
     resize()
@@ -176,7 +158,6 @@ function AlgorithmField() {
       cancelAnimationFrame(raf)
       resizeObserver.disconnect()
       visibilityObserver.disconnect()
-      themeObserver.disconnect()
       window.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('pointerleave', onPointerLeave)
     }

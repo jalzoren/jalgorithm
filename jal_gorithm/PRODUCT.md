@@ -25,13 +25,13 @@ A student portfolio presented under the JALGORITHM name that demonstrates the ow
 
 ## Operating Context
 
-Viewed on phones and desktops, often by first-time visitors arriving from links or referrals. Light and dark mode both required; visitors may switch manually or follow system preference.
+Viewed on phones and desktops, often by first-time visitors arriving from links or referrals. Use a consistent light color scheme across devices.
 
 ## Capabilities and Constraints
 
 - Single-page layout; navigation links smooth-scroll to sections.
 - Sections, in order: Home, About, Skills/Stack, Projects, Experience/Work, School, Contact.
-- Light mode + dark mode with a user toggle and system-preference default.
+- Light color scheme only; do not infer a dark theme from device settings.
 - Animation via the installed `motion` library: entrance reveals, scroll-triggered motion, hover micro-interactions.
 - Mobile responsive across the design-doc breakpoints.
 - W3C-valid, semantic HTML.

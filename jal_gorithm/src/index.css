@@ -1,7 +1,7 @@
 /* ============================================================
    JALGORITHM — global tokens & resets
    Two switchable styles: CLI (default) and Design4 (pastel/Y2K)
-   Both respond to [data-theme='light'] / [data-theme='dark'].
+   The site uses a fixed light color scheme.
    ============================================================ */
 
 @font-face {
@@ -40,40 +40,11 @@
 
 /* ============================================================
    STYLE: CLI  (data-style="cli")
-   Signature look — terminal green on near-black ground
+   Signature look — monochrome paper terminal
    ============================================================ */
 
-/* CLI dark (default boot state) */
+/* CLI — light monochrome terminal */
 [data-style='cli'] {
-  --logo-fill:    #ffffff;
-  --logo-outline: #000000;
-  --logo-shadow:  rgba(0,0,0,0.5);
-
-  --bg:          #000e00;
-  --surface:     #001400;
-  --surface-2:   #001a00;
-  --text:        #00cc44;
-  --text-strong: #00ff55;
-  --muted:       #007722;
-  --border:      rgba(0, 200, 60, 0.18);
-  --accent:      #00ff55;
-  --accent-text: #00ff55;
-  --accent-fg:   #000e00;
-  --accent-glow: rgba(0, 255, 85, 0.18);
-  --btn-bg:      #00ff55;
-  --btn-fg:      #000e00;
-  --focus-ring:  #00ff55;
-  --shadow-lift: rgba(0, 255, 85, 0.15) 0 0 32px;
-  --green:       #00ff55;
-  --red:         #ff4455;
-  --yellow:      #ccff00;
-  --r:           2px;
-  --r-card:      4px;
-  color-scheme:  dark;
-}
-
-/* CLI light — monochrome paper terminal */
-[data-style='cli'][data-theme='light'] {
   --logo-fill:    #0a0a0a;
   --logo-outline: #ffffff;
   --logo-shadow:  rgba(0,0,0,0.18);
@@ -154,48 +125,6 @@
   --r-pill:      999px;
 
   color-scheme:  light;
-}
-
-/* D4 dark — midnight blue, neon-denim, stars */
-[data-style='d4'][data-theme='dark'] {
-  --logo-fill:    #a8d4ff;
-  --logo-outline: #0a1628;
-  --logo-shadow:  rgba(100,170,255,0.3);
-
-  --bg:          #0a1628;
-  --bg-grad:     linear-gradient(180deg, #060e1a 0%, #0a1628 30%, #0d1e38 100%);
-
-  --surface:     rgba(24,40,72,0.82);
-  --surface-2:   rgba(16,28,56,0.9);
-  --surface-glass: rgba(16,32,64,0.6);
-
-  --text:        #a8c8e8;
-  --text-strong: #daeeff;
-  --muted:       #5a7898;
-
-  --border:      rgba(100,160,255,0.16);
-  --border-glass: rgba(100,160,255,0.25);
-
-  --accent:      #7FA8FF;
-  --accent-text: #a8c8ff;
-  --accent-fg:   #060e1a;
-  --accent-glow: rgba(127,168,255,0.4);
-
-  --btn-bg:      #7FA8FF;
-  --btn-fg:      #060e1a;
-
-  --focus-ring:  #7FA8FF;
-  --shadow-lift: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(100,160,255,0.12);
-  --shadow-glass: 0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(100,160,255,0.2) inset;
-  --green:       #7fe8a0;
-  --red:         #ff6b70;
-  --yellow:      #FF8EC4;
-
-  --r:           12px;
-  --r-card:      20px;
-  --r-pill:      999px;
-
-  color-scheme:  dark;
 }
 
 /* ============================================================
