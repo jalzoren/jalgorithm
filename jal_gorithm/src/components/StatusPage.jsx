@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import Logo from './Logo.jsx'
 
 function StatusPage({ isBuilding }) {
   useEffect(() => {
@@ -10,8 +9,7 @@ function StatusPage({ isBuilding }) {
     <main className="status-page" id="main">
       <header className="status-page-header">
         <a className="status-page-brand" href="/" aria-label="JALGORITHM home">
-          <Logo size={28} />
-          <span className="mono">&gt;_jalgorithm</span>
+          <span className="site-wordmark">&gt;_jalgorithm</span>
         </a>
         <span className="mono status-page-code">{isBuilding ? 'STATUS · 01' : 'ERROR · 404'}</span>
       </header>
@@ -58,7 +56,7 @@ function StatusPage({ isBuilding }) {
       </section>
 
       <footer className="status-page-footer mono">
-        <span><Logo size={16} /> JALGORITHM</span>
+        <span className="site-wordmark">&gt;_jalgorithm</span>
         <span>{isBuilding ? 'GOOD THINGS TAKE A LITTLE TIME' : 'END OF THE LINE — FOR NOW'}</span>
       </footer>
     </main>

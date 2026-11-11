@@ -14,8 +14,18 @@
 }
 
 /* ============================================================
-   LOGO
+   WORDMARK
    ============================================================ */
+.site-wordmark {
+  color: var(--text-strong);
+  font-family: var(--mono);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  text-decoration: none;
+  text-transform: none;
+  white-space: nowrap;
+}
+
 .logo-wrap {
   display: inline-flex;
   align-items: center;
@@ -85,9 +95,8 @@
   flex-shrink: 0;
 }
 .brand-word {
-  font: 700 13px/1 var(--sans);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 1;
   color: var(--text-strong);
   transition: color 0.2s ease;
 }
@@ -336,7 +345,6 @@
   color: var(--text-strong);
   font: 700 12px/1 var(--mono);
   text-decoration: none;
-  text-transform: uppercase;
 }
 .status-page-code,
 .status-page-kicker,
@@ -911,15 +919,13 @@
   border: 1px solid var(--border);
   display: block;
   object-fit: cover;
-  filter: grayscale(0.5) contrast(1.8) brightness(0.95);
+  filter: grayscale(1) contrast(1.08) brightness(1.02);
   transition: filter 0.3s ease, border-color 0.3s ease;
 }
 [data-style='cli'] .flip-avatar img {
-  filter: grayscale(0.75) sepia(0.25) hue-rotate(75deg) saturate(1.4) contrast(1.08);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
 }
 [data-style='d4'] .flip-avatar img {
-  filter: saturate(0.82) contrast(1.04) brightness(1.08);
   border-color: rgba(91,141,239,0.42);
 }
 
@@ -1373,10 +1379,7 @@
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
-.about-signature-mark {
-  /* Logo tile handles its own background and sizing */
-  flex-shrink: 0;
-}
+.about-signature-wordmark { flex-shrink: 0; font-size: 13px; }
 .about-signature strong {
   display: block;
   font: 700 13px/1.2 var(--sans);
@@ -1411,6 +1414,8 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
 }
+.flip-card-wordmark { font-size: 11px; }
+.flip-card-edu-wordmark { font-size: 11px; }
 .about-card-head > .mono { font: 400 9px/1.6 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 .about-card-head > .muted { font: 400 8.5px/1.6 var(--mono); color: var(--muted); }
 
@@ -1734,9 +1739,9 @@
 
 .school-side { display: flex; flex-direction: column; gap: 12px; }
 .school-seal {
-  /* Logo tile handles its own background and sizing */
   flex-shrink: 0;
   display: inline-flex;
+  font-size: 14px;
 }
 .school-side h4 { margin: 0; font: 400 9px/1.6 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
 .school-coursework { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
@@ -1787,7 +1792,7 @@
   padding: clamp(28px, 4.5vh, 48px) var(--section-px) 20px;
 }
 .footer-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.footer-wordmark { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font: 700 13px/1 var(--sans); letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-strong); transition: color 0.18s ease; }
+.footer-wordmark { display: inline-flex; align-items: center; text-decoration: none; font-size: 13px; line-height: 1; transition: color 0.18s ease; }
 .footer-wordmark:hover { color: var(--accent); }
 .footer-nav { display: flex; gap: 1px; flex-wrap: wrap; }
 .footer-nav a { font: 400 9px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 9px 9px; border-radius: 3px; transition: color 0.18s ease, background 0.18s ease; }
@@ -1811,6 +1816,7 @@
   overflow: hidden;
 }
 .preloader-top { display: flex; align-items: center; justify-content: space-between; }
+.preloader-wordmark { font-size: 18px; }
 .preloader-label { font: 400 9px/1.6 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
 .preloader-center { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .preloader-pct { font: 800 clamp(64px, 15vw, 180px)/1 var(--sans); letter-spacing: -0.045em; text-transform: uppercase; color: var(--text-strong); }
@@ -1885,11 +1891,12 @@
   text-transform: none !important;
 }
 
-/* CLI: nav brand */
+/* CLI wordmark */
 [data-style='cli'] .brand-word,
-[data-style='cli'] .logo-wordmark {
+[data-style='cli'] .site-wordmark {
   font-family: var(--mono) !important;
-  font-weight: 400 !important;
+  font-weight: 800 !important;
+  text-transform: none !important;
 }
 
 /* CLI: status dot blinks instead of pulses */
@@ -2307,11 +2314,12 @@
 }
 /* Nav brand word */
 [data-style='d4'] .brand-word,
-[data-style='d4'] .logo-wordmark {
-  font-family: var(--sans) !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.02em !important;
+[data-style='d4'] .site-wordmark {
+  font-family: var(--mono) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.07em !important;
   color: var(--text-strong) !important;
+  text-transform: none !important;
 }
 
 /* Nav links — pill style, light hover */
@@ -2501,8 +2509,8 @@
     inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
-/* About signature mark — no box needed, logo fills it */
-[data-style='d4'] .about-signature-mark .logo-mark {
+/* About signature wordmark */
+[data-style='d4'] .about-signature-wordmark {
   opacity: 0.9;
 }
 

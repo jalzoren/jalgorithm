@@ -1,6 +1,5 @@
 import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
-import Logo from './Logo.jsx'
 import { school } from '../content.js'
 
 function School() {
@@ -49,8 +48,8 @@ function School() {
           </div>
 
           <div className="school-side">
-            <div className="school-seal" aria-hidden="true">
-              <Logo size={44} />
+            <div className="school-seal site-wordmark" aria-hidden="true">
+              &gt;_jalgorithm
             </div>
             <h4 className="mono">// Coursework</h4>
             <ul className="school-coursework">

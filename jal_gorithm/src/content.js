@@ -8,10 +8,10 @@ export const profile = {
   fullName: 'Laurence James L. Flavier',
   wordmark: 'JALGORITHM',
   handle: '@jalgorithm',
-  role: 'Full-stack developer · UI/UX',
+  role: 'Front-end developer · UI/UX',
   thesis: 'I build interfaces that move.',
   thesisAccent: 'move.',
-  roleLine: 'Full-stack developer · UI/UX · Pasig City, PH',
+  roleLine: 'Front-end developer · UI/UX · Pasig City, PH',
   tagline:
     'BS Information Technology student at Pamantasan ng Lungsod ng Pasig with a focus on frontend architecture, UI/UX design, and backend systems — building interfaces that are fast, clean, and purposeful.',
   status: 'Open for internships & freelance',
@@ -53,7 +53,7 @@ export const heroCode = [
   { text: 'const jalgorithm = {' },
   { text: "  name:   'Laurence James Flavier'," },
   { text: "  stack:  ['react', 'next.js', 'python', 'node']," },
-  { text: "  focus:  'fullstack + ui/ux'," },
+  { text: "  focus:  'frontend + ui/ux'," },
   { text: "  school: 'PLP – BS InfoTech'," },
   { text: "  status: 'available'," },
   { text: '}' },
@@ -352,5 +352,4 @@ export const socials = [
 
 export const footer = {
   credit: '© 2026 Laurence James Flavier · Pasig City, PH',
-  built: 'Built with React, GSAP & Motion',
 }

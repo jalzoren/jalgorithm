@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/gsap.js'
-import Logo from './Logo.jsx'
 import { profile } from '../content.js'
 
 const SQUARES = 16
@@ -65,7 +64,7 @@ function Preloader({ onDone }) {
     <div ref={overlayRef} className="preloader" role="status" aria-live="polite" aria-label="Loading portfolio">
       <div className="preloader-top">
         <div className="preloader-brand">
-          <Logo size={32} wordmark />
+          <span className="site-wordmark preloader-wordmark">&gt;_jalgorithm</span>
         </div>
         <span className="preloader-label mono">loading</span>
       </div>

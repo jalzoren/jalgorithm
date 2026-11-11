@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { profile, school, schoolShs } from '../content.js'
-import Logo from './Logo.jsx'
 
 /**
  * FlipCard — single card in the hero with two faces:
@@ -32,7 +31,7 @@ function FlipCard() {
         {/* ── FRONT: Access card ── */}
         <div className="flip-card-face flip-front" aria-hidden={flipped}>
           <div className="flip-front-top">
-            <Logo size={22} />
+            <span className="site-wordmark flip-card-wordmark">&gt;_jalgorithm</span>
             <span className="mono flip-label">PORTFOLIO ACCESS CARD</span>
             <span className="mono flip-no">NO. JAL–2026–00001</span>
           </div>
@@ -104,7 +103,7 @@ function FlipCard() {
             {/* College */}
             <div className="flip-edu-entry flip-edu-college">
               <div className="flip-edu-row">
-                <Logo size={20} />
+                <span className="site-wordmark flip-card-edu-wordmark">&gt;_jalgorithm</span>
                 <div className="flip-edu-meta">
                   <span className="flip-edu-period mono">{school.yearLabel} · {school.expected.replace('Expected graduation ', '')}</span>
                   <span className="flip-edu-label mono">College</span>

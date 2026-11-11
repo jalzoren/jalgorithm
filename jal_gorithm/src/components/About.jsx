@@ -1,6 +1,5 @@
 import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
-import Logo from './Logo.jsx'
 import DraggableStickers from './DraggableStickers.jsx'
 import { about, profile } from '../content.js'
 import { SparkIcon } from './icons.jsx'
@@ -30,9 +29,8 @@ function About() {
               <p key={paragraph}>{paragraph}</p>
             ))}
             <div className="about-signature">
-              <Logo size={40} className="about-signature-mark" aria-hidden="true" />
+              <span className="about-signature-wordmark site-wordmark" aria-hidden="true">&gt;_jalgorithm</span>
               <span>
-                <strong>{profile.name}</strong>
                 <span className="mono">{profile.role}</span>
               </span>
             </div>

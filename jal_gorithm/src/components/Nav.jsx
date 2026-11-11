@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import Logo from './Logo.jsx'
 import MusicPlayer from './MusicPlayer.jsx'
 import { navLinks, profile } from '../content.js'
 import {
@@ -56,10 +55,9 @@ function Nav() {
   return (
     <header className={['nav', scrolled && 'is-scrolled'].filter(Boolean).join(' ')}>
       <div className="nav-inner">
-        {/* Logo */}
+        {/* Wordmark */}
         <a className="brand" href="#home" aria-label="JALGORITHM — back to home">
-          <Logo size={28} />
-          <span className="brand-word">&gt;_jalgorithm</span>
+          <span className="brand-word site-wordmark">&gt;_jalgorithm</span>
         </a>
 
         {/* Desktop links */}

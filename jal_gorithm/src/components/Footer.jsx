@@ -1,5 +1,4 @@
 import { motion } from 'motion/react'
-import Logo from './Logo.jsx'
 import { footer, navLinks, profile } from '../content.js'
 import { ArrowUpIcon } from './icons.jsx'
 
@@ -7,9 +6,8 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-top">
-        <a className="footer-wordmark" href="#home" aria-label="Back to home">
-          <Logo size={28} />
-          <span>JALGORITHM</span>
+        <a className="footer-wordmark site-wordmark" href="#home" aria-label="Back to home">
+          &gt;_jalgorithm
         </a>
         <nav className="footer-nav" aria-label="Footer">
           {navLinks.map((link) => (
