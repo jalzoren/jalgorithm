@@ -37,8 +37,7 @@ function Experience() {
       aria-labelledby="experience-title"
     >
       <DraggableStickers stickers={[
-        { id: 'experience-practice', shape: 'ticket', position: 'top-right', label: 'PRACTICE / SHIP', mark: '04' },
-        { id: 'experience-learning', shape: 'burst', position: 'bottom-left', label: 'LEARN BY DOING', mark: '↗' },
+        { id: 'experience-learning', shape: 'burst', position: 'top-right', label: 'LEARN BY DOING', mark: '↗' },
       ]} />
       <div className="shell">
         <SectionHeading

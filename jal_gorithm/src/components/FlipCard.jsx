@@ -45,7 +45,10 @@ function FlipCard() {
             <div className="flip-fields">
               <div className="flip-field">
                 <span className="mono">ISSUED TO</span>
-                <strong>(&gt;_jalgorithm) {profile.fullName}</strong>
+                <strong>
+                  (&gt;_jalgorithm){' '}
+                  <span className="flip-hidden-name">{profile.fullName}</span>
+                </strong>
               </div>
               <div className="flip-field">
                 <span className="mono">ROLE</span>

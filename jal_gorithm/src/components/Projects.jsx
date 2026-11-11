@@ -121,7 +121,7 @@ function Projects() {
     >
       <DraggableStickers stickers={[
         { id: 'projects-selected', shape: 'ticket', position: 'top-right', label: 'SELECTED WORK', mark: '↗' },
-        { id: 'projects-made', shape: 'seal', position: 'bottom-left', label: 'MADE TO SHIP', mark: '★' },
+        { id: 'projects-made', shape: 'seal', position: 'bottom-left', label: 'UNI and SIDE PROJECTS', mark: '★' },
       ]} />
       <div className="shell">
         <SectionHeading

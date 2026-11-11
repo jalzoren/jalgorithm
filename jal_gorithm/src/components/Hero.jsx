@@ -66,7 +66,6 @@ function Hero({ ready }) {
       <DotGrid className="hero-dot-grid" />
       <DraggableStickers stickers={[
         { id: 'home-build', shape: 'burst', position: 'top-right', label: 'BUILD N CREATE', mark: '++' },
-        { id: 'home-create', shape: 'seal', position: 'bottom-left', label: 'DESIGN!', mark: '✳' },
       ]} />
 
       {/* breadcrumb + counter */}
@@ -88,9 +87,9 @@ function Hero({ ready }) {
             as="h1"
             id="hero-title"
             className="hero-name"
-            text="I build interfaces that move."
+            text="Frontend developer. UI/UX, and fiddly-bits."
             split="word"
-            accent="move."
+            accent="fiddly-bits."
             play={ready}
             stagger={0.055}
             duration={0.9}

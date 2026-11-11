@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import Logo from './Logo.jsx'
+import MusicPlayer from './MusicPlayer.jsx'
 import { navLinks, profile } from '../content.js'
 import {
   ArrowUpRightIcon,
@@ -12,6 +13,7 @@ import {
 function Nav() {
   const [active, setActive] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [musicOpen, setMusicOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   /* active section tracking */
@@ -40,11 +42,16 @@ function Nav() {
   }, [menuOpen])
 
   useEffect(() => {
-    if (!menuOpen) return undefined
-    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false) }
+    if (!menuOpen && !musicOpen) return undefined
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false)
+        setMusicOpen(false)
+      }
+    }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [menuOpen])
+  }, [menuOpen, musicOpen])
 
   return (
     <header className={['nav', scrolled && 'is-scrolled'].filter(Boolean).join(' ')}>
@@ -52,7 +59,7 @@ function Nav() {
         {/* Logo */}
         <a className="brand" href="#home" aria-label="JALGORITHM — back to home">
           <Logo size={28} />
-          <span className="brand-word">JALGORITHM</span>
+          <span className="brand-word">&gt;_jalgorithm</span>
         </a>
 
         {/* Desktop links */}
@@ -84,6 +91,30 @@ function Nav() {
 
         {/* Actions */}
         <div className="nav-actions">
+          <button
+            type="button"
+            className={musicOpen ? 'icon-button is-accent' : 'icon-button'}
+            aria-label={musicOpen ? 'Close music player' : 'Open music player'}
+            aria-expanded={musicOpen}
+            aria-controls="nav-music-player"
+            onClick={() => setMusicOpen((open) => !open)}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M9 18V5l12-2v13" />
+              <circle cx="6" cy="18" r="3" />
+              <circle cx="18" cy="16" r="3" />
+            </svg>
+          </button>
           <a className="btn btn-primary nav-cta" href="#contact">
             Let&apos;s talk
             <ArrowUpRightIcon size={13} />
@@ -93,23 +124,36 @@ function Nav() {
             className="icon-button nav-menu-toggle"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
+            onClick={() => {
+              setMenuOpen((open) => !open)
+              setMusicOpen(false)
+            }}
           >
             {menuOpen ? <CloseIcon size={15} /> : <MenuIcon size={15} />}
           </button>
         </div>
       </div>
 
+      <MusicPlayer isOpen={musicOpen} onClose={() => setMusicOpen(false)} />
+
       {/* Mobile overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             className="nav-overlay"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
           >
+            <button
+              type="button"
+              className="icon-button nav-overlay-close"
+              aria-label="Close mobile navigation"
+              onClick={() => setMenuOpen(false)}
+            >
+              <CloseIcon size={15} />
+            </button>
             <nav className="nav-overlay-links" aria-label="Mobile">
               {navLinks.map((link, index) => (
                 <motion.a

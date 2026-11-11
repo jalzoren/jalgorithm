@@ -147,6 +147,21 @@ export const skillGroups = [
 
 export const projects = [
   {
+    title: 'Demand Forecasting System',
+    subtitle: 'Academic capstone · Supply chain',
+    category: 'Forecasting system',
+    blurb:
+      'An XGBoost-powered demand forecasting system for micro-enterprise food service, designed to help reduce stock shortages.',
+    description:
+      'Academic capstone project at Pamantasan ng Lungsod ng Pasig. Built an XGBoost system that forecasts daily and weekly product demand to reduce stock shortages. It generates ingredient estimates, reorder recommendations, visual analytics, and automated alerts for supply chain planning. Forecast accuracy was evaluated to identify high- and low-demand products.',
+    tags: ['XGBoost', 'Demand forecasting', 'Supply chain', 'Food service', 'Capstone'],
+    link: 'https://github.com/jerimiahbitancor/Demand-Forecasting-System',
+    status: 'Academic',
+    plate: 'grid',
+    accent: 'green',
+    featured: true,
+  },
+  {
     title: 'Hospital Content Management System',
     subtitle: 'Healthcare · Content platform',
     category: 'Content platform',
