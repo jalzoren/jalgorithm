@@ -10,9 +10,21 @@ import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import Preloader from './components/Preloader.jsx'
 import CliTerminal from './components/CliTerminal.jsx'
+import StatusPage from './components/StatusPage.jsx'
 import './App.css'
 
 function App() {
+  const pathname = window.location.pathname.replace(/\/+$/, '') || '/'
+  const isBuilding = ['/building', '/building-in-progress', '/under-construction'].includes(pathname)
+
+  if (isBuilding || pathname !== '/') {
+    return <StatusPage isBuilding={isBuilding} />
+  }
+
+  return <Portfolio />
+}
+
+function Portfolio() {
   const [ready, setReady] = useState(false)
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.4 })
@@ -47,5 +59,4 @@ function App() {
 }
 
 export default App
-
 
