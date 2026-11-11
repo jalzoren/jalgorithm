@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T12:00:00Z",
+  "title": "Design System: JALGORITHM",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Warm Paper", "canonical": "#f5f3f1", "tonalRamp": ["#1c1b1a", "#353433", "#4e4d4c", "#676665", "#807e7d", "#9a9795", "#c4c1be", "#f5f3f1"] },
+      "ink": { "role": "primary", "displayName": "Ink", "canonical": "#000000", "tonalRamp": ["#000000", "#1f1f1f", "#3d3d3d", "#5c5c5c", "#7a7a7a", "#999999", "#cccccc", "#f0f0f0"] },
+      "paper-surface": { "role": "neutral", "displayName": "Paper Surface", "canonical": "#eeecea", "tonalRamp": ["#1e1d1c", "#373634", "#504e4c", "#696764", "#82807d", "#9b9895", "#c5c1be", "#eeecea"] },
+      "paper-shade": { "role": "neutral", "displayName": "Paper Shade", "canonical": "#e4e3e1", "tonalRamp": ["#1c1b1a", "#353433", "#4d4c4b", "#666564", "#7e7d7b", "#979594", "#c0bebb", "#e4e3e1"] },
+      "graphite": { "role": "neutral", "displayName": "Graphite", "canonical": "#626262", "tonalRamp": ["#151515", "#282828", "#3a3a3a", "#4c4c4c", "#626262", "#7d7d7d", "#a3a3a3", "#cfcfcf"] },
+      "warm-hairline": { "role": "neutral", "displayName": "Warm Hairline", "canonical": "#d8d6d4", "tonalRamp": ["#1b1a19", "#333231", "#4b4a48", "#636160", "#7b7977", "#93908e", "#b9b6b3", "#d8d6d4"] },
+      "pixel-red": { "role": "accent", "displayName": "Pixel Red", "canonical": "#dc2626", "tonalRamp": ["#270404", "#540909", "#820e0e", "#b01313", "#dc2626", "#e55a5a", "#ee8e8e", "#f7c2c2"] },
+      "terminal-black": { "role": "neutral", "displayName": "Terminal Black", "canonical": "#0f0f10", "tonalRamp": ["#0f0f10", "#1e1e1f", "#2d2d2e", "#3c3c3d", "#4b4b4c", "#6a6a6b", "#a9a9aa", "#e8e8e9"] },
+      "signal-white": { "role": "primary", "displayName": "Signal White", "canonical": "#f5f5f5", "tonalRamp": ["#1f1f1f", "#383838", "#515151", "#6a6a6a", "#838383", "#9c9c9c", "#c6c6c6", "#f5f5f5"] },
+      "panel-dark": { "role": "neutral", "displayName": "Panel Dark", "canonical": "#1d1d1e", "tonalRamp": ["#1d1d1e", "#2c2c2d", "#3b3b3c", "#4a4a4b", "#59595a", "#777778", "#b5b5b6", "#e2e2e3"] },
+      "panel-raised": { "role": "neutral", "displayName": "Panel Raised", "canonical": "#29292a", "tonalRamp": ["#29292a", "#38383a", "#474749", "#565659", "#656567", "#828285", "#bfbfc1", "#e9e9ea"] },
+      "ash": { "role": "neutral", "displayName": "Ash", "canonical": "#9e9e9e", "tonalRamp": ["#1a1a1a", "#333333", "#4c4c4c", "#656565", "#9e9e9e", "#afafaf", "#c6c6c6", "#dddddd"] },
+      "dark-hairline": { "role": "neutral", "displayName": "Dark Hairline", "canonical": "#353536", "tonalRamp": ["#353536", "#444445", "#535354", "#626263", "#717172", "#8f8f90", "#c2c2c3", "#e4e4e5"] },
+      "terminal-red": { "role": "accent", "displayName": "Terminal Red", "canonical": "#ff7575", "tonalRamp": ["#1a0505", "#4c1313", "#7e2222", "#b04343", "#e36666", "#ff7575", "#ffa3a3", "#ffd1d1"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero wordmark and contact display only; letters animate individually." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2s, revealed by clip-path wipe; school name and contact display are wider clamps of this role." },
+      "title": { "displayName": "Title", "purpose": "Project titles and experience roles, 20-30px." },
+      "body": { "displayName": "Body", "purpose": "Reading prose, 15-18px, 58-68ch measure." },
+      "label": { "displayName": "Machine Voice", "purpose": "All metadata: mono, uppercase, 0.08em+ tracking. If a reader can parse it as data, it is mono." }
+    },
+    "shadows": [
+      { "name": "shadow-btn", "value": "rgba(0, 0, 0, 0.1) 0 4px 6px -1px, rgba(0, 0, 0, 0.1) 0 2px 4px -2px", "purpose": "Resting press weight of primary buttons." },
+      { "name": "shadow-lift", "value": "rgba(0, 0, 0, 0.06) 0 12px 28px -8px, rgba(0, 0, 0, 0.03) 0 4px 12px -4px", "purpose": "Hover lift on buttons and icon buttons." }
+    ],
+    "motion": [
+      { "name": "ease-signature", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reveal easing for wipes, staggers, and letter assembly." },
+      { "name": "ease-state", "value": "ease 0.2s", "purpose": "Color, border, and opacity state transitions." },
+      { "name": "letter-stagger", "value": "0.045s", "purpose": "Hero letter assembly delay step after 0.12s base." },
+      { "name": "wipe-duration", "value": "0.7s", "purpose": "Clip-path wipe duration; 0.8s on the school panel." },
+      { "name": "marquee-period", "value": "36s linear infinite", "purpose": "Stack marquee loop; pauses on hover." }
+    ],
+    "breakpoints": [
+      { "name": "nav", "value": "768px", "purpose": "Nav links show, menu toggle hides, shell side rails drop." },
+      { "name": "grid-collapse", "value": "900px", "purpose": "About and skills grids collapse to one column." },
+      { "name": "row-reflow", "value": "720px", "purpose": "Project and experience rows reflow; plates shrink 128 to 96px." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ink-solid CTA with mono uppercase voice; press shadow at rest, lifts on hover.",
+      "html": "<button class=\"ds-btn-primary\">View projects</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 14px 32px; background: #000000; color: #f5f3f1; font: 500 14px/1.5 'Geist Mono', ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; border: 0; border-radius: 0; box-shadow: rgba(0,0,0,0.1) 0 4px 6px -1px, rgba(0,0,0,0.1) 0 2px 4px -2px; transition: box-shadow 0.25s ease, transform 0.25s ease; } .ds-btn-primary:hover { box-shadow: rgba(0,0,0,0.06) 0 12px 28px -8px, rgba(0,0,0,0.03) 0 4px 12px -4px; transform: translateY(-2px); } .ds-btn-primary:active { transform: translateY(0); } .ds-btn-primary:focus-visible { outline: 2px solid #000000; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Secondary action: sans at 75% opacity with a hairline underline.",
+      "html": "<a class=\"ds-btn-text\" href=\"#contact\">Get in touch</a>",
+      "css": ".ds-btn-text { display: inline-flex; align-items: center; gap: 8px; height: 44px; color: #000000; opacity: 0.75; font: 400 16px/1.5 'Geist', sans-serif; text-decoration: none; border-bottom: 1px solid #d8d6d4; transition: opacity 0.2s ease, border-color 0.2s ease; } .ds-btn-text:hover { opacity: 1; border-color: #000000; } .ds-btn-text:focus-visible { outline: 2px solid #000000; outline-offset: 2px; }"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "44px square control at 8px radius — the only rounded element in the system.",
+      "html": "<button class=\"ds-icon-button\" aria-label=\"Toggle menu\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M4 7h16M4 12h16M4 17h16\"/></svg></button>",
+      "css": ".ds-icon-button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 8px; border: 1px solid #d8d6d4; background: transparent; color: #000000; cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-icon-button:hover { border-color: #000000; box-shadow: rgba(0,0,0,0.06) 0 12px 28px -8px, rgba(0,0,0,0.03) 0 4px 12px -4px; } .ds-icon-button:focus-visible { outline: 2px solid #000000; outline-offset: 2px; }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Hairline-outlined mono chip for skills and coursework; no fill.",
+      "html": "<span class=\"ds-tag\">React</span>",
+      "css": ".ds-tag { font: 400 11px/1 'Geist Mono', ui-monospace, monospace; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 10px; border: 1px solid #d8d6d4; color: #000000; }"
+    },
+    {
+      "name": "Facts Panel",
+      "kind": "card",
+      "refersTo": "tag",
+      "description": "Flat surface panel with hairline-divided definition rows.",
+      "html": "<div class=\"ds-facts\"><div class=\"ds-fact-row\"><span class=\"ds-fact-label\">Location</span><span class=\"ds-fact-value\">Pasig City, PH</span></div><div class=\"ds-fact-row\"><span class=\"ds-fact-label\">Focus</span><span class=\"ds-fact-value\">Web development</span></div></div>",
+      "css": ".ds-facts { background: #eeecea; border: 1px solid #d8d6d4; padding: 20px; } .ds-fact-row { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 12px 0; border-top: 1px solid #d8d6d4; } .ds-fact-row:first-child { border-top: 0; padding-top: 0; } .ds-fact-label { font: 500 11px/1.6 'Geist Mono', ui-monospace, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: #626262; } .ds-fact-value { font: 400 15px/1.5 'Geist', sans-serif; color: #000000; }"
+    },
+    {
+      "name": "Project Row",
+      "kind": "custom",
+      "refersTo": "tag",
+      "description": "Signature list row: square plate, uppercase title with mono subtitle, hairline top border; lifts 2px on hover.",
+      "html": "<a class=\"ds-project-row\" href=\"#\"><div class=\"ds-plate\"></div><div><div class=\"ds-project-title-line\"><span class=\"ds-project-title\">Sorting Visualizer</span><span class=\"ds-project-subtitle\">TEMPLATE</span></div><p class=\"ds-project-blurb\">Sorting algorithms rendered as motion.</p></div></a>",
+      "css": ".ds-project-row { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 24px; padding: 24px 0; text-decoration: none; color: inherit; border-top: 1px solid #d8d6d4; transition: transform 0.25s ease; } .ds-project-row:hover { transform: translateY(-2px); } .ds-plate { width: 128px; height: 128px; background: #eeecea; border: 1px solid #d8d6d4; transition: border-color 0.25s ease; } .ds-project-row:hover .ds-plate { border-color: #000000; } .ds-project-title-line { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; } .ds-project-title { font: 500 clamp(22px, 3vw, 30px)/1.1 'Geist', sans-serif; letter-spacing: -0.02em; text-transform: uppercase; } .ds-project-subtitle { font: 400 12px/1.6 'Geist Mono', ui-monospace, monospace; letter-spacing: 0.1em; text-transform: uppercase; color: #626262; } .ds-project-blurb { margin: 8px 0 0; color: #626262; font: 400 15px/1.55 'Geist', sans-serif; max-width: 64ch; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Algorithm Sheet",
+    "overview": "The site is a monochrome algorithm sheet: black ink on warm paper in light mode, off-white signal on terminal black in dark mode. Structure comes from hairline rules and uppercase Geist type, metadata from Geist Mono's machine voice, and proof of craft from kinetic typography — letters that assemble, clip-path wipes that develop like printed panels, and a marquee that ticks like a status line. There is no color story beyond one red pixel; the drama is weight, tracking, and the hairline grid.\n\nThe system is dual-theme by design: every token flips between a paper world (#F5F3F1 ground, #000000 ink) and a terminal world (#0F0F10 ground, #F5F5F5 ink) via data-theme on the root element. The accent is not a hue — it is the ink itself, inverted per theme.",
+    "keyCharacteristics": [
+      "Monochrome: ink, paper, hairlines; red confined to text selection and one favicon pixel.",
+      "Two voices: Geist for reading prose, Geist Mono (uppercase, wide tracking) for every label, status, period, and coordinate.",
+      "Sharp geometry: 0px corners everywhere except 8px icon controls.",
+      "Hairline structure: 1px borders divide rows, sections, and panels; never fills.",
+      "Kinetic reveals: staggered letter assembly, clip-path wipes, marquee band — all reduced-motion safe."
+    ],
+    "rules": [
+      { "name": "The One Red Pixel Rule", "body": "Red (#dc2626 light / #ff7575 dark) appears only in ::selection and the favicon's single pixel — under 1% of any screen. Its rarity is the point.", "section": "colors" },
+      { "name": "The Ink Inversion Rule", "body": "Dark mode is not a new palette: every token inverts (ink becomes paper, paper becomes ink); hue, saturation, and structure stay identical.", "section": "colors" },
+      { "name": "The Machine Voice Rule", "body": "Every non-prose string is Geist Mono, uppercase, tracked 0.08em or wider. If a reader can parse it as data, it is mono.", "section": "typography" },
+      { "name": "The Comment Prefix Rule", "body": "Machine-voice status lines are prefixed // — the sheet's signature comment motif.", "section": "typography" },
+      { "name": "The Lift Rule", "body": "Shadows are ambient micro-lifts reserved for interactive controls at rest and on hover. Static content is always flat.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep red to ::selection and the favicon pixel — one red element per build, never more.",
+      "Do set every label, status, period, and coordinate in Geist Mono uppercase with 0.08em+ tracking.",
+      "Do divide rows, sections, and panels with 1px hairline borders — structure by line, not fill.",
+      "Do observe reveals through unclipped wrappers (ClipReveal pattern) so IntersectionObserver sees partial visibility.",
+      "Do honor prefers-reduced-motion: mount-state animations skip, CSS animations collapse to 0.01ms, smooth scroll turns off."
+    ],
+    "donts": [
+      "Don't add gradients, glows, colored accents, or any hue beyond the one red pixel.",
+      "Don't round corners beyond the 8px icon-control exception.",
+      "Don't place micro-labels above headings as eyebrows — headings carry themselves; metadata lives in the mono voice below or beside.",
+      "Don't use hard offset shadows — this world's shadows are soft ambient lifts on controls only.",
+      "Don't split the type system: Geist reads, Geist Mono labels; nothing else ships."
+    ]
+  }
+}

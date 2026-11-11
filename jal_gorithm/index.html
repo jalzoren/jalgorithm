@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JALGORITHM — Web Developer Portfolio</title>
+    <meta
+      name="description"
+      content="JALGORITHM is a web developer portfolio showcasing projects, skills, and experience in web development. Explore the portfolio to see the work and expertise of JALGORITHM."
+    />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0f0e" media="(prefers-color-scheme: dark)" />
+    <script>
+      ;(function () {
+        // Dark is the signature; fall back to system preference
+        var theme = 'dark'
+        try {
+          var stored = localStorage.getItem('jal-theme')
+          if (stored === 'light' || stored === 'dark') {
+            theme = stored
+          } else {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          }
+        } catch (error) {
+          theme = 'dark'
+        }
+        document.documentElement.dataset.theme = theme
+        var forced = /[?&]theme=(dark|light)/.exec(window.location.search)
+        if (forced) document.documentElement.dataset.theme = forced[1]
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

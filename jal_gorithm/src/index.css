@@ -1,0 +1,223 @@
+/* ============================================================
+   JALGORITHM — global tokens & resets
+   Algorithm palette: cyan accent, Inter bold, JetBrains Mono
+   ============================================================ */
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono-var.woff2') format('woff2');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Keep Geist Mono as fallback (already cached) */
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/geist-mono-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Light theme (default) ------------------------------- */
+:root {
+  /* Pixel-art logo colours — black J, white outline separates from bg */
+  --logo-fill:    #0a0a0f;
+  --logo-outline: #ffffff;
+  --logo-shadow:  rgba(0, 0, 0, 0.18);
+
+  --bg:          #f5f5f5;
+  --surface:     #e8e8f0;
+  --surface-2:   #dcdce8;
+  --text:        #0d0d1a;
+  --text-strong: #0a0a0f;
+  --muted:       #5a5a7a;
+  --border:      rgba(13, 13, 26, 0.12);
+  --accent:      #00a8bb;        /* cyan, slightly darkened for light bg contrast */
+  --accent-text: #007a8a;
+  --accent-fg:   #0a0a0f;
+  --accent-glow: rgba(0, 229, 255, 0.18);
+  --btn-bg:      #0d0d1a;
+  --btn-fg:      #ffffff;
+  --focus-ring:  #00e5ff;
+  --shadow-lift: rgba(0, 0, 0, 0.14) 0 16px 40px -12px;
+  --sans:        'Inter', system-ui, -apple-system, sans-serif;
+  --mono:        'JetBrains Mono', 'Geist Mono', ui-monospace, Consolas, monospace;
+  --maxw:        1560px;
+  color-scheme:  light;
+}
+
+/* ---- Dark theme (signature) ------------------------------ */
+[data-theme='dark'] {
+  /* Pixel-art logo colours in dark mode — white J, black outline */
+  --logo-fill:    #ffffff;
+  --logo-outline: #000000;
+  --logo-shadow:  rgba(0, 0, 0, 0.45);
+
+  --bg:          #0a0a0f;
+  --surface:     #0f0f1a;
+  --surface-2:   #141424;
+  --text:        #c8c8d8;
+  --text-strong: #ffffff;
+  --muted:       #5a5a7a;
+  --border:      rgba(255, 255, 255, 0.08);
+  --accent:      #00e5ff;
+  --accent-text: #00e5ff;
+  --accent-fg:   #0a0a0f;
+  --accent-glow: rgba(0, 229, 255, 0.15);
+  --btn-bg:      #00e5ff;
+  --btn-fg:      #0a0a0f;
+  --focus-ring:  #00e5ff;
+  --shadow-lift: rgba(0, 229, 255, 0.08) 0 0 40px 0, rgba(0, 0, 0, 0.6) 0 24px 60px -24px;
+  color-scheme:  dark;
+}
+
+/* ---- CLI dark mode --------------------------------------- */
+[data-style='cli'][data-theme='dark'] {
+  --logo-fill:    #ffffff;
+  --logo-outline: #000000;
+  --logo-shadow:  rgba(0, 0, 0, 0.45);
+}
+
+/* ---- CLI light mode — clean black on white --------------- */
+[data-style='cli'][data-theme='light'] {
+  --bg:          #ffffff;
+  --surface:     #f2f2f2;
+  --surface-2:   #e6e6e6;
+  --text:        #0a0a0a;
+  --text-strong: #000000;
+  --muted:       #555555;
+  --border:      rgba(0, 0, 0, 0.14);
+  --accent:      #0a0a0a;
+  --accent-text: #0a0a0a;
+  --accent-fg:   #ffffff;
+  --accent-glow: rgba(0, 0, 0, 0.08);
+  --btn-bg:      #0a0a0a;
+  --btn-fg:      #ffffff;
+  --focus-ring:  #0a0a0a;
+  --shadow-lift: rgba(0, 0, 0, 0.12) 0 8px 32px -8px;
+  --green:       #16a34a;
+  --logo-fill:    #0a0a0a;
+  --logo-outline: #ffffff;
+  --logo-shadow:  rgba(0, 0, 0, 0.18);
+  color-scheme:  light;
+}
+
+/* ---- Reset ----------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  caret-color: var(--accent);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* ---- Utilities ------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.shell {
+  max-width: var(--maxw);
+  margin-inline: auto;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 9100;
+  padding: 10px 16px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font: 700 11px/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  transform: translateY(-300%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus { transform: none; }
+
+/* Scroll-progress bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  z-index: 260;
+}
+
+/* Mono utility */
+.mono {
+  font-family: var(--mono);
+  font-weight: 400;
+}
+.muted { color: var(--muted); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
