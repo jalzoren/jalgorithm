@@ -1,5 +1,11 @@
+/* ============================================================
+   JALGORITHM — site content
+   Source of truth: resume.md (Laurence James L. Flavier)
+   ============================================================ */
+
 export const profile = {
   name: 'JALGORITHM',
+  fullName: 'Laurence James L. Flavier',
   wordmark: 'JALGORITHM',
   handle: '@jalgorithm',
   role: 'Full-stack developer · UI/UX',
@@ -7,13 +13,16 @@ export const profile = {
   thesisAccent: 'move.',
   roleLine: 'Full-stack developer · UI/UX · Pasig City, PH',
   tagline:
-    'Fourth-year Information Technology student at Pamantasan ng Lungsod ng Pasig, designing and building motion-rich web experiences with React, Next.js, and GSAP.',
+    'BS Information Technology student at Pamantasan ng Lungsod ng Pasig with a focus on frontend architecture, UI/UX design, and backend systems — building interfaces that are fast, clean, and purposeful.',
   status: 'Open for internships & freelance',
   availability: 'Available for work',
   location: 'Pasig City, PH',
   coordinates: '14.58°N · 121.06°E',
   timezone: 'Asia/Manila',
-  email: 'hello@jalgorithm.dev',
+  email: 'flavierlaurence01@gmail.com',
+  phone: '0947 550 0689',
+  linkedin: 'https://www.linkedin.com/in/laurence-james-flavier',
+  github: 'https://github.com/jalzoren',
 }
 
 export const navLinks = [
@@ -21,7 +30,6 @@ export const navLinks = [
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
-  { id: 'school', label: 'School' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -29,46 +37,47 @@ export const marqueeItems = [
   'React',
   'Next.js',
   'TypeScript',
-  'GSAP',
-  'Motion',
+  'Python',
   'Tailwind',
-  'Figma',
   'Node.js',
+  'Figma',
+  'Supabase',
   'UI/UX',
-  'Design systems',
-  'Vite',
+  'REST APIs',
+  'Electron',
   'Git',
-  'Accessibility',
+  'MySQL',
 ]
 
 export const heroCode = [
   { text: 'const jalgorithm = {' },
-  { text: "  role: 'front-end engineer'," },
-  { text: "  stack: ['react', 'next.js', 'gsap']," },
-  { text: "  focus: 'motion + ui/ux'," },
+  { text: "  name:   'Laurence James Flavier'," },
+  { text: "  stack:  ['react', 'next.js', 'python', 'node']," },
+  { text: "  focus:  'fullstack + ui/ux'," },
+  { text: "  school: 'PLP – BS InfoTech'," },
   { text: "  status: 'available'," },
   { text: '}' },
 ]
 
 export const about = {
-  lead: 'I design and build interfaces that feel alive — clear, fast, and quietly expressive.',
+  lead: 'I design and build interfaces that feel alive — clear, fast, and thoughtfully engineered.',
   paragraphs: [
-    'I am a fourth-year Information Technology student at Pamantasan ng Lungsod ng Pasig, focused on modern front-end engineering: React, Next.js, and the motion systems that make interfaces feel natural.',
-    'My work sits where development meets design. I care about easing curves, accessible layouts, and maintainable components as much as the visual result.',
-    'Right now I am looking for internships and freelance projects where I can ship real interfaces and keep raising the bar on craft.',
+    'I am a BS Information Technology student at Pamantasan ng Lungsod ng Pasig with a strong interest in web development and software testing. I have hands-on experience building web-based projects using HTML, JavaScript, and Python, with exposure to hardware/software setup and troubleshooting.',
+    'My work sits at the intersection of frontend architecture and UI/UX. I care about component design, clean interfaces, and performant systems as much as the visual result. I also have solid backend experience: RESTful APIs, data models, auth, CRUD, and deployment-ready systems.',
+    'I am currently looking for internships and freelance projects where I can ship real, impactful interfaces.',
   ],
   facts: [
-    { label: 'Name', value: 'Jalgorithm' },
-    { label: 'Based in', value: 'Pasig City, Philippines' },
+    { label: 'Full name', value: 'Laurence James L. Flavier' },
+    { label: 'Based in', value: 'Pasig City, Metro Manila' },
     { label: 'School', value: 'Pamantasan ng Lungsod ng Pasig' },
-    { label: 'Year', value: '4th year, BS Information Technology' },
-    { label: 'Focus', value: 'Front-end · UI/UX · Motion' },
+    { label: 'Degree', value: 'BS Information Technology' },
+    { label: 'Focus', value: 'Frontend · UI/UX · Backend' },
     { label: 'Status', value: 'Open for internships & freelance' },
   ],
   now: [
-    { label: 'Building', value: 'Motion-rich React interfaces' },
-    { label: 'Learning', value: 'GSAP, design systems, and WebGL' },
-    { label: 'Reading', value: 'Interaction design and type' },
+    { label: 'Building', value: 'Frontend interfaces and small tools people actually use' },
+    { label: 'Learning', value: 'Motion, accessibility, and component patterns' },
+    { label: 'Reading', value: 'Interaction design and frontend architecture' },
   ],
   principles: [
     {
@@ -88,135 +97,218 @@ export const about = {
 
 export const skillGroups = [
   {
-    label: 'Front-end',
+    label: 'Frontend',
     note: 'The core',
     items: [
-      { name: 'React', note: 'Core' },
+      { name: 'React.js', note: 'Core' },
       { name: 'Next.js', note: 'Core' },
       { name: 'TypeScript', note: 'Daily' },
       { name: 'JavaScript (ES6+)', note: 'Core' },
-      { name: 'HTML5 / CSS3', note: 'Core' },
-    ],
-  },
-  {
-    label: 'Styling & Motion',
-    note: 'The feel',
-    items: [
+      { name: 'HTML / CSS', note: 'Core' },
       { name: 'Tailwind CSS', note: 'Daily' },
-      { name: 'GSAP + ScrollTrigger', note: 'Core' },
-      { name: 'Motion / Framer Motion', note: 'Core' },
-      { name: 'CSS keyframe animation', note: 'Core' },
-      { name: 'Responsive design', note: 'Core' },
     ],
   },
   {
-    label: 'UI/UX Design',
+    label: 'Backend & Databases',
+    note: 'The engine',
+    items: [
+      { name: 'Node.js', note: 'Daily' },
+      { name: 'Express', note: 'Daily' },
+      { name: 'Python', note: 'Core' },
+      { name: 'PHP', note: 'Working' },
+      { name: 'MySQL', note: 'Daily' },
+      { name: 'PostgreSQL', note: 'Working' },
+      { name: 'Supabase', note: 'Working' },
+    ],
+  },
+  {
+    label: 'UI/UX & Design',
     note: 'The thinking',
     items: [
       { name: 'Figma', note: 'Daily' },
+      { name: 'Canva', note: 'Daily' },
       { name: 'Wireframing', note: 'Daily' },
-      { name: 'Prototyping', note: 'Core' },
+      { name: 'Responsive design', note: 'Core' },
       { name: 'Design systems', note: 'Learning' },
     ],
   },
   {
-    label: 'Tools & Backend',
+    label: 'Tools & Other',
     note: 'The support',
     items: [
-      { name: 'Node.js', note: 'Learning' },
       { name: 'Git / GitHub', note: 'Daily' },
+      { name: 'Electron.js', note: 'Working' },
+      { name: 'Flutter', note: 'Learning' },
       { name: 'REST APIs', note: 'Daily' },
-      { name: 'Vite / npm', note: 'Daily' },
+      { name: 'Project Management', note: 'Working' },
     ],
   },
 ]
 
 export const projects = [
   {
-    title: 'AlgoVis',
-    subtitle: 'Algorithm visualizer',
-    year: '2026',
+    title: 'Hospital Content Management System',
+    subtitle: 'Healthcare · Content platform',
+    category: 'Content platform',
     blurb:
-      'Interactive visualizer for sorting and pathfinding algorithms, rendered on canvas with step-by-step playback controls and complexity notes.',
-    tags: ['React', 'TypeScript', 'Canvas API'],
-    link: '#',
-    status: 'Template',
-    plate: 'sort',
+      'A hospital website and admin panel for keeping services, doctors, announcements, and patient information up to date.',
+    description:
+      'A content management system for hospital staff paired with a public information website. Staff can manage announcements, news, events, careers, health tips, doctors, departments, media, and site settings; visitors can browse services and hospital information.',
+    tags: ['JavaScript', 'PHP', 'Supabase', 'Healthcare'],
+    link: 'https://github.com/jalzoren/SIA-CMS',
+    status: 'GitHub',
+    plate: 'grid',
     accent: 'primary',
     featured: true,
   },
   {
-    title: 'JStore',
-    subtitle: 'POS web app',
-    year: '2025',
+    title: 'Smart Attendance System',
+    subtitle: 'Campus system · Analytics',
+    category: 'Campus system',
     blurb:
-      'Point-of-sale and inventory dashboard for a campus store: product catalog, cart flow, receipts, and daily sales reporting.',
-    tags: ['Next.js', 'Tailwind', 'Supabase'],
-    link: '#',
-    status: 'Template',
+      'A desktop system for logging student entry and exit, managing attendance, and viewing institutional analytics.',
+    description:
+      'An integrated entrance, exit, and attendance monitoring system for Pamantasan ng Lungsod ng Pasig. It records student attendance through face recognition or manual ID input, while an administrator dashboard supports log review, report export, analytics, and authentication monitoring.',
+    tags: ['React', 'Vite', 'Electron.js', 'Python', 'Node.js', 'MySQL'],
+    link: 'https://github.com/jalzoren/Entrance-and-Exit-Monitoring-PLP-Students',
+    status: 'GitHub',
     plate: 'grid',
     accent: 'green',
   },
   {
-    title: 'Schedula',
-    subtitle: 'Smart timetable',
-    year: '2025',
+    title: 'Tincase Interactive Info Website',
+    subtitle: 'Interactive profile · Web',
+    category: 'Interactive web',
     blurb:
-      'Class scheduling tool that builds conflict-free timetables from course data and exports them straight to calendar.',
-    tags: ['React', 'Node.js', 'REST API'],
-    link: '#',
-    status: 'Template',
-    plate: 'path',
-    accent: 'sandy',
+      'A playful profile experience with clickable stickers, popups, animated transitions, and responsive layouts.',
+    description:
+      'A personal interactive website inspired by Carrd and Tincase aesthetics. Visitors explore profile information and interests through clickable stickers, dynamic text, loading transitions, animations, and a visitor counter.',
+    tags: ['React', 'JavaScript', 'CSS', 'Animation'],
+    link: 'https://github.com/jalzoren/TINCASE-INTERACTIVE-WEBSITE',
+    status: 'GitHub',
+    plate: 'wave',
+    accent: 'primary',
   },
   {
-    title: 'MotionLab',
-    subtitle: 'UI component playground',
-    year: '2024',
+    title: 'Clinic Monitoring System',
+    subtitle: 'Healthcare · Clinic operations',
+    category: 'Clinic system',
     blurb:
-      'A playground of animated interface components: reveals, marquees, and magnetic buttons, built to study motion choreography.',
-    tags: ['React', 'Motion', 'CSS'],
-    link: '#',
-    status: 'Template',
-    plate: 'wave',
-    accent: 'red',
+      'A web-based clinic application for organizing patient information, medical and dental records, and medicine inventory.',
+    description:
+      'A clinic operations system for Pamantasan ng Lungsod ng Pasig. Its listed modules include administrator login, a dashboard, health services and dental forms, borrowing records, daily transactions, and medicine inventory.',
+    tags: ['Healthcare', 'Patient records', 'Inventory'],
+    link: 'https://github.com/jalzoren/PLP-CLINIC-M-S',
+    status: 'GitHub',
+    plate: 'grid',
+    accent: 'green',
+  },
+  {
+    title: 'Balloon Words Blitz',
+    subtitle: 'Word game · Interactive',
+    category: 'Word game',
+    blurb:
+      'A hangman-style word game where Theo tries to stay afloat with five balloons.',
+    description:
+      'Theo’s Aerial Misfortune: Balloon Words Blitz is a hangman-style game built around guessing words while Theo drifts into the sky. The repository includes menu, prompt, and gameplay artwork.',
+    tags: ['Word game', 'Hangman', 'Interactive'],
+    link: 'https://github.com/ychine/TAMBWB',
+    status: 'GitHub',
+    plate: 'path',
+    accent: 'primary',
+  },
+  {
+    title: 'MAICRAFTS',
+    subtitle: 'E-commerce · Handmade goods',
+    category: 'E-commerce',
+    blurb:
+      'An e-commerce website concept showcasing handcrafted floral arrangements, crochet pieces, and other creative goods.',
+    description:
+      'A sample online shop created for an e-commerce system requirement. MAICRAFTS presents handmade floral pieces, dolls, custom bags, decorations, and seasonal gifts.',
+    tags: ['E-commerce', 'React', 'Supabase', 'Handmade'],
+    link: 'https://github.com/jerimiahbitancor/MAICRAFTS',
+    status: 'GitHub',
+    plate: 'hero',
+    accent: 'green',
   },
 ]
 
 export const experience = [
   {
-    period: '2025 – Present',
-    role: 'Freelance Web Developer',
-    org: 'Independent',
+    period: 'Nov 2026',
+    role: 'Hackathon Participant',
+    org: 'Hackathon',
     blurb:
-      'Designing and building responsive, animated websites for small businesses and student organizations.',
-    status: 'Template',
+      'Built a working web-based application in 5 hours — from concept to deployed prototype under competition pressure.',
+    status: 'Live',
   },
   {
     period: '2024 – 2025',
-    role: 'Web Development Officer',
-    org: 'IT Society, Pamantasan ng Lungsod ng Pasig',
+    role: 'Layout Artist',
+    org: 'Lundayan Student Publication, Pamantasan ng Lungsod ng Pasig',
     blurb:
-      'Maintained the organization site and ran hands-on React and UI/UX sessions for members.',
-    status: 'Template',
+      'Designed layouts for social media posts and the official school newspaper, applying visual design principles to editorial content.',
+    status: 'Live',
+  },
+]
+
+export const certifications = [
+  {
+    title: 'AWS Foundations: Machine Learning Basics',
+    issuer: 'Amazon Web Services (AWS) / FutureLearn',
+    date: 'Oct 2026',
+    skills: ['AWS'],
   },
   {
-    period: '2024',
-    role: 'Hackathon Participant',
-    org: 'Campus Hackathon',
-    blurb:
-      'Built a working web prototype in 24 hours with a three-person team, from idea to demo.',
-    status: 'Template',
+    title: 'Foundations of Software Testing and Validation',
+    issuer: 'University of Leeds, Click Start & Institute of Coding',
+    date: 'Oct 2026',
+    skills: ['Software Testing', 'SDLC'],
+  },
+  {
+    title: 'Understanding Machine Learning',
+    issuer: 'DataCamp',
+    date: 'Oct 2026',
+    skills: ['Machine Learning'],
+    credentialId: '6fed34d4c5402d8d13379f89facced93415fbcf9',
+  },
+  {
+    title: 'Cybersecurity',
+    issuer: 'Asian Development Bank Institute',
+    date: 'Oct 2026',
+    skills: ['Cybersecurity'],
+    credentialId: '204345-179-258-0758',
+  },
+  {
+    title: 'Digital Skills: User Experience',
+    issuer: 'Accenture / FutureLearn',
+    date: 'Oct 2026',
+    skills: ['UX Design', 'Responsive Web Design'],
+  },
+  {
+    title: 'Google Cloud Fundamentals: Core Infrastructure',
+    issuer: 'Google',
+    date: 'Sep 2026',
+    skills: ['Google Cloud Platform'],
+    credentialId: '27541494',
+  },
+  {
+    title: 'HTML Essentials',
+    issuer: 'Cisco',
+    date: 'Sep 2026',
+    skills: ['HTML', 'Responsive Web Design'],
   },
 ]
 
 export const school = {
   name: 'Pamantasan ng Lungsod ng Pasig',
+  shortName: 'PLP',
   degree: 'BS Information Technology',
   yearLabel: '4th Year',
+  period: '2023 – Present',
   expected: 'Expected graduation 2027',
   status: 'Ongoing',
-  progress: 0.82,
+  progress: 0.75,
   progressLabel: '4th year · on track',
   coursework: [
     'Web Systems & Technologies',
@@ -226,17 +318,24 @@ export const school = {
     'UI/UX Design',
     'Software Engineering',
   ],
-  note: 'Course list is a template; adjust to your actual curriculum.',
+  note: 'Course list is representative; adjust to your actual curriculum.',
+}
+
+export const schoolShs = {
+  name: 'Dee Hwa Liong Academy',
+  shortName: 'DHLA',
+  strand: 'Senior High School',
+  period: '2021 – 2023',
+  status: 'Graduated',
 }
 
 export const socials = [
-  { label: 'GitHub', href: '#', icon: 'github' },
-  { label: 'LinkedIn', href: '#', icon: 'linkedin' },
-  { label: 'Facebook', href: '#', icon: 'facebook' },
-  { label: 'Email', href: 'mailto:hello@jalgorithm.dev', icon: 'mail' },
+  { label: 'GitHub', href: 'https://github.com/jalzoren', icon: 'github' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/laurence-james-flavier', icon: 'linkedin' },
+  { label: 'Email', href: 'mailto:flavierlaurence01@gmail.com', icon: 'mail' },
 ]
 
 export const footer = {
-  credit: '© 2026 Jalgorithm · Pasig City, PH',
+  credit: '© 2026 Laurence James Flavier · Pasig City, PH',
   built: 'Built with React, GSAP & Motion',
 }

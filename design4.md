@@ -1,394 +1,431 @@
-# design.md — "Phoning" Website (NewJeans-inspired)
+# design.md — "Phoning" Web Edition (Y2K, based on NewJeans' Phoning app)
 
-> A responsive **website** design system and spec. On desktop, the site is a pastel Y2K world with a playable retro handset at its center. On mobile, the same site reshapes into a full-screen, app-like handset experience with a bottom dock.
+> A responsive **website** design system modeled on the structure and mood of NewJeans' official fan app *Phoning* (Weverse Company × ADOR, launched July 25, 2022): a shared "one phone" with a home screen of app icons, calls/LIVEs, messages, photos, calendar, and a playful "Website" folder of interactive toys, all wrapped in a retro scrapbook look.
 >
-> **Scope note:** Inspired by the *feel* of NewJeans' Phoning concept (retro handset, soft pastels, playful low-fi charm). It does not reuse official logos, photos, audio, or artwork. Replace all placeholders with licensed assets before launch.
+> On desktop it's a Y2K desktop-and-phone world. On mobile it becomes the phone itself.
+>
+> **What comes from the real app vs. my interpretation**
+> - *From public descriptions of the app:* home screen with icons for Calls, Messages, Photos, Calendar, Settings, and Website; group chat plus individual member chats with profile picture and status message; an official news/channel profile for schedules; photo folders (group + per-member); a calendar of schedules; LIVE video-call-style broadcasts; a "Website" folder with ID card creation, character dress-up, a cartoon version doing hook choreography, and album designing; retro scrapbook theme, pixelated font, sharp 90s-style icons, and ever-present gradients.
+> - *My interpretation (not official):* exact colors, fonts, spacing, motion, layouts, web adaptation, and all copy. Treat tokens as a close-in-spirit starting point, not a pixel match.
+> - **Do not** use official logos, member photos, voices, character art, or app screenshots. Use original placeholders until licensed.
 
 ---
 
-## 1. Overview
+## 1. Concept
+
+**"Share one phone with your favorite group."**
+The site is a single shared handset. You open icons, not menus. Every feature is a mini-app inside it.
 
 | | |
 |---|---|
-| **What it is** | A website where fans "receive" calls and texts from idols on a retro handset, collect keepsakes, and customize their device. |
-| **Audience** | Fans 13–30, mostly on phones, nostalgic for flip phones and early-2000s web culture. |
-| **Primary job** | Make each visitor feel the idol is reaching out to them personally. |
-| **Secondary jobs** | Unlock keepsakes, personalize a handset, share it, come back daily. |
-| **Design stance** | Desktop = a scrapbook-style room around a handset. Mobile = you *are* holding the handset. |
-
-### Core loop
-1. Land on the site, tap to power on the handset.
-2. A call or message arrives. Answer it.
-3. Unlock a keepsake (wallpaper, ringtone, sticker).
-4. Decorate the handset, share it, return tomorrow.
+| **Audience** | Fans 13–30, mostly on phones, nostalgic for the Y2K web (Cyworld, MSN, early blogs, GeoCities) |
+| **Primary job** | Make visitors feel they're friends with the group, not customers |
+| **Core features** | Calls/LIVE, Messages, Photos, Calendar, Settings, Website (toys) |
+| **Emotional target** | Cozy, goofy, intimate, like scribbling in a friend's yearbook |
+| **Design stance** | Desktop = Y2K desktop wallpaper with the phone as a window. Mobile = you hold the phone. |
 
 ---
 
 ## 2. Design Principles
 
-1. **The handset is the hero.** Every page either shows it or serves it. The site is built around one object, not a stack of generic sections.
-2. **One loud moment per view.** Usually the ringing handset. Everything else stays soft and quiet.
-3. **Low-fi on purpose, never broken.** Pixel type and chunky keys for charm; modern contrast, tap targets, and performance underneath.
-4. **Mobile is not a shrunken desktop.** Layout, navigation, and the handset itself change shape per breakpoint.
-5. **Invite, never nag.** No fake urgency, no streak guilt.
-6. **Everything is tactile.** Buttons press, keys click, with sound and motion always optional.
+1. **Icons first.** The home screen of app icons is the main navigation. Learn once, use everywhere.
+2. **Scrapbook, not template.** Tape, stickers, torn edges, sticky notes, mismatched rotations. Slightly messy on purpose.
+3. **Gradients everywhere, gently.** A soft gradient is the default backdrop; flat white is rare.
+4. **Pixel for personality, sans for reading.** Pixel type labels things; normal type carries sentences.
+5. **Friend voice.** Casual, warm, short. Never salesy.
+6. **Mobile is the real thing.** Desktop wraps the phone with decoration; mobile removes the decoration and gives the phone the whole screen.
+7. **Messy but usable.** Y2K clutter never beats contrast, tap targets, or performance.
 
 ---
 
-## 3. Voice & Copy
+## 3. Y2K Visual Language
 
-- Short, friendly, sentence case, lightly nostalgic. Era emoticons (`^_^`, `♡`) sparingly.
-- Name things by what they do: "Messages", "Call log", "Keepsakes".
-- Errors say what happened and what to do; they don't apologize or blame.
+### 3.1 Motifs (use these, in this order of priority)
 
-| Situation | Do | Don't |
-|---|---|---|
-| Landing CTA | "Power on" | "Get started now!!" |
-| Incoming call | "Incoming call" / "Answer" / "Not now" | "Pick up!!!" |
-| Missed call | "Missed call at 9:41. Call back anytime." | "You missed her! 😢" |
-| Empty inbox | "No messages yet. Check back later." | "Nothing here." |
-| Offline | "No signal. Saved calls still play." | "Oops, something went wrong." |
-| Unlock | "Wallpaper saved to Keepsakes." | "You won!" |
+| Motif | How it appears |
+|---|---|
+| **Gradient washes** | Blue → lilac → pink backdrops, sky-to-milk fades, holographic edges |
+| **Pixel type & bitmap icons** | Labels, clocks, counters, status bar |
+| **Sharp 90s icons** | Hard-edged, 2-tone, slight bevel, like early OS icons |
+| **Scrapbook layering** | Photos with tape, paper scraps, sticky notes, doodle arrows, hand-drawn circles |
+| **Retro window chrome** | Title bars with min/max/close, beveled buttons, scroll bars |
+| **Digicam photos** | Flash-lit, date stamp in orange (`'22 07 25`), soft blur |
+| **Sparkles & stars** | 4-point sparkles, star bullets, tiny hearts |
+| **Web relics (light touch)** | Visitor counter, marquee ticker, "best viewed on…" badge, guestbook, blinking cursor |
+| **Chrome & bubbles** | Silver trim, glossy bubble buttons, translucent plastic |
 
----
+Rule of thumb: pick **three** motifs per screen, not all of them.
 
-## 4. Site Map
-
-```
-/                 Home (hero handset, today's call, keepsake preview)
-/calls            Call log + replay
-/messages         Threads
-/keepsakes        Gallery: wallpapers, ringtones, stickers, shells
-/customize        Handset builder + share card
-/about            What Phoning is, FAQ, credits
-/settings         Sound, notifications, language, accessibility, account
-/legal            Terms, privacy, licensing
-```
-
-**Global navigation**
-- **Desktop/tablet:** slim top bar (logo, 5 links, sound toggle, account).
-- **Mobile:** top bar shrinks to logo + sound; primary navigation moves to a **bottom dock** (Home, Calls, Messages, Keepsakes, Customize).
-
----
-
-## 5. Visual Language
-
-### 5.1 Mood
-Translucent plastic, sticker-sheet pastels, chrome trim, glossy keys, pixel LCD type, blurry digicam photos. A 2004 phone on a pastel desk, not a glossy tech brand.
-
-### 5.2 Color tokens
+### 3.2 Color tokens
 
 | Token | Hex | Use |
 |---|---|---|
-| `--denim-500` | `#5B8DEF` | Primary, links, selection |
-| `--denim-700` | `#2F5FC4` | Pressed, strong text on light |
-| `--sky-200` | `#CFE3FF` | Handset body, soft surfaces |
-| `--sky-50` | `#F2F8FF` | Page background |
-| `--milk-100` | `#FFFFFF` | Cards, panels, LCD highlight |
-| `--bubblegum-300` | `#FFB8D9` | Accent, hearts, user bubbles |
-| `--bubblegum-500` | `#FF7FBA` | Ring pulse, key moments |
-| `--lime-300` | `#D7F28B` | Answer, success |
-| `--chrome-300` | `#C9D1DC` | Borders, bezels |
-| `--chrome-600` | `#6B7685` | Secondary text, icons |
-| `--ink-900` | `#1B2230` | Primary text |
+| `--denim-500` | `#4F86F7` | Primary, links, selection |
+| `--denim-700` | `#2A55C0` | Pressed, text on light |
+| `--sky-100` | `#E4F0FF` | Page base |
+| `--sky-300` | `#B9D6FF` | Phone body, panels |
+| `--lilac-300` | `#D3C6FF` | Gradient mid-tone |
+| `--bubblegum-300` | `#FFC1DD` | Accent, hearts, user bubbles |
+| `--bubblegum-500` | `#FF7EBB` | Ring, notifications |
+| `--lime-300` | `#D9F58C` | Answer, success, highlighter |
+| `--butter-300` | `#FFF0A8` | Sticky notes |
+| `--chrome-200` | `#E6EAF0` | Window bars |
+| `--chrome-400` | `#B5BECC` | Bevels, borders |
+| `--chrome-600` | `#6A7586` | Secondary text |
+| `--ink-900` | `#1A2030` | Primary text |
 | `--alert-500` | `#E5484D` | End call, errors |
+| `--stamp-orange` | `#FF8A3D` | Digicam date stamp |
 
-**Dark ("night handset")**: background `#0F1626`, surface `#182238`, raised `#22304D`, text `#EAF1FF`, secondary `#9AA9C4`, primary `#7FA8FF`, accent `#FF8EC4`.
+**Signature gradients**
+- `--grad-page`: `linear-gradient(170deg,#E4F0FF 0%,#D3C6FF 55%,#FFC1DD 100%)`
+- `--grad-phone`: `linear-gradient(160deg,#F2F8FF 0%,#B9D6FF 60%,#9DBFFF 100%)`
+- `--grad-holo`: `linear-gradient(120deg,#B9D6FF,#D3C6FF,#FFC1DD,#D9F58C,#B9D6FF)`
+- `--grad-gloss`: `linear-gradient(180deg,rgba(255,255,255,.8),rgba(255,255,255,0) 55%)`
 
-**Gradients (max one per view):**
-- `--grad-handset`: `linear-gradient(160deg,#EAF3FF 0%,#BBD6FF 55%,#9CC0FF 100%)`
-- `--grad-ring`: `radial-gradient(circle,#FFB8D9 0%,#FF7FBA 70%,transparent 100%)`
-- `--grad-gloss`: `linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,0) 55%)`
+**Dark ("night mode")**: page `#0E1424 → #1E1A3A`, surface `#182238`, text `#EAF1FF`, primary `#7FA8FF`, accent `#FF8EC4`. Keep gradients, just deepen them.
 
-Contrast rule: text meets WCAG AA. Pastel never sits on pastel with text; use `--ink-900` or `--denim-700`.
+Contrast: all text AA or better. Pastel never carries text on pastel; use `--ink-900` or `--denim-700`.
 
-### 5.3 Typography
+### 3.3 Typography
 
 | Role | Typeface | Fallback | Use |
 |---|---|---|---|
-| LCD / display | DotGothic16 or Silkscreen | `monospace` | Inside the handset screen, clock, call labels, big page titles |
-| UI / body | Pretendard | Inter, system-ui | Navigation, paragraphs, forms |
-| Sticker / note | Gaegu or Jua | cursive | Stickers and handwritten notes only |
+| Pixel display | DotGothic16 / Silkscreen / VT323 | `monospace` | Titles, labels, clock, counters, window title bars |
+| UI & body | Pretendard (KR/EN) | Inter, system-ui | Messages, paragraphs, forms |
+| Handwriting | Gaegu / Jua | cursive | Sticky notes, doodle captions, stickers |
 
-**Responsive type scale (desktop → mobile)**
+**Responsive scale (desktop → mobile)**
 
-| Token | Desktop | Mobile | LH | Use |
-|---|---|---|---|---|
-| `display-xl` | 72 | 44 | 1.0 | Hero headline (pixel) |
-| `display-lg` | 40 | 30 | 1.1 | Caller name, page titles |
-| `title` | 24 | 20 | 1.25 | Section titles |
-| `body` | 17 | 16 | 1.55 | Paragraphs |
-| `body-sm` | 14 | 14 | 1.45 | Meta |
-| `caption` | 12 | 12 | 1.4 | Soft-key labels, badges |
-
-Rules: pixel font never sets paragraphs; body line length under 65 characters; sentence case throughout; no all-caps labels. Use `clamp()` for fluid headings, e.g. `font-size: clamp(2.75rem, 6vw + 1rem, 4.5rem)`.
-
-### 5.4 Spacing, radius, elevation
-- **Spacing (4pt):** 4, 8, 12, 16, 24, 32, 48, 64, 96. Section padding: 96 desktop, 64 tablet, 40 mobile.
-- **Radius:** xs 6, sm 10, md 16, lg 28 (LCD), xl 48 (handset), pill 999.
-- **Elevation:** `e1` soft card, `e2` keys (`0 4px 0 #9CB4DE` lower edge + glow), `e3` handset (`0 24px 48px rgba(47,95,196,.28)`).
-- Pressed keys move down 3px and collapse their lower edge.
-
-### 5.5 Iconography & imagery
-- 24px grid, 2px rounded stroke, chunky. Pixel glyphs for LCD only (signal, battery, envelope, heart).
-- Photos: slightly overexposed, soft flash, 16px corners, optional pixel frame. No heavy filters.
-- Stickers: die-cut with 4px white outline.
-- Use illustrated avatars as placeholders until licensed photos exist.
-
----
-
-## 6. Responsive Framework
-
-### 6.1 Breakpoints
-
-| Name | Width | Layout summary |
-|---|---|---|
-| `xs` | ≤ 480 | App-like: full-screen handset, bottom dock, single column |
-| `sm` | 481–767 | Large phone / small tablet: same as xs, handset capped at 420px, centered |
-| `md` | 768–1023 | Tablet: handset centered with content stacked below, top nav appears |
-| `lg` | 1024–1439 | Desktop: two columns, handset left/center, content right |
-| `xl` | ≥ 1440 | Wide: three zones with floating stickers and a keepsake rail |
-
-Build **mobile-first** in CSS (`min-width` queries). Container max-width: 1200px (`lg`), 1360px (`xl`). Gutters: 16 (xs), 24 (md), 40 (lg+).
-
-### 6.2 What changes per breakpoint
-
-| Element | Mobile (xs/sm) | Tablet (md) | Desktop (lg/xl) |
+| Token | Desktop | Mobile | Use |
 |---|---|---|---|
-| Navigation | Bottom dock (5 icons + labels) | Top bar, links collapse to icons | Full top bar with text links |
-| Handset | Fills viewport, number pad hidden, D-pad + call/end keys only | 380px centered, compact pad | 380–420px, full pad, floats with parallax stickers |
-| Content | One column below/inside screens | One column below handset | Side panel beside handset |
-| Keepsakes grid | 2 columns | 3 columns | 4–5 columns |
-| Modals | Bottom sheet | Centered dialog | Centered dialog |
-| Hover effects | None (tap states only) | Light | Key glow, sticker wiggle |
-| Background stickers | Hidden | 3 faint | 8–12, parallax |
+| `display-xl` | 72 | 44 | Hero (pixel) |
+| `display-lg` | 40 | 30 | Page titles, caller name |
+| `title` | 24 | 20 | Window titles, section heads |
+| `body` | 17 | 16 | Paragraphs, chat text |
+| `body-sm` | 14 | 14 | Meta |
+| `caption` | 12 | 12 | Icon labels, badges |
 
-### 6.3 Mobile specifics
-- Use `100dvh` for the handset container to avoid browser-bar jumps; respect `env(safe-area-inset-*)`.
-- Bottom dock: 64px tall + safe area; tap targets 48×48 min; active item uses a filled icon and `--denim-500` pill.
-- Thumb zone: primary actions (Answer, End, Reply) sit in the lower third.
-- Swipe: horizontally between tabs inside Keepsakes; vertically to scroll threads. No hidden swipe-only actions.
-- Orientation: landscape on phones shows the handset as a flip-open pose; if height < 420px, show the screen only with on-screen soft keys.
-- Add to home screen supported (PWA manifest) for an app-like launch.
+Rules: pixel font never sets paragraphs; sentence case; line length under 65 characters; use `clamp()` for fluid headings; optional "Readable text" toggle swaps pixel → Pretendard.
+
+### 3.4 Shape, bevel, elevation
+- **Radius:** `xs 4`, `sm 8`, `md 16`, `lg 28` (screen), `xl 48` (phone), `pill 999`. Windows use **square or 4px** corners for authentic chrome.
+- **Bevel (retro buttons):** `box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #8A94A6, 2px 2px 0 rgba(26,32,48,.25)`.
+- **Key/bubble button:** gloss overlay + `0 4px 0 #8FAEE6` lower edge.
+- **Sticker:** 4px white outline + `0 2px 4px rgba(26,32,48,.2)`.
+- **Scrap paper:** slight random rotation (−3° to +3°), torn-edge mask, tape strip at top.
+- Pressed state: translate 2–3px down, lower edge collapses.
+
+### 3.5 Iconography
+- **App icons (home screen):** 64px, chunky 2-tone with a hard 1px dark outline and a small bevel, each on a rounded-square tile. One distinct color per icon.
+- **UI icons:** 24px, 2px stroke, slightly square-ended.
+- **Pixel glyphs:** signal bars, battery, envelope, heart, star, cursor.
+
+| App | Icon idea | Tile color |
+|---|---|---|
+| Calls | Handset | `--lime-300` |
+| Messages | Speech bubble | `--bubblegum-300` |
+| Photos | Polaroid / camera | `--sky-300` |
+| Calendar | Date page with star | `--butter-300` |
+| Settings | Gear | `--chrome-200` |
+| Website (Toys) | Globe / browser window | `--lilac-300` |
 
 ---
 
-## 7. Page Layouts
+## 4. Information Architecture
 
-### 7.1 Home
+Mirrors the app's home screen.
 
-**Desktop (lg+)**
 ```
-┌────────────────────────────────────────────────────────────┐
-│ Phoning        Calls  Messages  Keepsakes  Customize   ♪ ☺ │
-├────────────────────────────────────────────────────────────┤
-│                                                            │
-│  ✿ sticker           ┌───────────┐       Today             │
-│                      │ ┌───────┐ │   ┌─────────────────┐   │
-│  Pick up.            │ │LCD    │ │   │ Next call 9:00  │   │
-│  Someone's calling.  │ │ 09:41 │ │   └─────────────────┘   │
-│                      │ └───────┘ │   ┌─────────────────┐   │
-│  [ Power on ]        │ ◀ ◉ ▶     │   │ New keepsake    │   │
-│                      │ 1 2 3 ... │   └─────────────────┘   │
-│       ♡ sticker      └───────────┘   ┌─────────────────┐   │
-│                                      │ Recent messages │   │
-│                                      └─────────────────┘   │
-├────────────────────────────────────────────────────────────┤
-│  Keepsake rail  [▢][▢][▢][▢][▢] →                          │
-└────────────────────────────────────────────────────────────┘
+/                   Home (phone home screen with 6 icons)
+/calls              Calls + LIVE (video-call style)
+/messages           Channel (news), group chat, member chats
+/photos             Group folder + per-member folders
+/calendar           Schedule
+/toys               "Website" folder: mini-apps
+   /toys/id-card        Make your ID card
+   /toys/dress-up       Dress-up with character versions
+   /toys/dance          Cartoon hook-choreography viewer
+   /toys/album          Design your album
+   /toys/moving-photos  Animated photos (can be "coming soon")
+/settings           Sound, notifications, language, accessibility, account
+/about              What this is, FAQ, credits & licensing
 ```
 
-**Mobile (xs)**
+**Navigation**
+- **Home icons** are the main way in (any breakpoint).
+- **Desktop/tablet:** a retro taskbar along the bottom (start-style "Phoning" button, open-window tabs, clock, volume).
+- **Mobile:** system-style bottom bar with Back, Home, and Recents-like "Windows" button; in-app screens use a top title bar with a back arrow.
+
+---
+
+## 5. Responsive Framework
+
+### 5.1 Breakpoints
+
+| Name | Width | Layout |
+|---|---|---|
+| `xs` | ≤ 480 | **The phone is the screen.** Full-bleed, no decoration, bottom bar |
+| `sm` | 481–767 | Phone capped at 440px, centered over gradient |
+| `md` | 768–1023 | Phone centered + 2–3 floating windows/stickers around it |
+| `lg` | 1024–1439 | Y2K desktop: phone center, widgets left/right, taskbar |
+| `xl` | ≥ 1440 | Wider desktop: more scrapbook layers, side rails |
+
+Build mobile-first (`min-width` queries). Container: 1200px (`lg`), 1360px (`xl`). Gutters 16 / 24 / 40.
+
+### 5.2 What changes per breakpoint
+
+| Element | Mobile | Tablet | Desktop |
+|---|---|---|---|
+| Frame | No phone bezel; screen fills viewport | Phone bezel visible, 440px | Phone bezel, 420px, with glossy shadow |
+| Decoration | Hidden (gradient background only) | 3–4 stickers | 10–14 scrapbook elements, parallax |
+| Navigation | Bottom bar (Back / Home / Windows) | Taskbar bottom | Taskbar bottom + start menu |
+| Apps | Full-screen pages | Full-screen inside phone | Open as **draggable windows** beside the phone, or inside the phone (user setting) |
+| Toys | Full-screen sheets | Phone + side panel | Side window with larger canvas |
+| Modals | Bottom sheets | Dialog windows | Dialog windows with title bar |
+| Hover | None | Light | Bevel glow, sticker wiggle |
+
+### 5.3 Mobile specifics
+- `100dvh` containers; honor `env(safe-area-inset-*)`.
+- Primary actions in the lower third (Answer, Send, Save).
+- Min tap target 48×48.
+- Landscape on phones: toys switch to a wide canvas; chat and calls stay portrait-first.
+- PWA manifest so it can live on the home screen as an icon.
+
+---
+
+## 6. Screens
+
+### 6.1 Boot / Landing
+- Black screen → pixel "Phoning" logotype types in with a blinking cursor → gradient wash → home screen. ≤ 1.5s, skippable.
+- A **"Tap to power on"** gate unlocks audio (autoplay policy).
+
+### 6.2 Home (the icon grid)
+
+**Desktop**
+```
+┌──────────────────────────────────────────────────────────────┐
+│  ✦ sticky note       ┌─────────────┐        ┌─ Notice.txt ─┐ │
+│  "welcome ^_^"       │ ▂▄▆   09:41 │        │ New photos!  │ │
+│                      │             │        └──────────────┘ │
+│   [guestbook]        │ ☎  ✉  ◧    │        ┌─ Counter ────┐ │
+│                      │ Calls Msgs  │        │ 000,512 visits│ │
+│   ✿                  │ Photos      │        └──────────────┘ │
+│                      │ ▦  ⚙  ◍    │                  ♡      │
+│                      │ Cal Set Web │                          │
+│                      └─────────────┘                          │
+│ [▶ Phoning]  [Messages] [Photos]            🔊  09:41 PM     │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Mobile**
 ```
 ┌───────────────┐
-│ Phoning    ♪  │
-│ ┌───────────┐ │
-│ │  09:41    │ │   ← handset fills screen
-│ │ Wed Nov 11│ │
-│ │ [wallpaper]│ │
-│ │ Menu Calls│ │
-│ └───────────┘ │
-│   ◀  ◉  ▶    │
-│  [Call] [End] │
-├───────────────┤
-│ ⌂  ☎  ✉  ▣  ✎ │   ← bottom dock
+│▂▄▆  PHONING 🔋│
+│               │
+│   09:41       │
+│               │
+│ ☎   ✉   ◧    │
+│Calls Msgs Photos
+│ ▦   ⚙   ◍    │
+│Cal  Set  Web  │
+│               │
+│  [wallpaper]  │
+│───────────────│
+│  ◀    ⌂    ▢  │
 └───────────────┘
 ```
-Scrolling past the handset reveals "Today" cards (next call, new keepsake, recent messages) as a single column.
+- Icon labels in pixel caption font. Notification badges on icons (pixel numeral, `--bubblegum-500`).
+- Wallpaper is a gradient or user-picked image.
 
-**Hero rules**
-- The hero **is** the handset. The headline is short and sits beside it on desktop, above it on mobile.
-- "Power on" is the only primary CTA; it unlocks audio (browser autoplay policy) and boots the handset.
+### 6.3 Calls & LIVE
+- Looks like a **video-call screen**: full-bleed video, small self-view tile, pixel timer, caption bar.
+- Calls list shows scheduled/past LIVEs with an "Empty for now" state that is cute, not blank (e.g., a sleeping phone doodle: "No calls yet. Check back soon.").
+- Incoming LIVE: ring pulse in `--grad-ring`, caller name in pixel, big Answer (lime) / Not now (grey).
+- Reactions: hearts and stickers float up; max 3 in flight.
+- Captions on by default.
 
-### 7.2 Incoming call (overlay on the handset)
-- Handset gently shakes, ring pulse in `--grad-ring`, caller name in `display-lg`.
-- **Desktop:** the rest of the page dims slightly and a "ringing" toast appears in the nav.
-- **Mobile:** call takes over the full screen with big Answer (lime) and Decline (red) keys in the thumb zone.
-- Unanswered after 30s → becomes "Missed call" with a Call back action.
+### 6.4 Messages
+Structure follows the app: **Channel** (official news), **Group chat**, **Member chats**.
 
-### 7.3 Active call
-- Full-bleed video/still inside the LCD (desktop) or edge to edge (mobile).
-- Controls: mute, speaker, captions, reactions, end. Captions on by default.
-- Reactions float up and fade; max 3 in flight.
+- **List view:** each row has avatar, name, status message, time, unread dot. Official channel row is pinned and tagged `OFFICIAL`.
+- **Profiles:** show avatar + status message (short, editable by the group in the real product); no extra bio required.
+- **Thread:** bubbles, idol side `--sky-300`, user side `--bubblegum-300`, 78% max width, pixel timestamps.
+- **Channel posts:** card-style announcements with schedule links, event apply buttons, and "Open calendar" shortcuts.
+- **Composer:** text, emoji, sticker tray, photo attach; sticky above the bottom bar on mobile.
+- **Desktop:** two panes (list 320px + thread). **Mobile:** list → pushed thread.
 
-### 7.4 Calls (log)
-- **Desktop:** two panes. Left list grouped by day, right detail/replay.
-- **Mobile:** list only; tapping opens a full-screen detail with back arrow.
-- Icons plus text labels for incoming, outgoing, missed (never color alone).
+### 6.5 Photos
+- **Folders:** Group, plus one per member. Folder icons look like old OS folders with a tab and a sticker.
+- **Grid:** 2 columns (mobile) / 3 (tablet) / 4–5 (desktop), photos get digicam date stamps and tape.
+- **Viewer:** swipe/arrow navigation, pinch to zoom, save (with permission note), share.
+- Group photos hide download if licensing requires.
 
-### 7.5 Messages
-- **Desktop:** thread list (320px) + conversation pane.
-- **Mobile:** thread list → conversation as a pushed screen.
-- Bubbles: idol `--sky-200` left, user `--bubblegum-300` right, max 78% width.
-- Reply: 3–5 quick replies + emoji row; sticky composer above the dock (mobile).
+### 6.6 Calendar
+- A paper-calendar look: grid with star-marked event days, sticker per event type (LIVE, release, event).
+- Tapping a day opens a sticky-note sheet with times shown in the viewer's time zone.
+- "Add to my calendar" exports an `.ics`.
 
-### 7.6 Keepsakes
-- Filter chips: All, Wallpapers, Ringtones, Stickers, Shells.
-- Grid: 2 / 3 / 4–5 columns. Locked items show a padlock and an unlock hint.
-- Detail: **desktop** side drawer; **mobile** bottom sheet with Set as wallpaper, Save, Share.
+### 6.7 Toys (the "Website" folder)
+A folder window containing mini-apps, shown as chunky tiles:
 
-### 7.7 Customize
-```
-Desktop                            Mobile
-┌───────────┬─────────────┐        ┌───────────────┐
-│ Live      │ Shell       │        │ Live handset  │
-│ handset   │ Keys        │        │ (top 45%)     │
-│ preview   │ Charm       │        ├───────────────┤
-│           │ Wallpaper   │        │ Tabs: Shell   │
-│           │ LCD theme   │        │ Keys Charm …  │
-│           │ [Share]     │        │ [swatches]    │
-└───────────┴─────────────┘        │ [Share]       │
-                                   └───────────────┘
-```
-- Preview updates instantly. Share generates a 1080×1350 card with the chosen display name only.
+| Toy | What it does | Responsive notes |
+|---|---|---|
+| **ID card** | Pick a photo/avatar, name, fun fields (nickname, "fan since", favorite song) → generates a laminated ID with holographic strip and a barcode | Mobile: step-by-step form, card preview on top. Desktop: form left, live card right |
+| **Dress-up** | Drag outfits, hair, accessories onto an illustrated character; save and share | Mobile: bottom drawer of items, tap to equip. Desktop: side wardrobe panel with drag and drop |
+| **Dance** | A looping cartoon character performing hook choreography with a play/pause, speed, and mirror toggle | Autoplays muted; audio on tap |
+| **Album designer** | Choose cover, color, stickers, track list order, text; export as image | Canvas scales to width; 1:1 export |
+| **Moving photos** | Short looping photo clips; may show "Coming soon" state | Lazy-loaded, reduced-motion shows stills |
 
-### 7.8 About
-- Plain editorial layout: what Phoning is, how calls work, FAQ accordion, licensing credits. Handset shrinks to a small decorative element.
+All exports include a small watermark/credit line and never embed personal data beyond the display name the user typed.
 
-### 7.9 Settings
-- Grouped list: Sound & vibration, Notifications (quiet hours), Language, Accessibility (captions, readable text, reduced motion), Account, Privacy.
+### 6.8 Settings
+Grouped as a retro control panel: Sound & vibration, Notifications (quiet hours), Language, Display (light/night, readable text, reduced motion), Window mode (desktop: floating windows vs. inside phone), Account, Privacy, Help.
 
-### 7.10 Empty / offline / error
-- Empty: pixel icon + one line + one action.
-- Offline: "No signal" with zero-bar icon; cached calls still play.
-- Error: says what failed and how to retry.
+### 6.9 About & credits
+- Plain, readable layout in a "Readme.txt" window: what this is, how it works, FAQ, licensing credits, and a clear **"fan-made concept"** notice if not official.
+
+### 6.10 Empty / offline / error
+- **Empty:** a doodle + one line + one action.
+- **Offline:** "No signal" with zero bars; cached photos and last calls remain viewable.
+- **Error:** a retro alert dialog with a bevel and an icon: states what failed and what to do. Never blames the user.
 
 ---
 
-## 8. Components
+## 7. Components
 
 | Component | Spec |
 |---|---|
-| **Top bar** | 64px, `--milk-100` at 85% with blur, logo in pixel font, text links, sound toggle, avatar. Hides on scroll down, returns on scroll up (mobile only). |
-| **Bottom dock (mobile)** | 5 items, icon + 12px label, active = filled icon + pill. Hidden when keyboard is open. |
-| **Handset** | SVG/CSS shell with `--grad-handset`, inner LCD radius 28, D-pad, soft-key labels, optional number pad. Scales with `transform: scale()` from a 380px base. |
-| **Key button** | Pill, gloss overlay, `e2`. Primary denim, answer lime, end red. 48px min height. |
-| **Soft key** | Text on LCD corners, verb labels ("Answer", "Back"). |
-| **D-pad** | 4 zones + OK, 48px hit areas, haptic tick on supported devices. |
-| **LCD list item** | 48px row; focus = filled denim bar with white text and pixel caret. |
-| **Card** | `--milk-100`, radius 16, `e1`. Used only where grouping is needed, not on every block. |
-| **Message bubble** | Radius 16, 4px tail corner, timestamp under last bubble in a group. |
-| **Chip / quick reply** | Pill, 1px `--chrome-300` border; selected = `--bubblegum-300`. |
-| **Sticker** | Die-cut, 4px white outline, `e1`. Draggable in Customize. |
-| **Toast** | Pill, 2.5s, one line, verb matches the action ("Saved"). |
-| **Dialog / sheet** | Dialog on md+, bottom sheet on xs/sm with drag handle. |
-| **Badge** | 16px, `--bubblegum-500`, pixel numerals, caps at "9+". |
-| **Footer (desktop/tablet)** | Links, language switcher, licensing credit. Hidden on mobile (links live in Settings and About). |
+| **Phone shell** | SVG/CSS bezel with `--grad-phone`, speaker slit, inner screen radius 28, optional soft keys. Scales from a 380px base with `transform: scale()`. |
+| **Status bar** | Pixel signal bars, "PHONING" carrier label, clock, battery. 24px tall. |
+| **App icon tile** | 64px (mobile 56px), 2-tone icon on colored rounded tile, 1px dark outline, bevel. Label under in pixel caption. |
+| **Retro window** | Title bar `--chrome-200` with pixel title and min/max/close squares, beveled body, optional scroll bar. Draggable on desktop. |
+| **Taskbar (desktop)** | 44px, `--chrome-200`, "▶ Phoning" button, open windows as tabs, tray with volume, clock, language. |
+| **Bottom bar (mobile)** | Back / Home / Windows, 56px + safe area, large targets. |
+| **Bubble button** | Pill, gloss overlay, lower-edge shadow. Primary denim, answer lime, end red. 48px min height. |
+| **Bevel button** | Square-ish retro button for secondary actions inside windows. |
+| **Sticky note** | `--butter-300`, handwriting font, slight rotation, folded corner. |
+| **Tape** | Semi-transparent strip, 2 per scrapbook photo. |
+| **Sticker** | Die-cut, white outline, draggable in toys. |
+| **Message bubble** | Radius 16, tail corner, pixel timestamp. |
+| **Chip** | Pill, 1px `--chrome-400` border; selected = `--bubblegum-300`. |
+| **Toast** | Retro "balloon" with pixel arrow, 2.5s, one line. |
+| **Dialog / sheet** | Window-style dialog on md+, bottom sheet with drag handle on xs/sm. |
+| **Marquee ticker** | Optional, single line, pauses on hover/focus and under reduced motion. |
+| **Visit counter / guestbook** | Optional decorative widgets, desktop only; guestbook entries are preset stickers, no free text unless moderated. |
+| **Badge** | 16px circle, `--bubblegum-500`, pixel digits, caps at "9+". |
 
 ---
 
-## 9. Motion & Sound
-
-Motion answers input or announces the call. Nothing animates only to decorate.
+## 8. Motion & Sound
 
 | Moment | Motion | Timing |
 |---|---|---|
-| Power on | CRT flicker + handset rises | 600ms, `cubic-bezier(.2,.8,.2,1)` |
-| Incoming call | Ring ripples + shake ±2° | Loop 1.2s |
-| Key press | Depress 3px, overshoot release | 90ms / 140ms |
-| LCD screen change | Pixel-stepped wipe | 180ms, `steps(6)` |
-| Page route change | Handset stays; side content crossfades | 200ms |
-| Reaction hearts | Rise and fade | 1.4s |
-| Unlock | Sticker pop with slight bounce | 350ms |
-| Desktop parallax | Background stickers drift on pointer move | Subtle, ≤ 12px |
+| Power on | CRT flicker, then gradient wash | 600ms |
+| Icon open | Icon scales up into a window/screen | 220ms, `cubic-bezier(.2,.8,.2,1)` |
+| Window open/close (desktop) | Pop with slight overshoot / shrink to taskbar | 180ms |
+| Screen transition (phone) | Pixel-stepped horizontal wipe | 180ms, `steps(6)` |
+| Incoming LIVE | Ring ripples + shake ±2° | Loop 1.2s |
+| Button press | Depress 3px, overshoot release | 90 / 140ms |
+| Sparkles | Twinkle on stickers/hover | 1.5s loop, max 6 on screen |
+| Desktop parallax | Stickers drift with pointer | ≤ 12px |
+| Unlock / save | Sticker pop | 350ms |
 
-- **Reduced motion:** no shake or parallax; ripples static; wipes instant.
-- **Sound:** key tick, ringtone loop, pickup click, hang-up beep. Master mute plus per-category toggles. Audio starts only after "Power on".
-- **Haptics (mobile):** light tick on keys, double pulse on incoming call.
+- **Reduced motion:** no shake, parallax, or sparkle loops; wipes become cuts; marquee static.
+- **Sound:** key tick, soft ringtone, pickup click, notification "ding". Master mute plus per-category toggles. Audio starts only after "Tap to power on".
+- **Haptics (mobile):** light tick on icon open, double pulse on incoming LIVE.
 
 ---
 
-## 10. Interaction & Behavior Rules
+## 9. Content & Voice
 
-- Calls arrive in set windows (1–3 per day), respecting local time zone and quiet hours.
-- One notification per call, plain copy; no repeat nudges within 6 hours.
-- Each answered call unlocks at most one keepsake. No paid randomization.
-- Missed calls can be called back within 24 hours.
-- Reactions and presets only; no free-form messaging to idols. Block and report available for share cards.
-- Keyboard map: arrows = D-pad, Enter = OK, Esc = Back, `C` = Call, `E` = End.
+- Casual, warm, short. Light era emoticons (`^_^`, `♡`).
+- Name things by what they do. Sentence case.
+
+| Situation | Do | Don't |
+|---|---|---|
+| Power on | "Tap to power on" | "Click here to start!!!" |
+| New LIVE | "Incoming call" | "OMG she's calling!!!" |
+| Empty calls | "No calls yet. Check back soon." | "Nothing here." |
+| Saved | "Saved to your photos." | "Success!" |
+| Offline | "No signal. Saved photos still work." | "Oops, something went wrong." |
+| ID card done | "Your ID card is ready." | "You're officially a fan now!" |
+
+---
+
+## 10. Interaction Rules
+
+- LIVEs and notices follow a schedule; times are shown in the viewer's local time zone with quiet hours respected.
+- One notification per event; no repeat nudges within 6 hours.
+- Interactions are presets and stickers; no open chat with members. Any user-generated export (ID card, album, dress-up) uses a display name only and offers a report option.
+- No paid randomization, countdown pressure, or streak shaming. If monetization exists (the original has in-app purchases), keep prices explicit and upfront.
+- Keyboard: arrows move focus between icons/items, Enter opens, Esc goes back, `H` goes home.
 
 ---
 
 ## 11. Accessibility
 
-- WCAG 2.2 AA. Focus ring: 3px `--denim-700` with 2px white offset, visible on every interactive element.
-- Captions on all media; transcripts for voice notes.
-- "Readable text" toggle swaps pixel fonts for Pretendard.
-- No color-only meaning (missed calls have icon + label).
-- Screen reader labels are specific: "Answer call from [name]".
-- Respect `prefers-reduced-motion`, `prefers-color-scheme`, and text zoom to 200% without horizontal scroll.
-- No flashing faster than 3 times per second.
-- Touch targets ≥ 48×48 on mobile; ≥ 44×44 on desktop.
-- Skip link to main content; landmarks (`header`, `nav`, `main`) on every page.
+- WCAG 2.2 AA. Focus ring: 3px `--denim-700` with 2px white offset, visible on all interactive elements, including icons and window controls.
+- Captions for all video/audio; transcripts for voice notes.
+- "Readable text" toggle replaces pixel fonts with Pretendard.
+- Y2K decoration never blocks content: decorative layers are `aria-hidden` and `pointer-events: none`.
+- No color-only meaning; use icon plus label.
+- Honor `prefers-reduced-motion`, `prefers-color-scheme`, and 200% text zoom with no horizontal scroll.
+- No flashing faster than 3 times per second (sparkles, holographic effects).
+- Drag-and-drop toys always have a tap/keyboard alternative.
+- Landmarks (`header`, `nav`, `main`) and a skip link on every page.
 
 ---
 
 ## 12. Performance & Tech
 
-- **Stack suggestion:** Next.js or SvelteKit, CSS variables for tokens, Web Audio for UI sounds, `<video playsinline>` for calls.
-- **Budgets:** LCP < 2.5s on mid-tier mobile over 4G; initial JS < 170KB gzipped; handset shell is inline SVG/CSS (no raster).
-- **Media:** lazy-load call video, preload only the next scheduled call, serve WebP/AVIF, adaptive video bitrate.
-- **PWA:** manifest, offline cache for last 3 calls and keepsake thumbnails, theme-color matches `--sky-50`.
-- **SEO/share:** server-rendered Home and About, Open Graph card showing the default handset, `lang` attribute per locale.
-- **Storage:** handset config in account + local storage; no media blobs stored beyond the cache.
+- **Stack suggestion:** Next.js or SvelteKit, CSS variables for tokens, canvas/SVG for toys, Web Audio for UI sound.
+- **Budgets:** LCP < 2.5s on mid-tier mobile over 4G; initial JS < 170KB gzipped.
+- **Assets:** phone shell and icons as inline SVG; pixel fonts subsetted; stickers as WebP/SVG; lazy-load photos and toy assets; preload only the next scheduled LIVE.
+- **Decoration budget:** desktop scrapbook layers are CSS/SVG and count toward the JS-free paint; disable on `xs` and when `prefers-reduced-motion`.
+- **PWA:** manifest, offline cache for last photos and messages, `theme-color` matches `--sky-100`.
+- **Storage:** toy creations and settings stored per account; exports generated client-side.
 - **Analytics:** minimal, anonymous, consent-based.
 
 ### CSS starter
 
 ```css
 :root {
-  --denim-500:#5B8DEF; --denim-700:#2F5FC4;
-  --sky-200:#CFE3FF;  --sky-50:#F2F8FF; --milk-100:#fff;
-  --bubblegum-300:#FFB8D9; --bubblegum-500:#FF7FBA;
-  --lime-300:#D7F28B; --chrome-300:#C9D1DC; --chrome-600:#6B7685;
-  --ink-900:#1B2230; --alert-500:#E5484D;
+  --denim-500:#4F86F7; --denim-700:#2A55C0;
+  --sky-100:#E4F0FF; --sky-300:#B9D6FF; --lilac-300:#D3C6FF;
+  --bubblegum-300:#FFC1DD; --bubblegum-500:#FF7EBB;
+  --lime-300:#D9F58C; --butter-300:#FFF0A8;
+  --chrome-200:#E6EAF0; --chrome-400:#B5BECC; --chrome-600:#6A7586;
+  --ink-900:#1A2030; --alert-500:#E5484D; --stamp-orange:#FF8A3D;
 
-  --font-lcd:'DotGothic16','Silkscreen',monospace;
+  --grad-page:linear-gradient(170deg,#E4F0FF 0%,#D3C6FF 55%,#FFC1DD 100%);
+  --grad-phone:linear-gradient(160deg,#F2F8FF 0%,#B9D6FF 60%,#9DBFFF 100%);
+
+  --font-pixel:'DotGothic16','Silkscreen','VT323',monospace;
   --font-ui:'Pretendard','Inter',system-ui,sans-serif;
+  --font-hand:'Gaegu','Jua',cursive;
 
-  --r-md:16px; --r-lg:28px; --r-xl:48px; --r-pill:999px;
-  --e-key:0 1px 0 rgba(255,255,255,.9) inset,0 4px 0 #9CB4DE,0 8px 12px rgba(47,95,196,.2);
-
-  --gutter:16px; --section-y:40px;
-  --fs-display-xl:clamp(2.75rem, 6vw + 1rem, 4.5rem);
+  --bevel:inset 1px 1px 0 #fff, inset -1px -1px 0 #8A94A6, 2px 2px 0 rgba(26,32,48,.25);
+  --gutter:0px;
 }
 
-body { background:var(--sky-50); color:var(--ink-900); font:400 1rem/1.55 var(--font-ui); }
-.stage { min-height:100dvh; padding:env(safe-area-inset-top) var(--gutter) calc(64px + env(safe-area-inset-bottom)); }
-.dock { position:fixed; inset:auto 0 0 0; height:calc(64px + env(safe-area-inset-bottom)); }
-.handset { width:min(100%, 420px); margin-inline:auto; }
+body { background:var(--grad-page); color:var(--ink-900); font:400 1rem/1.55 var(--font-ui); }
+.phone { width:100%; min-height:100dvh; background:var(--grad-phone); }
+.deco { display:none; }                     /* decoration off on mobile */
+.apps { display:grid; grid-template-columns:repeat(3,1fr); gap:24px 12px; padding:24px 16px; }
+.app-icon { min-width:48px; min-height:48px; font:400 12px var(--font-pixel); text-align:center; }
+.bottom-bar { position:fixed; inset:auto 0 0; height:calc(56px + env(safe-area-inset-bottom)); }
+.taskbar { display:none; }
 
+@media (min-width:481px){ .phone{ width:440px; margin-inline:auto; border-radius:48px; min-height:auto; aspect-ratio:9/16; } }
 @media (min-width:768px){
-  :root{ --gutter:24px; --section-y:64px; }
-  .dock{ display:none; }
-  .stage{ padding-bottom:var(--section-y); }
+  .deco{ display:block; pointer-events:none; }
+  .bottom-bar{ display:none; } .taskbar{ display:flex; }
 }
 @media (min-width:1024px){
-  :root{ --gutter:40px; --section-y:96px; }
-  .home{ display:grid; grid-template-columns:1fr 420px 1fr; align-items:center; gap:48px; }
+  .stage{ display:grid; grid-template-columns:1fr 420px 1fr; gap:40px; align-items:center; padding:0 40px 44px; }
 }
 @media (prefers-color-scheme:dark){
-  :root{ --sky-50:#0F1626; --milk-100:#182238; --sky-200:#22304D; --ink-900:#EAF1FF; --denim-500:#7FA8FF; }
+  :root{ --grad-page:linear-gradient(170deg,#0E1424,#1E1A3A); --ink-900:#EAF1FF; --denim-500:#7FA8FF; }
 }
 @media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important; } }
 ```
@@ -398,32 +435,34 @@ body { background:var(--sky-50); color:var(--ink-900); font:400 1rem/1.55 var(--
 ## 13. Do / Don't
 
 **Do**
-- Keep the handset believable and central.
-- Switch to the bottom dock and full-screen handset on mobile.
-- Keep one loud element per view.
-- Write like a friend, in sentence case.
+- Build the home screen of icons first; everything else hangs off it.
+- Layer scrapbook details (tape, stickers, notes) on desktop; strip them on mobile.
+- Use pixel type for labels, normal type for sentences.
+- Keep gradients soft and consistent.
+- Make the empty states charming.
 
 **Don't**
-- Don't use official logos, photos, or audio without licensing.
-- Don't shrink the desktop layout and call it mobile.
+- Don't copy official logos, photos, character art, voices, or screenshots.
+- Don't use all Y2K motifs at once; pick three per screen.
 - Don't use pixel fonts for paragraphs.
-- Don't use countdown pressure, streak shaming, or paid random rewards.
-- Don't stack gradients, glows, and shadows on one element.
+- Don't let decoration cover content or block taps.
+- Don't use fake urgency, streak shaming, or paid random rewards.
 
 ---
 
 ## 14. QA Checklist
 
 - [ ] Tested at 360, 390, 768, 1024, 1440 widths
-- [ ] Bottom dock clears the iOS home indicator; no overlap with composer
-- [ ] `100dvh` handset doesn't jump when browser bars collapse
-- [ ] Audio only starts after "Power on"
-- [ ] Contrast checked in light, dark, and LCD themes
-- [ ] Captions on every call; reduced-motion and mute paths work
-- [ ] Keyboard-only navigation works across all pages
+- [ ] Decoration fully hidden on mobile; no horizontal scroll
+- [ ] Bottom bar clears iOS home indicator; composer not overlapped
+- [ ] `100dvh` phone doesn't jump when browser bars collapse
+- [ ] Audio starts only after "Tap to power on"
+- [ ] Contrast checked in light and night themes
+- [ ] Captions on all LIVEs; reduced-motion and mute paths work
+- [ ] Every drag-and-drop toy has a keyboard/tap alternative
 - [ ] Offline and error states reviewed
-- [ ] Share card contains no personal data
-- [ ] All media licensed or original placeholders
+- [ ] Exports contain no personal data beyond display name
+- [ ] All media licensed or original placeholders; "fan-made" notice shown if unofficial
 
 ---
 

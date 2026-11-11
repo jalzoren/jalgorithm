@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/gsap.js'
 import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
+import DraggableStickers from './DraggableStickers.jsx'
 import { experience, profile } from '../content.js'
 
 function Experience() {
@@ -35,6 +36,10 @@ function Experience() {
       className="section experience"
       aria-labelledby="experience-title"
     >
+      <DraggableStickers stickers={[
+        { id: 'experience-practice', shape: 'ticket', position: 'top-right', label: 'PRACTICE / SHIP', mark: '04' },
+        { id: 'experience-learning', shape: 'burst', position: 'bottom-left', label: 'LEARN BY DOING', mark: '↗' },
+      ]} />
       <div className="shell">
         <SectionHeading
           index="04"

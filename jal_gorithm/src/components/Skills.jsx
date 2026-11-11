@@ -1,5 +1,6 @@
 import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
+import DraggableStickers from './DraggableStickers.jsx'
 import { skillGroups } from '../content.js'
 import { ArrowUpRightIcon } from './icons.jsx'
 
@@ -26,6 +27,12 @@ const LEVEL_MAP = {
 function Skills() {
   return (
     <section id="skills" className="section skills" aria-labelledby="skills-title">
+      <DraggableStickers
+        stickers={[
+          { id: 'skills-ready', shape: 'burst', position: 'top-right', label: 'TECH STACK / READY', mark: '{}' },
+          { id: 'skills-build', shape: 'diamond', position: 'bottom-left', label: 'TOOLS / BUILD', mark: '</>' },
+        ]}
+      />
       <div className="shell">
         <SectionHeading
           index="02"

@@ -6,99 +6,13 @@ import {
   ArrowUpRightIcon,
   CloseIcon,
   MenuIcon,
-  MoonIcon,
-  SunIcon,
-  TerminalIcon,
-  PaletteIcon,
 } from './icons.jsx'
-
-/* ── Theme toggle ─────────────────────────────────────────── */
-function ThemeToggle({ theme, onToggle }) {
-  return (
-    <button
-      type="button"
-      className="icon-button"
-      onClick={onToggle}
-      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-      aria-pressed={theme === 'dark'}
-    >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={theme}
-          className="icon-swap"
-          initial={{ rotate: -90, opacity: 0 }}
-          animate={{ rotate: 0, opacity: 1 }}
-          exit={{ rotate: 90, opacity: 0 }}
-          transition={{ duration: 0.18, ease: 'easeOut' }}
-        >
-          {theme === 'dark' ? <SunIcon size={15} /> : <MoonIcon size={15} />}
-        </motion.span>
-      </AnimatePresence>
-    </button>
-  )
-}
-
-/* ── Style switcher (default / cli) ───────────────────────── */
-function StyleToggle({ style, onToggle }) {
-  const isCli = style === 'cli'
-  return (
-    <button
-      type="button"
-      className={isCli ? 'icon-button is-accent' : 'icon-button'}
-      onClick={onToggle}
-      aria-label={isCli ? 'Switch to default style' : 'Switch to CLI style'}
-      aria-pressed={isCli}
-      title={isCli ? 'CLI mode — click for default' : 'Click for CLI / terminal mode'}
-    >
-      {isCli ? <PaletteIcon size={15} /> : <TerminalIcon size={15} />}
-    </button>
-  )
-}
 
 /* ── Nav ──────────────────────────────────────────────────── */
 function Nav() {
-  const [theme, setTheme] = useState(() =>
-    document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
-  )
-  const [style, setStyle] = useState(() => {
-    try { return localStorage.getItem('jal-style') || 'default' } catch { return 'default' }
-  })
   const [active, setActive] = useState('')
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-
-  /* sync theme attr */
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme
-  }, [theme])
-
-  /* sync style attr — adds/removes data-style="cli" on <html>
-     CLI mode no longer locks the theme — both dark and light work */
-  useEffect(() => {
-    if (style === 'cli') {
-      document.documentElement.dataset.style = 'cli'
-    } else {
-      delete document.documentElement.dataset.style
-    }
-    /* always sync the current theme, CLI or not */
-    document.documentElement.dataset.theme = theme
-  }, [style, theme])
-
-  const toggleTheme = () => {
-    setTheme((c) => {
-      const next = c === 'dark' ? 'light' : 'dark'
-      try { localStorage.setItem('jal-theme', next) } catch { /* noop */ }
-      return next
-    })
-  }
-
-  const toggleStyle = () => {
-    setStyle((c) => {
-      const next = c === 'cli' ? 'default' : 'cli'
-      try { localStorage.setItem('jal-style', next) } catch { /* noop */ }
-      return next
-    })
-  }
 
   /* active section tracking */
   useEffect(() => {
@@ -136,7 +50,7 @@ function Nav() {
     <header className={['nav', scrolled && 'is-scrolled'].filter(Boolean).join(' ')}>
       <div className="nav-inner">
         {/* Logo */}
-        <a className="brand" href="#top" aria-label="JALGORITHM — back to top">
+        <a className="brand" href="#home" aria-label="JALGORITHM — back to home">
           <Logo size={28} />
           <span className="brand-word">JALGORITHM</span>
         </a>
@@ -170,8 +84,6 @@ function Nav() {
 
         {/* Actions */}
         <div className="nav-actions">
-          <StyleToggle style={style} onToggle={toggleStyle} />
-          <ThemeToggle theme={theme} onToggle={toggleTheme} />
           <a className="btn btn-primary nav-cta" href="#contact">
             Let&apos;s talk
             <ArrowUpRightIcon size={13} />

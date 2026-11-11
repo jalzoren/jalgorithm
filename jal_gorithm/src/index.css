@@ -1,6 +1,7 @@
 /* ============================================================
    JALGORITHM — global tokens & resets
-   Algorithm palette: cyan accent, Inter bold, JetBrains Mono
+   Two switchable styles: CLI (default) and Design4 (pastel/Y2K)
+   Both respond to [data-theme='light'] / [data-theme='dark'].
    ============================================================ */
 
 @font-face {
@@ -19,7 +20,6 @@
   font-display: swap;
 }
 
-/* Keep Geist Mono as fallback (already cached) */
 @font-face {
   font-family: 'Geist Mono';
   src: url('/fonts/geist-mono-var.woff2') format('woff2');
@@ -28,68 +28,56 @@
   font-display: swap;
 }
 
-/* ---- Light theme (default) ------------------------------- */
+/* ============================================================
+   SHARED INTERNALS (font stacks, motion, layout — never tokens)
+   ============================================================ */
 :root {
-  /* Pixel-art logo colours — black J, white outline separates from bg */
-  --logo-fill:    #0a0a0f;
-  --logo-outline: #ffffff;
-  --logo-shadow:  rgba(0, 0, 0, 0.18);
-
-  --bg:          #f5f5f5;
-  --surface:     #e8e8f0;
-  --surface-2:   #dcdce8;
-  --text:        #0d0d1a;
-  --text-strong: #0a0a0f;
-  --muted:       #5a5a7a;
-  --border:      rgba(13, 13, 26, 0.12);
-  --accent:      #00a8bb;        /* cyan, slightly darkened for light bg contrast */
-  --accent-text: #007a8a;
-  --accent-fg:   #0a0a0f;
-  --accent-glow: rgba(0, 229, 255, 0.18);
-  --btn-bg:      #0d0d1a;
-  --btn-fg:      #ffffff;
-  --focus-ring:  #00e5ff;
-  --shadow-lift: rgba(0, 0, 0, 0.14) 0 16px 40px -12px;
-  --sans:        'Inter', system-ui, -apple-system, sans-serif;
-  --mono:        'JetBrains Mono', 'Geist Mono', ui-monospace, Consolas, monospace;
-  --maxw:        1560px;
-  color-scheme:  light;
+  --sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --mono:  'JetBrains Mono', 'Geist Mono', ui-monospace, Consolas, monospace;
+  --maxw:  1560px;
+  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ---- Dark theme (signature) ------------------------------ */
-[data-theme='dark'] {
-  /* Pixel-art logo colours in dark mode — white J, black outline */
+/* ============================================================
+   STYLE: CLI  (data-style="cli")
+   Signature look — terminal green on near-black ground
+   ============================================================ */
+
+/* CLI dark (default boot state) */
+[data-style='cli'] {
   --logo-fill:    #ffffff;
   --logo-outline: #000000;
-  --logo-shadow:  rgba(0, 0, 0, 0.45);
+  --logo-shadow:  rgba(0,0,0,0.5);
 
-  --bg:          #0a0a0f;
-  --surface:     #0f0f1a;
-  --surface-2:   #141424;
-  --text:        #c8c8d8;
-  --text-strong: #ffffff;
-  --muted:       #5a5a7a;
-  --border:      rgba(255, 255, 255, 0.08);
-  --accent:      #00e5ff;
-  --accent-text: #00e5ff;
-  --accent-fg:   #0a0a0f;
-  --accent-glow: rgba(0, 229, 255, 0.15);
-  --btn-bg:      #00e5ff;
-  --btn-fg:      #0a0a0f;
-  --focus-ring:  #00e5ff;
-  --shadow-lift: rgba(0, 229, 255, 0.08) 0 0 40px 0, rgba(0, 0, 0, 0.6) 0 24px 60px -24px;
+  --bg:          #000e00;
+  --surface:     #001400;
+  --surface-2:   #001a00;
+  --text:        #00cc44;
+  --text-strong: #00ff55;
+  --muted:       #007722;
+  --border:      rgba(0, 200, 60, 0.18);
+  --accent:      #00ff55;
+  --accent-text: #00ff55;
+  --accent-fg:   #000e00;
+  --accent-glow: rgba(0, 255, 85, 0.18);
+  --btn-bg:      #00ff55;
+  --btn-fg:      #000e00;
+  --focus-ring:  #00ff55;
+  --shadow-lift: rgba(0, 255, 85, 0.15) 0 0 32px;
+  --green:       #00ff55;
+  --red:         #ff4455;
+  --yellow:      #ccff00;
+  --r:           2px;
+  --r-card:      4px;
   color-scheme:  dark;
 }
 
-/* ---- CLI dark mode --------------------------------------- */
-[data-style='cli'][data-theme='dark'] {
-  --logo-fill:    #ffffff;
-  --logo-outline: #000000;
-  --logo-shadow:  rgba(0, 0, 0, 0.45);
-}
-
-/* ---- CLI light mode — clean black on white --------------- */
+/* CLI light — monochrome paper terminal */
 [data-style='cli'][data-theme='light'] {
+  --logo-fill:    #0a0a0a;
+  --logo-outline: #ffffff;
+  --logo-shadow:  rgba(0,0,0,0.18);
+
   --bg:          #ffffff;
   --surface:     #f2f2f2;
   --surface-2:   #e6e6e6;
@@ -106,13 +94,113 @@
   --focus-ring:  #0a0a0a;
   --shadow-lift: rgba(0, 0, 0, 0.12) 0 8px 32px -8px;
   --green:       #16a34a;
-  --logo-fill:    #0a0a0a;
-  --logo-outline: #ffffff;
-  --logo-shadow:  rgba(0, 0, 0, 0.18);
+  --r:           2px;
+  --r-card:      4px;
   color-scheme:  light;
 }
 
-/* ---- Reset ----------------------------------------------- */
+/* ============================================================
+   STYLE: D4  (data-style="d4")
+   Frutiger Aero / Y2K — translucent plastic, sky gradients,
+   gloss overlays, bubblegum moments. Based on design4.md.
+   ============================================================ */
+
+/* D4 light — the sky world */
+[data-style='d4'] {
+  /* logo: ink J, sky outline */
+  --logo-fill:    #1a3a5c;
+  --logo-outline: #EAF5FF;
+  --logo-shadow:  rgba(47,95,196,0.22);
+
+  /* Page ground — a soft sky wash */
+  --bg:          #EAF5FF;
+  --bg-grad:     linear-gradient(180deg, #C8E6FF 0%, #EAF5FF 28%, #F5FAFF 100%);
+
+  /* Surfaces — white glass with faint blue tint */
+  --surface:     rgba(255,255,255,0.78);
+  --surface-2:   rgba(207,227,255,0.65);
+  --surface-glass: rgba(255,255,255,0.55);
+
+  /* Typography */
+  --text:        #1a3a5c;
+  --text-strong: #0d2340;
+  --muted:       #5a7a9a;
+
+  /* Borders — sky hairline */
+  --border:      rgba(91,141,239,0.22);
+  --border-glass: rgba(255,255,255,0.7);
+
+  /* Accent — denim blue, vibrant */
+  --accent:      #5B8DEF;
+  --accent-text: #2F5FC4;
+  --accent-fg:   #ffffff;
+  --accent-glow: rgba(91,141,239,0.35);
+
+  /* Buttons */
+  --btn-bg:      #5B8DEF;
+  --btn-fg:      #ffffff;
+
+  /* Semantic */
+  --focus-ring:  #2F5FC4;
+  --shadow-lift: 0 8px 32px rgba(47,95,196,0.18), 0 2px 6px rgba(47,95,196,0.1);
+  --shadow-glass: 0 4px 24px rgba(47,95,196,0.14), 0 1px 2px rgba(255,255,255,0.8) inset;
+  --green:       #6bcf7f;
+  --red:         #E5484D;
+  --yellow:      #FFB8D9;
+
+  /* Radii — Frutiger Aero is pillowy */
+  --r:           12px;
+  --r-card:      20px;
+  --r-pill:      999px;
+
+  color-scheme:  light;
+}
+
+/* D4 dark — midnight blue, neon-denim, stars */
+[data-style='d4'][data-theme='dark'] {
+  --logo-fill:    #a8d4ff;
+  --logo-outline: #0a1628;
+  --logo-shadow:  rgba(100,170,255,0.3);
+
+  --bg:          #0a1628;
+  --bg-grad:     linear-gradient(180deg, #060e1a 0%, #0a1628 30%, #0d1e38 100%);
+
+  --surface:     rgba(24,40,72,0.82);
+  --surface-2:   rgba(16,28,56,0.9);
+  --surface-glass: rgba(16,32,64,0.6);
+
+  --text:        #a8c8e8;
+  --text-strong: #daeeff;
+  --muted:       #5a7898;
+
+  --border:      rgba(100,160,255,0.16);
+  --border-glass: rgba(100,160,255,0.25);
+
+  --accent:      #7FA8FF;
+  --accent-text: #a8c8ff;
+  --accent-fg:   #060e1a;
+  --accent-glow: rgba(127,168,255,0.4);
+
+  --btn-bg:      #7FA8FF;
+  --btn-fg:      #060e1a;
+
+  --focus-ring:  #7FA8FF;
+  --shadow-lift: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(100,160,255,0.12);
+  --shadow-glass: 0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(100,160,255,0.2) inset;
+  --green:       #7fe8a0;
+  --red:         #ff6b70;
+  --yellow:      #FF8EC4;
+
+  --r:           12px;
+  --r-card:      20px;
+  --r-pill:      999px;
+
+  color-scheme:  dark;
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
 *,
 *::before,
 *::after {
@@ -139,6 +227,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   caret-color: var(--accent);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* D4: apply the sky gradient to the page body */
+[data-style='d4'] body {
+  background: var(--bg-grad, var(--bg));
+  min-height: 100vh;
 }
 
 ::selection {
@@ -155,7 +250,9 @@ section[id] {
   scroll-margin-top: 88px;
 }
 
-/* ---- Utilities ------------------------------------------- */
+/* ============================================================
+   UTILITIES
+   ============================================================ */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -173,7 +270,6 @@ section[id] {
   margin-inline: auto;
 }
 
-/* Skip link */
 .skip-link {
   position: fixed;
   top: 8px;
@@ -186,13 +282,12 @@ section[id] {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: var(--r-card);
   transform: translateY(-300%);
   transition: transform 0.2s ease;
 }
 .skip-link:focus { transform: none; }
 
-/* Scroll-progress bar */
 .progress-bar {
   position: fixed;
   top: 0;
@@ -203,14 +298,15 @@ section[id] {
   z-index: 260;
 }
 
-/* Mono utility */
 .mono {
   font-family: var(--mono);
   font-weight: 400;
 }
 .muted { color: var(--muted); }
 
-/* Reduced motion */
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,

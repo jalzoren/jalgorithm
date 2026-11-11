@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { profile, heroCode } from '../content.js'
+import { profile, school, schoolShs } from '../content.js'
 import Logo from './Logo.jsx'
 
 /**
  * FlipCard — single card in the hero with two faces:
  *   Front: Portfolio access card (name, role, status)
- *   Back:  Terminal / code view (profile object typed out)
+ *   Back:  Education card (college + SHS)
  *
  * Flip is triggered by clicking the card or pressing Enter/Space.
  */
@@ -24,7 +24,7 @@ function FlipCard() {
       onKeyDown={onKey}
       role="button"
       tabIndex={0}
-      aria-label={flipped ? 'Show access card (click to flip back)' : 'Show code view (click to flip)'}
+      aria-label={flipped ? 'Show access card (click to flip back)' : 'Show education (click to flip)'}
       aria-pressed={flipped}
     >
       <div className="flip-card-inner">
@@ -38,33 +38,26 @@ function FlipCard() {
           </div>
 
           <div className="flip-front-body">
-            {/* Avatar placeholder */}
             <div className="flip-avatar" aria-hidden="true">
-              <svg viewBox="0 0 72 72" fill="none">
-                <rect width="72" height="72" fill="var(--surface-2)" rx="4" />
-                {/* head */}
-                <circle cx="36" cy="26" r="13" fill="var(--border)" />
-                {/* eyes */}
-                <circle cx="31" cy="24" r="2" fill="var(--accent)" />
-                <circle cx="41" cy="24" r="2" fill="var(--accent)" />
-                {/* shoulders */}
-                <path d="M12 60 Q12 48 36 48 Q60 48 60 60" fill="var(--border)" />
-              </svg>
-              <p className="mono">PHOTOGRAPH<br />OF DEVELOPER</p>
+              <img src="/jal.jpg" alt="" />
             </div>
 
             <div className="flip-fields">
               <div className="flip-field">
                 <span className="mono">ISSUED TO</span>
-                <strong>Jalgorithm</strong>
+                <strong>(&gt;_jalgorithm) {profile.fullName}</strong>
               </div>
               <div className="flip-field">
                 <span className="mono">ROLE</span>
-                <span>Front-end Engineer</span>
+                <span>{profile.role}</span>
               </div>
               <div className="flip-field">
                 <span className="mono">SCHOOL</span>
-                <span>PLP, Pasig City</span>
+                <span>{school.degree} · {school.shortName}</span>
+              </div>
+              <div className="flip-field">
+                <span className="mono">FOCUS</span>
+                <span>Frontend · UI/UX · Backend</span>
               </div>
               <div className="flip-field">
                 <span className="mono">STATUS</span>
@@ -92,26 +85,65 @@ function FlipCard() {
           </div>
         </div>
 
-        {/* ── BACK: Terminal ── */}
+        {/* ── BACK: Education card ── */}
         <div className="flip-card-face flip-back" aria-hidden={!flipped}>
           <div className="flip-back-top">
             <div className="terminal-dots" aria-hidden="true">
               <i className="dot-red" /><i className="dot-yellow" /><i className="dot-green" />
             </div>
-            <span className="mono">jalgorithm.js</span>
-            <span className="mono flip-live">● LIVE</span>
+            <span className="mono" style={{ flex: 1, textAlign: 'center', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              Education
+            </span>
+            <span className="mono flip-live">// Academic</span>
           </div>
 
-          <pre className="flip-back-code" aria-label="Profile code object">
-            <code>
-              {heroCode.map((line, i) => (
-                <span className="terminal-line" key={i}>
-                  <span className="terminal-line-num mono">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="terminal-line-text">{line.text}</span>
-                </span>
-              ))}
-            </code>
-          </pre>
+          <div className="flip-edu-body">
+            {/* College */}
+            <div className="flip-edu-entry flip-edu-college">
+              <div className="flip-edu-row">
+                <Logo size={20} />
+                <div className="flip-edu-meta">
+                  <span className="flip-edu-period mono">{school.yearLabel} · {school.expected.replace('Expected graduation ', '')}</span>
+                  <span className="flip-edu-label mono">College</span>
+                </div>
+              </div>
+              <strong className="flip-edu-name">{school.name}</strong>
+              <span className="flip-edu-degree mono">{school.degree}</span>
+
+              {/* Progress bar */}
+              <div className="flip-edu-progress" role="progressbar" aria-valuenow={Math.round(school.progress * 100)} aria-valuemin="0" aria-valuemax="100" aria-label="Degree progress">
+                <div className="flip-edu-progress-track">
+                  <div
+                    className="flip-edu-progress-fill"
+                    style={{ width: `${school.progress * 100}%` }}
+                  />
+                </div>
+                <span className="mono flip-edu-pct">{Math.round(school.progress * 100)}%</span>
+              </div>
+
+              <ul className="flip-edu-courses">
+                {school.coursework.slice(0, 4).map((c) => (
+                  <li key={c} className="mono">› {c}</li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Divider */}
+            <div className="flip-edu-divider" aria-hidden="true" />
+
+            {/* SHS */}
+            <div className="flip-edu-entry flip-edu-shs">
+              <div className="flip-edu-row">
+                <div className="flip-edu-badge mono" aria-hidden="true">SHS</div>
+                <div className="flip-edu-meta">
+                  <span className="flip-edu-period mono">{schoolShs.period}</span>
+                  <span className="flip-edu-label mono">{schoolShs.strand}</span>
+                </div>
+              </div>
+              <strong className="flip-edu-name">{schoolShs.name}</strong>
+              <span className="flip-edu-status mono">{schoolShs.status}</span>
+            </div>
+          </div>
 
           <div className="flip-back-foot">
             <span className="mono">

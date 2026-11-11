@@ -6,7 +6,6 @@ import About from './components/About.jsx'
 import Skills from './components/Skills.jsx'
 import Projects from './components/Projects.jsx'
 import Experience from './components/Experience.jsx'
-import School from './components/School.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import Preloader from './components/Preloader.jsx'
@@ -37,7 +36,6 @@ function App() {
           <Skills />
           <Projects />
           <Experience />
-          <School />
           <Contact />
         </main>
         <Footer />

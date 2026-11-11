@@ -1,12 +1,19 @@
 import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
 import Logo from './Logo.jsx'
+import DraggableStickers from './DraggableStickers.jsx'
 import { about, profile } from '../content.js'
 import { SparkIcon } from './icons.jsx'
 
 function About() {
   return (
     <section id="about" className="section about" aria-labelledby="about-title">
+      <DraggableStickers
+        stickers={[
+          { id: 'about-me', shape: 'seal', position: 'top-right', label: 'ABOUT / ME', mark: '01' },
+          { id: 'about-detail', shape: 'ticket', position: 'bottom-left', label: 'IN DETAIL', mark: '✳' },
+        ]}
+      />
       <div className="shell">
         <SectionHeading
           index="01"
@@ -67,26 +74,6 @@ function About() {
             </dl>
           </Reveal>
 
-          {/* Principles */}
-          <Reveal className="about-card about-principles" delay={0.12} y={30}>
-            <div className="about-card-head">
-              <span className="mono">// Principles</span>
-              <span className="mono muted">03</span>
-            </div>
-            <div className="principles-list">
-              {about.principles.map((principle, index) => (
-                <div className="principle" key={principle.title}>
-                  <span className="principle-index mono" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3>{principle.title}</h3>
-                    <p>{principle.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>

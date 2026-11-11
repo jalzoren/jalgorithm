@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/gsap.js'
 import DotGrid from './DotGrid.jsx'
+import DraggableStickers from './DraggableStickers.jsx'
 import FlipCard from './FlipCard.jsx'
 import CounterBadge from './CounterBadge.jsx'
 import TextReveal from './TextReveal.jsx'
@@ -61,8 +62,12 @@ function Hero({ ready }) {
   }, [ready])
 
   return (
-    <section id="top" ref={heroRef} className="hero" aria-labelledby="hero-title">
+    <section id="home" ref={heroRef} className="hero" aria-labelledby="hero-title">
       <DotGrid className="hero-dot-grid" />
+      <DraggableStickers stickers={[
+        { id: 'home-build', shape: 'burst', position: 'top-right', label: 'BUILD N CREATE', mark: '++' },
+        { id: 'home-create', shape: 'seal', position: 'bottom-left', label: 'DESIGN!', mark: '✳' },
+      ]} />
 
       {/* breadcrumb + counter */}
       <div className="hero-breadcrumb">
@@ -124,11 +129,6 @@ function Hero({ ready }) {
           ))}
         </div>
       </div>
-
-      <a className="hero-scroll" href="#about" aria-label="Scroll to About">
-        <span className="mono">scroll</span>
-        <ArrowDownIcon size={15} />
-      </a>
     </section>
   )
 }

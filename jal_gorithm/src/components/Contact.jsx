@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
+import DraggableStickers from './DraggableStickers.jsx'
 import TextReveal from './TextReveal.jsx'
 import { profile, socials } from '../content.js'
 import {
@@ -65,9 +66,13 @@ function Contact() {
 
   return (
     <section id="contact" className="section contact" aria-labelledby="contact-title">
+      <DraggableStickers stickers={[
+        { id: 'contact-open', shape: 'seal', position: 'top-right', label: 'OPEN TO WORK', mark: '↗' },
+        { id: 'contact-connect', shape: 'diamond', position: 'bottom-left', label: 'SAY HELLO', mark: '✳' },
+      ]} />
       <div className="shell">
         <SectionHeading
-          index="06"
+          index="05"
           id="contact-title"
           text="Let's make something that moves."
           accent="moves."

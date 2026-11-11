@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-top">
-        <a className="footer-wordmark" href="#top" aria-label="Back to top">
+        <a className="footer-wordmark" href="#home" aria-label="Back to home">
           <Logo size={28} />
           <span>JALGORITHM</span>
         </a>
@@ -17,9 +17,9 @@ function Footer() {
           ))}
         </nav>
         <motion.a
-          href="#top"
+          href="#home"
           className="icon-button footer-top-button"
-          aria-label="Back to top"
+          aria-label="Back to home"
           whileHover={{ y: -2 }}
           whileTap={{ scale: 0.94 }}
         >

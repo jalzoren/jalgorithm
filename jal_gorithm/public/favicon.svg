@@ -1,34 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 22">
   <!--
-    JALGORITHM favicon — chunky pixel-art J, 14×20 grid + 1px padding each side
-    viewBox 16×22. Dark bg (#0a0a0f) so letter reads in any browser tab.
-    Fill: cyan #00e5ff. Outline: black. Shadow: 1px offset.
-    Pixel coords below are grid col/row + 1 (for the 1px left/top padding).
+    JALGORITHM favicon — chunky pixel-art J
+    Black and white only. No background color.
+    White fill + black outline = reads on light tabs.
+    Black fill + white outline = reads on dark tabs.
+    We ship one version: white J, thick black outline.
+    The black outline provides contrast on light browser tabs;
+    the white fill provides the letter shape on dark tabs.
   -->
 
-  <!-- Dark background ensures visibility in both light and dark tab bars -->
-  <rect width="16" height="22" fill="#0a0a0f"/>
-
-  <!-- Shadow layer — offset 1,1 from fill layer -->
-  <g fill="rgba(0,229,255,0.2)" transform="translate(2 2)">
-    <!-- top bar rows 1-3, cols 1-12 -->
-    <rect x="1" y="1" width="12" height="3"/>
-    <!-- stem rows 4-11, cols 6-10 -->
-    <rect x="6" y="4" width="5" height="8"/>
-    <!-- left serif rows 12-13, col 0 -->
-    <rect x="0" y="12" width="1" height="2"/>
-    <!-- stem continues rows 12-13 -->
-    <rect x="6" y="12" width="5" height="2"/>
-    <!-- foot staircase -->
-    <rect x="0" y="14" width="11" height="1"/>
-    <rect x="1" y="15" width="10" height="1"/>
-    <rect x="2" y="16" width="8" height="1"/>
-    <rect x="3" y="17" width="6" height="1"/>
-    <rect x="4" y="18" width="4" height="1"/>
-  </g>
-
-  <!-- Outline layer — 8-direction 1px expansion around the fill shape -->
+  <!-- Outline — black, 8-direction 1px expansion (at translate(1,1) base) -->
   <g fill="#000000">
+    <!-- translate(0,1) -->
     <g transform="translate(0 1)">
       <rect x="1" y="1" width="12" height="3"/>
       <rect x="6" y="4" width="5" height="8"/>
@@ -40,6 +23,7 @@
       <rect x="3" y="17" width="6" height="1"/>
       <rect x="4" y="18" width="4" height="1"/>
     </g>
+    <!-- translate(2,1) -->
     <g transform="translate(2 1)">
       <rect x="1" y="1" width="12" height="3"/>
       <rect x="6" y="4" width="5" height="8"/>
@@ -51,6 +35,7 @@
       <rect x="3" y="17" width="6" height="1"/>
       <rect x="4" y="18" width="4" height="1"/>
     </g>
+    <!-- translate(1,0) -->
     <g transform="translate(1 0)">
       <rect x="1" y="1" width="12" height="3"/>
       <rect x="6" y="4" width="5" height="8"/>
@@ -62,6 +47,7 @@
       <rect x="3" y="17" width="6" height="1"/>
       <rect x="4" y="18" width="4" height="1"/>
     </g>
+    <!-- translate(1,2) -->
     <g transform="translate(1 2)">
       <rect x="1" y="1" width="12" height="3"/>
       <rect x="6" y="4" width="5" height="8"/>
@@ -75,17 +61,12 @@
     </g>
   </g>
 
-  <!-- Fill layer — cyan, 1px padding offset -->
-  <g fill="#00e5ff" transform="translate(1 1)">
-    <!-- top bar rows 1-3, cols 1-12 -->
+  <!-- Fill — white, centered at translate(1,1) -->
+  <g fill="#ffffff" transform="translate(1 1)">
     <rect x="1" y="1" width="12" height="3"/>
-    <!-- stem rows 4-11, cols 6-10 -->
     <rect x="6" y="4" width="5" height="8"/>
-    <!-- left serif stub rows 12-13, col 0 -->
     <rect x="0" y="12" width="1" height="2"/>
-    <!-- stem rows 12-13 -->
     <rect x="6" y="12" width="5" height="2"/>
-    <!-- foot staircase rows 14-18 -->
     <rect x="0" y="14" width="11" height="1"/>
     <rect x="1" y="15" width="10" height="1"/>
     <rect x="2" y="16" width="8" height="1"/>

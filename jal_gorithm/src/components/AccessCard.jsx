@@ -66,7 +66,7 @@ function AccessCard() {
         <div className="access-card-info">
           <div className="access-card-field">
             <span className="mono">ISSUED TO</span>
-            <strong>Jalgorithm</strong>
+            <strong>jalgorithm</strong>
           </div>
           <div className="access-card-field">
             <span className="mono">ROLE</span>

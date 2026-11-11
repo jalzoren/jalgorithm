@@ -1,15 +1,13 @@
 /* ============================================================
    JALGORITHM — component styles
-   design3-based: Inter bold · JetBrains Mono · Cyan accent
+   Two switchable styles: CLI (default) + Design4 (pastel/Y2K)
    ============================================================ */
 
-/* ---- tokens ----------------------------------------------- */
+/* ---- shared component tokens (not themed) ---- */
 :root {
   --green:      #00ff88;
   --red:        #ff4466;
   --yellow:     #ffe066;
-  --r:          4px;          /* base radius */
-  --r-card:     6px;
   --ease:       cubic-bezier(0.16, 1, 0.3, 1);
   --section-py: clamp(56px, 9vh, 112px);
   --section-px: clamp(20px, 5vw, 72px);
@@ -285,6 +283,106 @@
   pointer-events: none;
   z-index: 0;
 }
+.section { position: relative; }
+.section-stickers {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+.section-sticker {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-radius: var(--r);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow: var(--shadow-lift);
+  backdrop-filter: blur(8px);
+  font: 600 8px/1 var(--mono);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  cursor: grab;
+  pointer-events: auto;
+  touch-action: none;
+  user-select: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.section-sticker:active { cursor: grabbing; }
+.section-sticker:hover,
+.section-sticker:focus-visible {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lift), 0 0 0 3px var(--accent-glow);
+}
+.section-sticker-mark { font-size: 13px; line-height: 1; }
+.section-sticker--seal {
+  width: 82px;
+  height: 82px;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 50%;
+  text-align: center;
+  white-space: normal;
+  transform: rotate(-8deg);
+}
+.section-sticker--seal .section-sticker-mark { font-size: 20px; }
+.section-sticker--burst {
+  min-height: 76px;
+  padding: 15px 19px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  color: var(--accent-fg);
+  background: var(--accent);
+  clip-path: polygon(50% 0%, 61% 10%, 76% 4%, 82% 19%, 98% 24%, 93% 40%, 100% 52%, 91% 65%, 96% 81%, 79% 84%, 72% 99%, 58% 91%, 45% 100%, 35% 88%, 18% 94%, 16% 78%, 1% 70%, 9% 55%, 0% 42%, 12% 31%, 7% 15%, 25% 14%, 35% 1%);
+  transform: rotate(5deg);
+}
+.section-sticker--burst .section-sticker-mark { font-size: 16px; }
+.section-sticker--ticket {
+  padding: 10px 15px;
+  border-style: dashed;
+  border-radius: 3px;
+  background: var(--bg);
+  transform: rotate(-4deg);
+}
+.section-sticker--ticket::before,
+.section-sticker--ticket::after {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  content: '';
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-radius: 50%;
+  background: var(--bg);
+  transform: translateY(-50%);
+}
+.section-sticker--ticket::before { left: -5px; }
+.section-sticker--ticket::after { right: -5px; }
+.section-sticker--diamond {
+  padding: 14px 18px;
+  color: var(--accent-fg);
+  background: var(--accent);
+  border: 0;
+  clip-path: polygon(16% 0, 84% 0, 100% 50%, 84% 100%, 16% 100%, 0 50%);
+  transform: rotate(-5deg);
+}
+.section-sticker--top-right { top: 18%; right: var(--section-px); }
+.section-sticker--bottom-left { bottom: 17%; left: var(--section-px); }
+
+@media (max-width: 999px) {
+  .section-sticker { padding: 7px 9px; font-size: 7px; }
+  .section-sticker--seal { width: 68px; height: 68px; }
+  .section-sticker--top-right { top: 12%; right: var(--section-px); }
+  .section-sticker--bottom-left { bottom: 12%; left: var(--section-px); }
+}
 
 /* breadcrumb row */
 .hero-breadcrumb {
@@ -501,20 +599,23 @@
   gap: 6px;
   flex-shrink: 0;
 }
-.flip-avatar svg {
+.flip-avatar img {
   width: 88px;
   height: 88px;
   border-radius: 4px;
   border: 1px solid var(--border);
   display: block;
+  object-fit: cover;
+  filter: grayscale(0.5) contrast(1.8) brightness(0.95);
+  transition: filter 0.3s ease, border-color 0.3s ease;
 }
-.flip-avatar p {
-  margin: 0;
-  font: 400 7.5px/1.4 var(--mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
+[data-style='cli'] .flip-avatar img {
+  filter: grayscale(0.75) sepia(0.25) hue-rotate(75deg) saturate(1.4) contrast(1.08);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+[data-style='d4'] .flip-avatar img {
+  filter: saturate(0.82) contrast(1.04) brightness(1.08);
+  border-color: rgba(91,141,239,0.42);
 }
 
 .flip-fields {
@@ -618,6 +719,138 @@
   letter-spacing: 0.08em;
   color: var(--muted);
   text-transform: uppercase;
+}
+
+/* ---- Education back face ---- */
+.flip-edu-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  gap: 0;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.flip-edu-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 2px 0 10px;
+}
+.flip-edu-entry:last-child { padding-bottom: 0; }
+
+.flip-edu-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flip-edu-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.flip-edu-period {
+  font: 600 8.5px/1.4 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.flip-edu-label {
+  font: 400 8px/1.4 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.flip-edu-name {
+  font: 700 13px/1.2 var(--sans);
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+  display: block;
+}
+
+.flip-edu-degree {
+  font: 400 9px/1.5 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.flip-edu-status {
+  font: 400 9px/1.5 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Progress bar inside the card */
+.flip-edu-progress {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2px;
+}
+.flip-edu-progress-track {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.flip-edu-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 4px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.flip-edu-pct {
+  font: 600 8px/1 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Coursework mini-list */
+.flip-edu-courses {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.flip-edu-courses li {
+  font: 400 9px/1.5 var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Divider between college and SHS */
+.flip-edu-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0 10px;
+  flex-shrink: 0;
+}
+
+/* SHS badge — small monospace square */
+.flip-edu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-radius: var(--r, 2px);
+  font: 600 7px/1 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  flex-shrink: 0;
 }
 
 /* terminal shared */
@@ -899,8 +1132,16 @@
 /* ============================================================
    PROJECTS
    ============================================================ */
-.projects-pin { overflow: hidden; }
-.projects-track { display: flex; will-change: transform; }
+.projects-pin {
+  overflow: hidden;
+  clip-path: inset(0);
+  margin-top: clamp(24px, 4vh, 56px);
+}
+.projects-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
 
 .project-card {
   flex-shrink: 0;
@@ -919,7 +1160,7 @@
 .project-plate {
   width: 100%;
   aspect-ratio: 16/9;
-  background: var(--surface);
+  background: #fff;
   border: 1px solid var(--border);
   border-radius: var(--r);
   overflow: hidden;
@@ -964,13 +1205,33 @@
 .project-subtitle { font: 400 8.5px/1.6 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
 .project-blurb { margin: 0; font: 400 clamp(12px, 1vw, 14px)/1.65 var(--sans); color: var(--muted); max-width: 52ch; }
 .project-meta-col { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
-.project-year { font: 400 8.5px/1.6 var(--mono); letter-spacing: 0.08em; color: var(--muted); }
+.project-category { font: 400 8.5px/1.6 var(--mono); letter-spacing: 0.08em; color: var(--muted); }
 .project-status { font: 400 8.5px/1.6 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border: 1px dashed var(--border); border-radius: 2px; padding: 2px 5px; }
 
 .tag-list { list-style: none; display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; }
 .tag { font: 400 8.5px/1 var(--mono); letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 8px; border: 1px solid var(--border); border-radius: 2px; color: var(--muted); transition: border-color 0.2s ease, color 0.2s ease; }
 .tag:hover { border-color: var(--accent); color: var(--accent); }
 .project-link-btn { align-self: flex-start; margin-top: auto; }
+
+.project-dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(680px, calc(100dvh - 32px));
+  padding: clamp(22px, 5vw, 36px);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-lift);
+}
+.project-dialog::backdrop { background: rgb(0 0 0 / 0.68); backdrop-filter: blur(5px); }
+.project-dialog-content { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.project-dialog-topline { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.project-dialog-topline > .mono,
+.project-dialog-category { margin: 0; font: 400 9px/1.6 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.project-dialog-category { margin-bottom: -10px; }
+.project-dialog h3 { margin: 0; font: 800 clamp(24px, 5vw, 36px)/0.98 var(--sans); letter-spacing: -0.035em; text-transform: uppercase; color: var(--text-strong); }
+.project-dialog-content > p:not(.project-dialog-category) { margin: 0; font: 400 14px/1.7 var(--sans); color: var(--muted); }
+.project-dialog .btn { margin-top: 4px; }
 
 .project-end {
   flex-shrink: 0;
@@ -1149,35 +1410,11 @@
 
 /* ============================================================
    CLI STYLE LAYER
-   [data-style="cli"] — works with BOTH light and dark themes
+   [data-style="cli"] — visual/typographic overrides only.
+   Token values live in index.css.
    ============================================================ */
 
-/* ---- Base CLI (theme-agnostic) ---- */
-[data-style='cli'] {
-  --green: #00cc44;
-}
-
-/* ---- CLI dark tokens ---- */
-[data-style='cli'][data-theme='dark'] {
-  --bg:          #000e00;
-  --surface:     #001400;
-  --surface-2:   #001a00;
-  --text:        #00cc44;
-  --text-strong: #00ff55;
-  --muted:       #007722;
-  --border:      rgba(0, 200, 60, 0.18);
-  --accent:      #00ff55;
-  --accent-text: #00ff55;
-  --accent-fg:   #000e00;
-  --accent-glow: rgba(0, 255, 85, 0.18);
-  --btn-bg:      #00ff55;
-  --btn-fg:      #000e00;
-  --focus-ring:  #00ff55;
-  --shadow-lift: rgba(0, 255, 85, 0.15) 0 0 32px;
-  --green:       #00ff55;
-}
-
-/* ---- Scanlines: dark = strong, light = subtle ---- */
+/* Scanlines — dark = phosphor, light = subtle paper lines */
 [data-style='cli'][data-theme='dark'] body::before {
   content: '';
   position: fixed;
@@ -1490,4 +1727,501 @@
     bottom: 16px;
     right: 16px;
   }
+}
+
+/* ============================================================
+   DESIGN4 STYLE LAYER  [data-style="d4"]
+   Frutiger Aero / Y2K — translucent plastic, sky gradients,
+   gloss overlays, bubblegum highlights, pillowy radii.
+   Based on design4.md. Both light and dark respond.
+   ============================================================ */
+
+/* ---- Page atmosphere ---- */
+
+/* Sky gloss sheen: a soft radial highlight at the viewport top */
+[data-style='d4'] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(255,255,255,0.55) 0%, transparent 70%);
+}
+
+[data-style='d4'][data-theme='dark'] body::before {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(100,160,255,0.12) 0%, transparent 70%);
+}
+
+/* ---- Radius resets — Frutiger Aero is pillowy ---- */
+[data-style='d4'] .btn              { border-radius: var(--r-pill); }
+[data-style='d4'] .btn-ghost        { border-radius: var(--r-pill); }
+[data-style='d4'] .btn-text         { border: none; border-bottom: 1.5px solid var(--border); border-radius: 0; }
+[data-style='d4'] .nav-link         { border-radius: var(--r-pill); }
+[data-style='d4'] .about-card       { border-radius: var(--r-card); }
+[data-style='d4'] .flip-card-face   { border-radius: var(--r-card); }
+[data-style='d4'] .skill-bar-seg    { border-radius: 4px; }
+[data-style='d4'] .tag              { border-radius: var(--r-pill); }
+[data-style='d4'] .contact-card,
+[data-style='d4'] .contact-cta,
+[data-style='d4'] .contact-meta     { border-radius: var(--r-card); }
+[data-style='d4'] .school-panel     { border-radius: var(--r-card); }
+[data-style='d4'] .project-plate    { border-radius: var(--r); }
+[data-style='d4'] .icon-button      { border-radius: var(--r-pill); }
+[data-style='d4'] .cli-window       { border-radius: var(--r-card); }
+[data-style='d4'] .cli-fab          { border-radius: var(--r-pill); }
+[data-style='d4'] .cli-chip         { border-radius: var(--r-pill); }
+[data-style='d4'] .counter-badge    { border-radius: var(--r-pill); }
+[data-style='d4'] .copy-button      { border-radius: var(--r-pill); }
+[data-style='d4'] .flip-barcode     { border-radius: 0; }
+[data-style='d4'] .timeline-dot     { border-radius: 50%; }
+[data-style='d4'] .nav-pill         { border-radius: var(--r-pill); height: 2px; }
+
+/* ---- Glass panels — the signature Frutiger Aero material ---- */
+[data-style='d4'] .nav {
+  background: rgba(234,245,255,0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.65);
+  box-shadow: 0 1px 0 rgba(91,141,239,0.1), 0 4px 16px rgba(47,95,196,0.06);
+}
+[data-style='d4'] .nav.is-scrolled {
+  background: rgba(234,245,255,0.88);
+}
+[data-style='d4'][data-theme='dark'] .nav {
+  background: rgba(10,22,40,0.75);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-bottom: 1px solid rgba(100,160,255,0.14);
+  box-shadow: 0 1px 0 rgba(100,160,255,0.08);
+}
+
+[data-style='d4'] .about-card,
+[data-style='d4'] .contact-card,
+[data-style='d4'] .contact-cta,
+[data-style='d4'] .contact-meta,
+[data-style='d4'] .school-panel,
+[data-style='d4'] .flip-card-face {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.75);
+  box-shadow:
+    0 8px 32px rgba(47,95,196,0.1),
+    0 2px 4px rgba(47,95,196,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+[data-style='d4'][data-theme='dark'] .about-card,
+[data-style='d4'][data-theme='dark'] .contact-card,
+[data-style='d4'][data-theme='dark'] .contact-cta,
+[data-style='d4'][data-theme='dark'] .contact-meta,
+[data-style='d4'][data-theme='dark'] .school-panel,
+[data-style='d4'][data-theme='dark'] .flip-card-face {
+  background: rgba(24,40,72,0.75);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(100,160,255,0.16);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(100,160,255,0.15);
+}
+
+/* flip card surface-2 areas get glass too */
+[data-style='d4'] .flip-front-top,
+[data-style='d4'] .flip-front-foot,
+[data-style='d4'] .flip-back-top,
+[data-style='d4'] .flip-back-foot {
+  background: rgba(207,227,255,0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-style='d4'][data-theme='dark'] .flip-front-top,
+[data-style='d4'][data-theme='dark'] .flip-front-foot,
+[data-style='d4'][data-theme='dark'] .flip-back-top,
+[data-style='d4'][data-theme='dark'] .flip-back-foot {
+  background: rgba(16,28,56,0.75);
+}
+
+/* ---- Gloss buttons — the hallmark Y2K control ---- */
+[data-style='d4'] .btn-primary {
+  background: linear-gradient(180deg, #7FB0FF 0%, #5B8DEF 45%, #3a6ed4 100%);
+  border: 1px solid rgba(47,95,196,0.5);
+  color: #ffffff;
+  box-shadow:
+    0 4px 12px rgba(47,95,196,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.45),
+    inset 0 -1px 0 rgba(0,0,50,0.12);
+  text-shadow: 0 1px 2px rgba(0,0,80,0.2);
+  position: relative;
+  overflow: hidden;
+}
+[data-style='d4'] .btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 50% 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+[data-style='d4'] .btn-primary:hover {
+  background: linear-gradient(180deg, #95bfff 0%, #6b9ef5 45%, #4a7ee4 100%);
+  box-shadow:
+    0 6px 20px rgba(47,95,196,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 -1px 0 rgba(0,0,50,0.1);
+}
+
+[data-style='d4'][data-theme='dark'] .btn-primary {
+  background: linear-gradient(180deg, #98bbff 0%, #7FA8FF 45%, #5a88e0 100%);
+  border-color: rgba(100,160,255,0.4);
+  color: #060e1a;
+  box-shadow:
+    0 4px 16px rgba(127,168,255,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -1px 0 rgba(0,0,50,0.2);
+  text-shadow: none;
+}
+[data-style='d4'][data-theme='dark'] .btn-primary:hover {
+  background: linear-gradient(180deg, #aecbff 0%, #90b8ff 45%, #6a98f0 100%);
+}
+
+/* Ghost button — glass outline pill */
+[data-style='d4'] .btn-ghost {
+  background: rgba(255,255,255,0.35);
+  border-color: rgba(91,141,239,0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+[data-style='d4'] .btn-ghost:hover {
+  background: rgba(255,255,255,0.55);
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(47,95,196,0.15), inset 0 1px 0 rgba(255,255,255,0.7);
+}
+[data-style='d4'][data-theme='dark'] .btn-ghost {
+  background: rgba(100,160,255,0.08);
+  border-color: rgba(100,160,255,0.3);
+  box-shadow: inset 0 1px 0 rgba(100,160,255,0.2);
+}
+
+/* Icon buttons — glass circles */
+[data-style='d4'] .icon-button {
+  background: rgba(255,255,255,0.4);
+  border-color: rgba(91,141,239,0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 6px rgba(47,95,196,0.08);
+}
+[data-style='d4'] .icon-button:hover {
+  background: rgba(255,255,255,0.65);
+  border-color: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 12px rgba(47,95,196,0.15);
+}
+[data-style='d4'] .icon-button.is-accent {
+  background: linear-gradient(180deg, rgba(100,160,255,0.3) 0%, rgba(91,141,239,0.2) 100%);
+  border-color: rgba(91,141,239,0.5);
+}
+[data-style='d4'][data-theme='dark'] .icon-button {
+  background: rgba(100,160,255,0.08);
+  border-color: rgba(100,160,255,0.2);
+  box-shadow: inset 0 1px 0 rgba(100,160,255,0.15);
+}
+
+/* ---- Typography overrides ---- */
+
+/* Hero name — Inter 800, tight, natural uppercase */
+[data-style='d4'] .hero-name {
+  font-size: clamp(40px, 7vw, 110px) !important;
+  font-weight: 800 !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.035em !important;
+  text-transform: uppercase !important;
+  color: var(--text-strong) !important;
+}
+
+/* Section titles */
+[data-style='d4'] .section-title {
+  font-size: clamp(36px, 6.5vw, 92px) !important;
+  font-weight: 800 !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.04em !important;
+  text-transform: uppercase !important;
+}
+
+/* Accent word — bubblegum pill highlight, the Y2K signature moment */
+[data-style='d4'] .tr-item.is-accent,
+[data-style='d4'] .section-title .tr-item.is-accent {
+  background: linear-gradient(135deg, #FFB8D9 0%, #FF8EC4 100%);
+  color: #5a1535;
+  border-radius: var(--r-pill);
+  padding: 0.03em 0.18em 0.06em;
+  box-shadow: 0 2px 8px rgba(255,142,196,0.4), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+[data-style='d4'][data-theme='dark'] .tr-item.is-accent,
+[data-style='d4'][data-theme='dark'] .section-title .tr-item.is-accent {
+  background: linear-gradient(135deg, #FF8EC4 0%, #ff6fae 100%);
+  color: #2a0618;
+  box-shadow: 0 2px 10px rgba(255,110,174,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Nav brand word */
+[data-style='d4'] .brand-word,
+[data-style='d4'] .logo-wordmark {
+  font-family: var(--sans) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--text-strong) !important;
+}
+
+/* Nav links — pill style, light hover */
+[data-style='d4'] .nav-link {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+[data-style='d4'] .nav-link:hover,
+[data-style='d4'] .nav-link.is-active {
+  background: rgba(255,255,255,0.55);
+  color: var(--text-strong);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 8px rgba(47,95,196,0.1);
+}
+[data-style='d4'][data-theme='dark'] .nav-link:hover,
+[data-style='d4'][data-theme='dark'] .nav-link.is-active {
+  background: rgba(100,160,255,0.12);
+  box-shadow: inset 0 1px 0 rgba(100,160,255,0.2);
+}
+
+/* ---- Accent signals ---- */
+
+/* Progress bar — denim gradient */
+[data-style='d4'] .progress-bar {
+  background: linear-gradient(90deg, #5B8DEF, #a8c8ff);
+  box-shadow: 0 0 10px rgba(91,141,239,0.5);
+  height: 3px;
+}
+
+/* Nav active pill */
+[data-style='d4'] .nav-pill {
+  background: linear-gradient(90deg, #5B8DEF, #7FA8FF);
+  height: 2px;
+  box-shadow: 0 0 6px rgba(91,141,239,0.4);
+}
+
+/* Skill bar fill — gradient */
+[data-style='d4'] .skill-bar-seg.is-on {
+  background: linear-gradient(135deg, #7FB0FF, #5B8DEF);
+  box-shadow: 0 1px 4px rgba(91,141,239,0.3);
+}
+[data-style='d4'] .skill-row:hover .skill-bar-seg.is-on {
+  box-shadow: 0 1px 8px rgba(91,141,239,0.5);
+}
+
+/* Timeline dot — glassy sphere */
+[data-style='d4'] .timeline-dot {
+  background: rgba(207,227,255,0.8);
+  border: 2px solid #5B8DEF;
+  box-shadow: 0 0 0 3px rgba(91,141,239,0.15), inset 0 1px 0 rgba(255,255,255,0.8);
+  width: 11px;
+  height: 11px;
+}
+[data-style='d4'] .timeline-item:hover .timeline-dot {
+  background: linear-gradient(135deg, #7FB0FF, #5B8DEF);
+  box-shadow: 0 0 0 3px rgba(91,141,239,0.25), 0 0 10px rgba(91,141,239,0.4), inset 0 1px 0 rgba(255,255,255,0.5);
+}
+[data-style='d4'][data-theme='dark'] .timeline-dot {
+  background: rgba(24,40,72,0.9);
+  border-color: #7FA8FF;
+  box-shadow: 0 0 0 3px rgba(127,168,255,0.15), inset 0 1px 0 rgba(100,160,255,0.3);
+}
+
+/* Timeline line */
+[data-style='d4'] .timeline-line span {
+  background: linear-gradient(180deg, #5B8DEF, #a8c8ff);
+  box-shadow: 0 0 8px rgba(91,141,239,0.3);
+}
+
+/* School progress bar */
+[data-style='d4'] .school-progress-bar span {
+  background: linear-gradient(90deg, #5B8DEF, #7FB0FF);
+  box-shadow: 0 0 8px rgba(91,141,239,0.4);
+}
+
+/* Section index */
+[data-style='d4'] .section-index {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Projects progress line */
+[data-style='d4'] .projects-progress-line span {
+  background: linear-gradient(90deg, #5B8DEF, #a8c8ff);
+}
+
+/* Counter badge number */
+[data-style='d4'] .counter-badge-num {
+  color: var(--accent);
+}
+
+/* Counter badge — glass pill */
+[data-style='d4'] .counter-badge {
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(91,141,239,0.3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+[data-style='d4'][data-theme='dark'] .counter-badge {
+  background: rgba(24,40,72,0.6);
+  border-color: rgba(100,160,255,0.2);
+  box-shadow: inset 0 1px 0 rgba(100,160,255,0.15);
+}
+
+/* Status dot — lime green, Frutiger Aero feel */
+[data-style='d4'] .status-dot {
+  background: radial-gradient(circle at 35% 35%, #a0f0b0, #6bcf7f);
+  box-shadow: 0 0 0 2px rgba(107,207,127,0.25), 0 0 6px rgba(107,207,127,0.4);
+  animation: d4-pulse 2.8s ease-in-out infinite;
+}
+[data-style='d4'][data-theme='dark'] .status-dot {
+  background: radial-gradient(circle at 35% 35%, #b8f8c8, #7fe8a0);
+  box-shadow: 0 0 0 2px rgba(127,232,160,0.2), 0 0 8px rgba(127,232,160,0.5);
+}
+@keyframes d4-pulse {
+  0%,100% { box-shadow: 0 0 0 2px rgba(107,207,127,0.2), 0 0 6px rgba(107,207,127,0.3); }
+  50%      { box-shadow: 0 0 0 4px rgba(107,207,127,0.1), 0 0 12px rgba(107,207,127,0.5); }
+}
+
+/* Tags — bubblegum pill */
+[data-style='d4'] .tag {
+  background: rgba(255,184,217,0.2);
+  border-color: rgba(255,142,196,0.35);
+  color: var(--text);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+}
+[data-style='d4'] .tag:hover {
+  background: rgba(255,184,217,0.4);
+  border-color: #FFB8D9;
+  color: #5a1535;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 8px rgba(255,142,196,0.2);
+}
+[data-style='d4'][data-theme='dark'] .tag {
+  background: rgba(255,142,196,0.1);
+  border-color: rgba(255,142,196,0.25);
+  color: var(--text);
+}
+
+/* Copy button — glass pill */
+[data-style='d4'] .copy-button {
+  background: rgba(255,255,255,0.4);
+  border-color: rgba(91,141,239,0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+[data-style='d4'] .copy-button:hover {
+  background: rgba(255,255,255,0.65);
+  border-color: var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 3px 10px rgba(47,95,196,0.12);
+}
+
+/* Terminal window — glass in D4 */
+[data-style='d4'] .cli-window {
+  background: rgba(234,245,255,0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow:
+    0 24px 64px rgba(47,95,196,0.18),
+    0 4px 12px rgba(47,95,196,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+[data-style='d4'][data-theme='dark'] .cli-window {
+  background: rgba(10,22,40,0.82);
+  border-color: rgba(100,160,255,0.2);
+  box-shadow:
+    0 24px 64px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(100,160,255,0.15);
+}
+
+[data-style='d4'] .cli-titlebar,
+[data-style='d4'] .cli-input-row,
+[data-style='d4'] .cli-chips {
+  background: rgba(207,227,255,0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-style='d4'][data-theme='dark'] .cli-titlebar,
+[data-style='d4'][data-theme='dark'] .cli-input-row,
+[data-style='d4'][data-theme='dark'] .cli-chips {
+  background: rgba(16,28,56,0.6);
+}
+
+/* CLI terminal text in D4 */
+[data-style='d4'] .cli-line-accent { color: var(--accent); font-weight: 600; }
+[data-style='d4'] .cli-prompt-host { color: var(--accent); }
+[data-style='d4'] .cli-input       { caret-color: var(--accent); color: var(--text-strong); }
+[data-style='d4'] .cli-chip {
+  background: rgba(255,255,255,0.4);
+  border-color: rgba(91,141,239,0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+[data-style='d4'] .cli-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+  background: rgba(255,255,255,0.65);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 8px rgba(47,95,196,0.1);
+}
+
+/* FAB — gloss pill */
+[data-style='d4'] .cli-fab {
+  background: linear-gradient(180deg, #7FB0FF 0%, #5B8DEF 50%, #3a6ed4 100%);
+  border: 1px solid rgba(47,95,196,0.4);
+  box-shadow:
+    0 6px 20px rgba(47,95,196,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -1px 0 rgba(0,0,50,0.1);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,80,0.2);
+}
+[data-style='d4'] .cli-fab:hover {
+  background: linear-gradient(180deg, #95c0ff 0%, #6b9ef5 50%, #4a7ee4 100%);
+  box-shadow:
+    0 8px 28px rgba(47,95,196,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    inset 0 -1px 0 rgba(0,0,50,0.08);
+}
+[data-style='d4'][data-theme='dark'] .cli-fab {
+  background: linear-gradient(180deg, #98bbff 0%, #7FA8FF 50%, #5a88e0 100%);
+  border-color: rgba(100,160,255,0.35);
+  color: #060e1a;
+  text-shadow: none;
+  box-shadow:
+    0 6px 20px rgba(127,168,255,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Flip card — gloss header accent */
+[data-style='d4'] .flip-card-face {
+  box-shadow:
+    0 12px 40px rgba(47,95,196,0.14),
+    0 2px 6px rgba(47,95,196,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+/* About signature mark — no box needed, logo fills it */
+[data-style='d4'] .about-signature-mark .logo-mark {
+  opacity: 0.9;
+}
+
+/* Scrollbar — sky tinted */
+[data-style='d4'] html {
+  scrollbar-color: rgba(91,141,239,0.4) transparent;
+}
+[data-style='d4'][data-theme='dark'] html {
+  scrollbar-color: rgba(127,168,255,0.3) transparent;
 }

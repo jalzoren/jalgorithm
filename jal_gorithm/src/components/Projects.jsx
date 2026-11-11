@@ -1,19 +1,15 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/gsap.js'
-import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
-import { plates } from './ProjectPlates.jsx'
+import DraggableStickers from './DraggableStickers.jsx'
 import { projects } from '../content.js'
-import { ArrowUpRightIcon } from './icons.jsx'
+import { ArrowUpRightIcon, CloseIcon } from './icons.jsx'
 
-function ProjectCard({ project, index }) {
-  const Plate = plates[project.plate] ?? plates.grid
+function ProjectCard({ project, index, onOpen }) {
   return (
     <article className={`project-card accent-${project.accent}`}>
       <div className="project-plate-wrap">
-        <div className="project-plate">
-          <Plate />
-        </div>
+        <div className="project-plate" role="img" aria-label="Project image placeholder" />
         <div className="project-plate-meta">
           <span className="mono project-index">{String(index + 1).padStart(2, '0')}</span>
           {project.featured && (
@@ -32,7 +28,7 @@ function ProjectCard({ project, index }) {
             <p className="project-blurb">{project.blurb}</p>
           </div>
           <div className="project-meta-col">
-            <span className="project-year mono">{project.year}</span>
+            <span className="project-category mono">{project.category}</span>
             <span className="project-status mono">{project.status}</span>
           </div>
         </div>
@@ -43,10 +39,15 @@ function ProjectCard({ project, index }) {
           ))}
         </ul>
 
-        <a className="project-link-btn btn-text" href={project.link}>
-          View case study
+        <button
+          className="project-link-btn btn-text"
+          type="button"
+          aria-label={`More information about ${project.title}`}
+          onClick={() => onOpen(project)}
+        >
+          More information
           <ArrowUpRightIcon size={15} />
-        </a>
+        </button>
       </div>
     </article>
   )
@@ -55,6 +56,16 @@ function ProjectCard({ project, index }) {
 function Projects() {
   const pinRef = useRef(null)
   const trackRef = useRef(null)
+  const dialogRef = useRef(null)
+  const [selectedProject, setSelectedProject] = useState(null)
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    if (selectedProject && !dialog.open) dialog.showModal()
+    if (!selectedProject && dialog.open) dialog.close()
+  }, [selectedProject])
 
   useLayoutEffect(() => {
     if (prefersReducedMotion()) return undefined
@@ -65,16 +76,21 @@ function Projects() {
       const track = trackRef.current
       if (!pin || !track) return
 
-      const distance = () => Math.max(0, track.scrollWidth - window.innerWidth)
+      const distance = () =>
+        Math.ceil(Math.max(0, track.scrollWidth - pin.clientWidth))
+      const topOffset = () =>
+        Math.min(64, Math.max(32, window.innerHeight * 0.06))
+      const scrollRange = () => `+=${distance()}`
 
       gsap.to(track, {
         x: () => -distance(),
         ease: 'none',
         scrollTrigger: {
           trigger: pin,
-          start: 'top top',
-          end: () => `+=${distance()}`,
-          pin: true,
+          pin,
+          pinSpacing: true,
+          start: () => `top top+=${topOffset()}`,
+          end: scrollRange,
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -86,8 +102,8 @@ function Projects() {
         ease: 'none',
         scrollTrigger: {
           trigger: pin,
-          start: 'top top',
-          end: () => `+=${distance()}`,
+          start: () => `top top+=${topOffset()}`,
+          end: scrollRange,
           scrub: true,
           invalidateOnRefresh: true,
         },
@@ -103,20 +119,31 @@ function Projects() {
       className="section projects"
       aria-labelledby="projects-title"
     >
+      <DraggableStickers stickers={[
+        { id: 'projects-selected', shape: 'ticket', position: 'top-right', label: 'SELECTED WORK', mark: '↗' },
+        { id: 'projects-made', shape: 'seal', position: 'bottom-left', label: 'MADE TO SHIP', mark: '★' },
+      ]} />
       <div className="shell">
         <SectionHeading
           index="03"
           id="projects-title"
           text="Selected work, built to ship."
           accent="ship."
-          lede="Template projects that show the range: data-heavy interfaces, motion studies, and tools people actually use."
+          lede="A mix of uni work I pushed further than the brief, side projects I made for fun, and a couple of tools that people actually use.
+
+"
         />
       </div>
 
       <div className="projects-pin" ref={pinRef}>
         <div className="projects-track" ref={trackRef}>
           {projects.map((project, index) => (
-            <ProjectCard project={project} index={index} key={project.title} />
+            <ProjectCard
+              project={project}
+              index={index}
+              key={project.title}
+              onOpen={setSelectedProject}
+            />
           ))}
 
           <div className="project-card project-end">
@@ -143,6 +170,54 @@ function Projects() {
           <span className="mono">{String(projects.length).padStart(2, '0')}</span>
         </div>
       </div>
+
+      <dialog
+        className="project-dialog"
+        ref={dialogRef}
+        aria-labelledby="project-dialog-title"
+        aria-describedby="project-dialog-description"
+        onClose={() => setSelectedProject(null)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close()
+        }}
+      >
+        {selectedProject && (
+          <div className="project-dialog-content">
+            <div className="project-dialog-topline">
+              <span className="mono">// project brief</span>
+              <button
+                className="icon-button"
+                type="button"
+                aria-label="Close project information"
+                onClick={() => dialogRef.current?.close()}
+              >
+                <CloseIcon size={16} />
+              </button>
+            </div>
+            <p className="project-dialog-category mono">
+              {selectedProject.subtitle}
+            </p>
+            <h3 id="project-dialog-title">{selectedProject.title}</h3>
+            <p id="project-dialog-description">
+              {selectedProject.description}
+            </p>
+            <ul className="project-tags tag-list">
+              {selectedProject.tags.map((tag) => (
+                <li className="tag" key={tag}>{tag}</li>
+              ))}
+            </ul>
+            <a
+              className="btn btn-primary"
+              href={selectedProject.link}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View on GitHub
+              <ArrowUpRightIcon size={16} />
+            </a>
+          </div>
+        )}
+      </dialog>
     </section>
   )
 }

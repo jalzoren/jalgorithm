@@ -15,6 +15,7 @@ const COMMANDS = {
     run: () => [
       { text: '┌─ available commands ─────────────────────────────────┐', type: 'accent' },
       { text: '│  help          show this menu', type: 'output' },
+      { text: '│  whoami        tldr on jalgorithm', type: 'output' },
       { text: '│  about         who I am', type: 'output' },
       { text: '│  skills        my tech stack', type: 'output' },
       { text: '│  projects      selected work', type: 'output' },
@@ -23,8 +24,8 @@ const COMMANDS = {
       { text: '│  contact       get in touch', type: 'output' },
       { text: '│  status        availability', type: 'output' },
       { text: '│  stack         quick stack summary', type: 'output' },
-      { text: '│  whoami        tldr on jalgorithm', type: 'output' },
       { text: '│  github        open GitHub', type: 'output' },
+      { text: '│  linkedin      open LinkedIn', type: 'output' },
       { text: '│  email         copy email', type: 'output' },
       { text: '│  clear         clear the terminal', type: 'output' },
       { text: '└──────────────────────────────────────────────────────┘', type: 'accent' },
@@ -34,10 +35,12 @@ const COMMANDS = {
   whoami: {
     desc: 'TL;DR on jalgorithm',
     run: () => [
-      { text: `> ${profile.name}`, type: 'accent' },
-      { text: profile.role, type: 'output' },
-      { text: profile.tagline, type: 'output' },
+      { text: `> ${profile.fullName}`, type: 'accent' },
+      { text: `  ${profile.role}`, type: 'output' },
+      { text: `  ${profile.tagline.slice(0, 90)}...`, type: 'output' },
       { text: `📍 ${profile.location}  ·  ${profile.coordinates}`, type: 'muted' },
+      { text: `✉  ${profile.email}`, type: 'muted' },
+      { text: `⌥  github.com/jalzoren`, type: 'muted' },
     ],
   },
 
@@ -73,10 +76,11 @@ const COMMANDS = {
     desc: 'Quick stack summary',
     run: () => [
       { text: '// quick stack', type: 'accent' },
-      { text: '  React · Next.js · TypeScript', type: 'output' },
-      { text: '  GSAP · Motion / Framer Motion', type: 'output' },
-      { text: '  Tailwind CSS · Figma', type: 'output' },
-      { text: '  Node.js · REST APIs · Git', type: 'output' },
+      { text: '  React · Next.js · TypeScript · JavaScript', type: 'output' },
+      { text: '  Python · Node.js · Express · PHP', type: 'output' },
+      { text: '  MySQL · PostgreSQL · Supabase', type: 'output' },
+      { text: '  Tailwind CSS · Figma · Electron.js', type: 'output' },
+      { text: '  Git / GitHub · REST APIs', type: 'output' },
     ],
   },
 
@@ -124,11 +128,15 @@ const COMMANDS = {
     run: () => [
       { text: '// contact', type: 'accent' },
       { text: `  email:       ${profile.email}`, type: 'output' },
+      { text: `  phone:       ${profile.phone}`, type: 'output' },
+      { text: `  linkedin:    linkedin.com/in/laurence-james-flavier`, type: 'output' },
+      { text: `  github:      github.com/jalzoren`, type: 'output' },
       { text: `  location:    ${profile.location}`, type: 'output' },
       { text: `  timezone:    ${profile.timezone}`, type: 'output' },
       { text: `  coordinates: ${profile.coordinates}`, type: 'muted' },
       { text: '\n  type `email` to copy email address', type: 'muted' },
       { text: '  type `github` to open GitHub', type: 'muted' },
+      { text: '  type `linkedin` to open LinkedIn', type: 'muted' },
     ],
   },
 
@@ -139,14 +147,23 @@ const COMMANDS = {
       { text: `  ● ${profile.status}`, type: 'output' },
       { text: `  ${profile.availability}`, type: 'output' },
       { text: `  Reach out at: ${profile.email}`, type: 'muted' },
+      { text: `  or:           ${profile.phone}`, type: 'muted' },
     ],
   },
 
   github: {
     desc: 'Open GitHub',
     run: () => {
-      window.open('https://github.com', '_blank', 'noopener')
-      return [{ text: 'Opening GitHub... (replace with your real URL)', type: 'muted' }]
+      window.open('https://github.com/jalzoren', '_blank', 'noopener')
+      return [{ text: 'Opening github.com/jalzoren...', type: 'muted' }]
+    },
+  },
+
+  linkedin: {
+    desc: 'Open LinkedIn',
+    run: () => {
+      window.open('https://www.linkedin.com/in/laurence-james-flavier', '_blank', 'noopener')
+      return [{ text: 'Opening LinkedIn profile...', type: 'muted' }]
     },
   },
 
