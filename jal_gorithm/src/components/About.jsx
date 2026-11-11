@@ -18,7 +18,7 @@ function About() {
         <SectionHeading
           index="01"
           id="about-title"
-          text="A developer with a designer's eye."
+          text=" A developer with a designer's eye."
           accent="designer's"
           lede={about.lead}
         />

@@ -58,6 +58,44 @@ function Projects() {
   const trackRef = useRef(null)
   const dialogRef = useRef(null)
   const [selectedProject, setSelectedProject] = useState(null)
+  const [activeSlide, setActiveSlide] = useState(0)
+  const slideCount = projects.length + 1
+
+  const goToSlide = (index) => {
+    const pin = pinRef.current
+    const track = trackRef.current
+    const slide = track?.children[index]
+    if (!pin || !track || !slide) return
+
+    const left = pin.scrollLeft + slide.getBoundingClientRect().left - pin.getBoundingClientRect().left
+    pin.scrollTo({ left, behavior: 'auto' })
+    setActiveSlide(index)
+  }
+
+  useEffect(() => {
+    const pin = pinRef.current
+    const track = trackRef.current
+    if (!pin || !track) return
+
+    const updateActiveSlide = () => {
+      const pinLeft = pin.getBoundingClientRect().left
+      let closestIndex = 0
+      let closestDistance = Infinity
+
+      Array.from(track.children).forEach((slide, index) => {
+        const distance = Math.abs(slide.getBoundingClientRect().left - pinLeft)
+        if (distance < closestDistance) {
+          closestDistance = distance
+          closestIndex = index
+        }
+      })
+
+      setActiveSlide((current) => current === closestIndex ? current : closestIndex)
+    }
+
+    pin.addEventListener('scroll', updateActiveSlide, { passive: true })
+    return () => pin.removeEventListener('scroll', updateActiveSlide)
+  }, [])
 
   useEffect(() => {
     const dialog = dialogRef.current
@@ -127,8 +165,8 @@ function Projects() {
         <SectionHeading
           index="03"
           id="projects-title"
-          text="Selected work, built to ship."
-          accent="ship."
+          text=" Uni Projects and Side Projects."
+          accent="Projects."
           lede="A mix of uni work I pushed further than the brief, side projects I made for fun, and a couple of tools that people actually use.
 
 "
@@ -136,7 +174,7 @@ function Projects() {
       </div>
 
       <div className="projects-pin" ref={pinRef}>
-        <div className="projects-track" ref={trackRef}>
+        <div className="projects-track" id="projects-track" ref={trackRef}>
           {projects.map((project, index) => (
             <ProjectCard
               project={project}
@@ -169,6 +207,34 @@ function Projects() {
           </div>
           <span className="mono">{String(projects.length).padStart(2, '0')}</span>
         </div>
+      </div>
+
+      <div className="projects-mobile-nav" role="group" aria-label="Project navigation">
+        <button
+          className="projects-nav-btn"
+          type="button"
+          aria-label="Previous project"
+          aria-controls="projects-track"
+          disabled={activeSlide === 0}
+          onClick={() => goToSlide(activeSlide - 1)}
+        >
+          <span aria-hidden="true">←</span>
+          Previous
+        </button>
+        <span className="projects-mobile-count mono" aria-live="polite">
+          {String(activeSlide + 1).padStart(2, '0')} / {String(slideCount).padStart(2, '0')}
+        </span>
+        <button
+          className="projects-nav-btn"
+          type="button"
+          aria-label="Next project"
+          aria-controls="projects-track"
+          disabled={activeSlide === slideCount - 1}
+          onClick={() => goToSlide(activeSlide + 1)}
+        >
+          Next
+          <span aria-hidden="true">→</span>
+        </button>
       </div>
 
       <dialog

@@ -1602,6 +1602,77 @@
 .projects-progress-line { flex: 1; height: 1px; background: var(--border); overflow: hidden; }
 .projects-progress-line span { display: block; height: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); }
 
+.projects-mobile-nav { display: none; }
+
+@media (max-width: 999px) {
+  .projects-pin {
+    overflow-x: auto;
+    overflow-y: hidden;
+    clip-path: none;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+  .projects-pin::-webkit-scrollbar { display: none; }
+  .projects-track {
+    width: max-content;
+    flex-direction: row;
+    transform: none !important;
+  }
+  .project-card {
+    width: min(86vw, 480px);
+    min-height: 0;
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+    padding: clamp(20px, 5vw, 32px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .project-header { flex-direction: column; }
+  .project-meta-col {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .project-end {
+    min-width: min(86vw, 480px);
+    min-height: 260px;
+    border-bottom: 0;
+  }
+  .projects-mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px var(--section-px);
+    border-top: 1px solid var(--border);
+  }
+  .projects-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font: 700 10px/1 var(--sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .projects-nav-btn:disabled {
+    color: var(--muted);
+    cursor: default;
+    opacity: 0.45;
+  }
+  .projects-nav-btn:not(:disabled):hover { color: var(--accent); }
+  .projects-mobile-count {
+    font: 400 9px/1.6 var(--mono);
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+}
+
 /* ============================================================
    EXPERIENCE
    ============================================================ */

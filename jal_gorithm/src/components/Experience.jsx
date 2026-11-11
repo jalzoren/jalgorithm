@@ -43,14 +43,14 @@ function Experience() {
         <SectionHeading
           index="04"
           id="experience-title"
-          text="Practice, not just theory."
-          accent="practice,"
+          text=" Experiences built by doing."
+          accent="doing."
         />
 
         <div className="experience-grid">
           <div className="experience-intro">
             <Reveal as="p" className="experience-quote" y={22}>
-              I learn by building. Every role here added a layer: shipping,
+              I learn by building. Every role here added a layer: design, development, research,
               teaching, and working fast under pressure.
             </Reveal>
             <Reveal className="experience-status" y={16} delay={0.1}>

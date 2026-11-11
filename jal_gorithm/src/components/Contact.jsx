@@ -74,8 +74,8 @@ function Contact() {
         <SectionHeading
           index="05"
           id="contact-title"
-          text="Let's make something that moves."
-          accent="moves."
+          text=" Let's make something that catches the eye."
+          accent="eye."
         />
 
         <div className="contact-grid">
