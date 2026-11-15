@@ -147,8 +147,7 @@ const COMMANDS = {
       { text: `  ● ${profile.status}`, type: 'output' },
       { text: `  ${profile.availability}`, type: 'output' },
       { text: `  Reach out at: ${profile.email}`, type: 'muted' },
-      { text: `  or:           ${profile.phone}`, type: 'muted' },
-    ],
+      { text: `  LinkedIn: linkedin.com/in/laurence-james-flavier`, type: 'muted' },],
   },
 
   github: {

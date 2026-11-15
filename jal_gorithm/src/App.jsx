@@ -11,6 +11,7 @@ import Footer from './components/Footer.jsx'
 import Preloader from './components/Preloader.jsx'
 import CliTerminal from './components/CliTerminal.jsx'
 import StatusPage from './components/StatusPage.jsx'
+import TargetCursor from './components/TargetCursor.jsx'
 import './App.css'
 
 function App() {
@@ -34,6 +35,16 @@ function Portfolio() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <TargetCursor
+        targetSelector="a[href], button:not(.project-open), [role='button'], .cursor-target"
+        spinDuration={3}
+        hoverDuration={0.22}
+        size={30}
+        cornerSize={9}
+        thickness={2}
+        padding={5}
+        dotSize={4}
+      />
       <Preloader onDone={() => setReady(true)} />
       <motion.div
         className="progress-bar"

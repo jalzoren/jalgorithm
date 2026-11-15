@@ -4,6 +4,7 @@ import Reveal from './Reveal.jsx'
 import SectionHeading from './SectionHeading.jsx'
 import DraggableStickers from './DraggableStickers.jsx'
 import { experience, profile } from '../content.js'
+import { ArrowUpRightIcon } from './icons.jsx'
 
 function Experience() {
   const timelineRef = useRef(null)
@@ -81,6 +82,16 @@ function Experience() {
                   <h3>{item.role}</h3>
                   <p className="timeline-org mono">{item.org}</p>
                   <p className="timeline-blurb">{item.blurb}</p>
+                  {item.project && (
+                    <a
+                      className="timeline-project btn-text"
+                      href={item.project.href}
+                      aria-label={`See the project: ${item.project.label}`}
+                    >
+                      Project: {item.project.label}
+                      <ArrowUpRightIcon size={14} />
+                    </a>
+                  )}
                 </article>
               ))}
             </Reveal>

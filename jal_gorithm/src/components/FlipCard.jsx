@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { profile, school, schoolShs } from '../content.js'
+import { profile, school, schoolShs, certifications } from '../content.js'
 
 /**
  * FlipCard — single card in the hero with two faces:
  *   Front: Portfolio access card (name, role, status)
- *   Back:  Education card (college + SHS)
+ *   Back:  Education (college + SHS) and certifications
  *
  * Flip is triggered by clicking the card or pressing Enter/Space.
  */
@@ -23,6 +23,7 @@ function FlipCard() {
       onKeyDown={onKey}
       role="button"
       tabIndex={0}
+      data-cursor-label="Flip"
       aria-label={flipped ? 'Show access card (click to flip back)' : 'Show education (click to flip)'}
       aria-pressed={flipped}
     >
@@ -100,53 +101,55 @@ function FlipCard() {
           </div>
 
           <div className="flip-edu-body">
-            {/* College */}
-            <div className="flip-edu-entry flip-edu-college">
-              <div className="flip-edu-row">
-                <span className="site-wordmark flip-card-edu-wordmark">&gt;_jalgorithm</span>
-                <div className="flip-edu-meta">
-                  <span className="flip-edu-period mono">{school.yearLabel} · {school.expected.replace('Expected graduation ', '')}</span>
-                  <span className="flip-edu-label mono">College</span>
+            <section className="flip-edu-block" aria-label="Education">
+              <div className="flip-edu-entry">
+                <div className="flip-edu-line">
+                  <strong className="flip-edu-name">{school.name}</strong>
+                  <span className="flip-edu-period mono">{school.period}</span>
+                </div>
+                <div className="flip-edu-line">
+                  <span className="flip-edu-degree mono">{school.degree} · {school.yearLabel}</span>
+                  <div className="flip-edu-progress" role="progressbar" aria-valuenow={Math.round(school.progress * 100)} aria-valuemin="0" aria-valuemax="100" aria-label="Degree progress">
+                    <div className="flip-edu-progress-track">
+                      <div className="flip-edu-progress-fill" style={{ width: `${school.progress * 100}%` }} />
+                    </div>
+                    <span className="mono flip-edu-pct">{Math.round(school.progress * 100)}%</span>
+                  </div>
                 </div>
               </div>
-              <strong className="flip-edu-name">{school.name}</strong>
-              <span className="flip-edu-degree mono">{school.degree}</span>
-
-              {/* Progress bar */}
-              <div className="flip-edu-progress" role="progressbar" aria-valuenow={Math.round(school.progress * 100)} aria-valuemin="0" aria-valuemax="100" aria-label="Degree progress">
-                <div className="flip-edu-progress-track">
-                  <div
-                    className="flip-edu-progress-fill"
-                    style={{ width: `${school.progress * 100}%` }}
-                  />
+              <div className="flip-edu-entry">
+                <div className="flip-edu-line">
+                  <strong className="flip-edu-name">{schoolShs.name}</strong>
+                  <span className="flip-edu-period mono">{schoolShs.period}</span>
                 </div>
-                <span className="mono flip-edu-pct">{Math.round(school.progress * 100)}%</span>
+                <div className="flip-edu-line">
+                  <span className="flip-edu-degree mono">{schoolShs.strand}</span>
+                  <span className="flip-edu-status mono">{schoolShs.status}</span>
+                </div>
               </div>
+            </section>
 
-              <ul className="flip-edu-courses">
-                {school.coursework.slice(0, 4).map((c) => (
-                  <li key={c} className="mono">› {c}</li>
+            <section className="flip-cert-block" aria-label="Certifications">
+              <div className="flip-cert-head mono">
+                <span>Certifications</span>
+                <span>{certifications.length}</span>
+              </div>
+              <ul
+                className="flip-cert-list"
+                tabIndex={flipped ? 0 : -1}
+                aria-label="Certifications, scrollable"
+                onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => e.stopPropagation()}
+              >
+                {certifications.map((c) => (
+                  <li key={c.name} className="flip-cert">
+                    <span className="flip-cert-name">{c.name}</span>
+                    <span className="flip-cert-meta mono">{c.issuer} · {c.issued}</span>
+                  </li>
                 ))}
               </ul>
-            </div>
-
-            {/* Divider */}
-            <div className="flip-edu-divider" aria-hidden="true" />
-
-            {/* SHS */}
-            <div className="flip-edu-entry flip-edu-shs">
-              <div className="flip-edu-row">
-                <div className="flip-edu-badge mono" aria-hidden="true">SHS</div>
-                <div className="flip-edu-meta">
-                  <span className="flip-edu-period mono">{schoolShs.period}</span>
-                  <span className="flip-edu-label mono">{schoolShs.strand}</span>
-                </div>
-              </div>
-              <strong className="flip-edu-name">{schoolShs.name}</strong>
-              <span className="flip-edu-status mono">{schoolShs.status}</span>
-            </div>
+            </section>
           </div>
-
           <div className="flip-back-foot">
             <span className="mono">
               <span className="status-dot" aria-hidden="true" />

@@ -2,14 +2,19 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/gsap.js'
 import SectionHeading from './SectionHeading.jsx'
 import DraggableStickers from './DraggableStickers.jsx'
+import AsciiPlate from './AsciiPlate.jsx'
 import { projects } from '../content.js'
 import { ArrowUpRightIcon, CloseIcon } from './icons.jsx'
 
 function ProjectCard({ project, index, onOpen }) {
   return (
-    <article className={`project-card accent-${project.accent}`}>
+    <article className={`project-card cursor-target accent-${project.accent}`} data-cursor-label="Open Project">
       <div className="project-plate-wrap">
-        <div className="project-plate" role="img" aria-label="Project image placeholder" />
+        {project.image ? (
+          <AsciiPlate src={project.image} label={`${project.title} preview`} />
+        ) : (
+          <div className="project-plate" role="img" aria-label="Project image placeholder" />
+        )}
         <div className="project-plate-meta">
           <span className="mono project-index">{String(index + 1).padStart(2, '0')}</span>
           {project.featured && (
@@ -22,7 +27,17 @@ function ProjectCard({ project, index, onOpen }) {
         <div className="project-header">
           <div>
             <div className="project-title-line">
-              <h3 className="project-title">{project.title}</h3>
+              <h3 className="project-title">
+                <button
+                  className="project-open"
+                  type="button"
+                  aria-haspopup="dialog"
+                  onClick={() => onOpen(project)}
+                >
+                  {project.title}
+                  <span className="sr-only"> — open project brief</span>
+                </button>
+              </h3>
               <span className="project-subtitle mono">{project.subtitle}</span>
             </div>
             <p className="project-blurb">{project.blurb}</p>
@@ -39,15 +54,17 @@ function ProjectCard({ project, index, onOpen }) {
           ))}
         </ul>
 
-        <button
+        <a
           className="project-link-btn btn-text"
-          type="button"
-          aria-label={`More information about ${project.title}`}
-          onClick={() => onOpen(project)}
+          href={project.link}
+          target="_blank"
+          rel="noreferrer"
+          data-cursor-label="GitHub"
+          aria-label={`${project.title} on GitHub (opens in a new tab)`}
         >
-          More information
+          {project.link.replace(/^https?:\/\//, '')}
           <ArrowUpRightIcon size={15} />
-        </button>
+        </a>
       </div>
     </article>
   )
@@ -116,8 +133,6 @@ function Projects() {
 
       const distance = () =>
         Math.ceil(Math.max(0, track.scrollWidth - pin.clientWidth))
-      const topOffset = () =>
-        Math.min(64, Math.max(32, window.innerHeight * 0.06))
       const scrollRange = () => `+=${distance()}`
 
       gsap.to(track, {
@@ -127,7 +142,7 @@ function Projects() {
           trigger: pin,
           pin,
           pinSpacing: true,
-          start: () => `top top+=${topOffset()}`,
+          start: 'center center',
           end: scrollRange,
           scrub: 1,
           anticipatePin: 1,
@@ -140,7 +155,7 @@ function Projects() {
         ease: 'none',
         scrollTrigger: {
           trigger: pin,
-          start: () => `top top+=${topOffset()}`,
+          start: 'center center',
           end: scrollRange,
           scrub: true,
           invalidateOnRefresh: true,

@@ -20,7 +20,6 @@ export const profile = {
   coordinates: '14.58°N · 121.06°E',
   timezone: 'Asia/Manila',
   email: 'flavierlaurence01@gmail.com',
-  phone: '0947 550 0689',
   linkedin: 'https://www.linkedin.com/in/laurence-james-flavier',
   github: 'https://github.com/jalzoren',
 }
@@ -114,8 +113,8 @@ export const skillGroups = [
     items: [
       { name: 'Node.js', note: 'Daily' },
       { name: 'Express', note: 'Daily' },
-      { name: 'Python', note: 'Core' },
-      { name: 'PHP', note: 'Working' },
+      { name: 'Python', note: 'Daily' },
+      { name: 'PHP', note: 'Daily' },
       { name: 'MySQL', note: 'Daily' },
       { name: 'PostgreSQL', note: 'Working' },
       { name: 'Supabase', note: 'Working' },
@@ -125,11 +124,11 @@ export const skillGroups = [
     label: 'UI/UX & Design',
     note: 'The thinking',
     items: [
-      { name: 'Figma', note: 'Daily' },
-      { name: 'Canva', note: 'Daily' },
-      { name: 'Wireframing', note: 'Daily' },
+      { name: 'Figma', note: 'Core' },
+      { name: 'Canva', note: 'Core' },
+      { name: 'Wireframing', note: 'Core' },
       { name: 'Responsive design', note: 'Core' },
-      { name: 'Design systems', note: 'Learning' },
+      { name: 'Design systems', note: 'Core' },
     ],
   },
   {
@@ -137,7 +136,7 @@ export const skillGroups = [
     note: 'The support',
     items: [
       { name: 'Git / GitHub', note: 'Daily' },
-      { name: 'Electron.js', note: 'Working' },
+      { name: 'Electron.js', note: 'Daily' },
       { name: 'Flutter', note: 'Learning' },
       { name: 'REST APIs', note: 'Daily' },
       { name: 'Project Management', note: 'Working' },
@@ -147,7 +146,24 @@ export const skillGroups = [
 
 export const projects = [
   {
+    title: 'Linaw',
+    image: '/projects/linaw.png',
+    subtitle: 'Overclock 2026 Hackathon · Team project',
+    category: 'Hackathon project',
+    blurb:
+      'Upload an employment contract, check what the app read, and get a plain-language explanation in English, Filipino, or Taglish.',
+    description:
+      'Built with my team for the Overclock 2026 hackathon. Linaw helps Filipino workers (kasambahay, OFWs, local employees) understand contracts and quitclaims before signing. Lumen OCR reads an uploaded photo or PDF, the user verifies and corrects the extracted fields, and the app returns a short summary, glossary, deterministic salary breakdown, and an Ask Linaw chat grounded in verified law, with referrals to DOLE, DMW, OWWA, and PAO. It explains and never gives legal advice.',
+    tags: ['React', 'Vite', 'Tailwind', 'Node.js', 'Express', 'Lumen OCR/AI', 'Hackathon'],
+    link: 'https://github.com/ychine/tdks-overclock',
+    status: 'Overclock 2026',
+    plate: 'grid',
+    accent: 'primary',
+    featured: true,
+  },
+  {
     title: 'Demand Forecasting System',
+    image: '/projects/demandforecasting.png',
     subtitle: 'Academic capstone · Supply chain',
     category: 'Forecasting system',
     blurb:
@@ -163,6 +179,7 @@ export const projects = [
   },
   {
     title: 'Hospital Content Management System',
+    image: '/projects/hospitalcms.svg',
     subtitle: 'Healthcare · Content platform',
     category: 'Content platform',
     blurb:
@@ -178,6 +195,7 @@ export const projects = [
   },
   {
     title: 'Smart Attendance System',
+    image: '/projects/smartattendance.png',
     subtitle: 'Campus system · Analytics',
     category: 'Campus system',
     blurb:
@@ -192,6 +210,7 @@ export const projects = [
   },
   {
     title: 'Tincase Interactive Info Website',
+    image: '/projects/tincase.png',
     subtitle: 'Interactive profile · Web',
     category: 'Interactive web',
     blurb:
@@ -206,6 +225,7 @@ export const projects = [
   },
   {
     title: 'Clinic Monitoring System',
+    image: '/projects/clinicmonitoringsystem.png',
     subtitle: 'Healthcare · Clinic operations',
     category: 'Clinic system',
     blurb:
@@ -220,6 +240,7 @@ export const projects = [
   },
   {
     title: 'Balloon Words Blitz',
+    image: '/projects/balloonwordsblitz.png',
     subtitle: 'Word game · Interactive',
     category: 'Word game',
     blurb:
@@ -234,6 +255,7 @@ export const projects = [
   },
   {
     title: 'MAICRAFTS',
+    image: '/projects/maicrafts.webp',
     subtitle: 'E-commerce · Handmade goods',
     category: 'E-commerce',
     blurb:
@@ -251,11 +273,12 @@ export const projects = [
 export const experience = [
   {
     period: 'Nov 2026',
-    role: 'Hackathon Participant',
-    org: 'Hackathon',
+    role: 'Hackathon Champion',
+    org: 'Hackathon - OVERCLOCK 2026',
     blurb:
-      'Built a working web-based application in 5 hours — from concept to deployed prototype under competition pressure.',
+      'Built a working web-based application, BUILD OVER NIGHTS — from concept to working web based system using LUMEN AI AND OCR under competition pressure.',
     status: 'Live',
+    project: { label: 'Linaw', href: '#projects' },
   },
   {
     period: '2024 – 2025',
@@ -267,53 +290,6 @@ export const experience = [
   },
 ]
 
-export const certifications = [
-  {
-    title: 'AWS Foundations: Machine Learning Basics',
-    issuer: 'Amazon Web Services (AWS) / FutureLearn',
-    date: 'Oct 2026',
-    skills: ['AWS'],
-  },
-  {
-    title: 'Foundations of Software Testing and Validation',
-    issuer: 'University of Leeds, Click Start & Institute of Coding',
-    date: 'Oct 2026',
-    skills: ['Software Testing', 'SDLC'],
-  },
-  {
-    title: 'Understanding Machine Learning',
-    issuer: 'DataCamp',
-    date: 'Oct 2026',
-    skills: ['Machine Learning'],
-    credentialId: '6fed34d4c5402d8d13379f89facced93415fbcf9',
-  },
-  {
-    title: 'Cybersecurity',
-    issuer: 'Asian Development Bank Institute',
-    date: 'Oct 2026',
-    skills: ['Cybersecurity'],
-    credentialId: '204345-179-258-0758',
-  },
-  {
-    title: 'Digital Skills: User Experience',
-    issuer: 'Accenture / FutureLearn',
-    date: 'Oct 2026',
-    skills: ['UX Design', 'Responsive Web Design'],
-  },
-  {
-    title: 'Google Cloud Fundamentals: Core Infrastructure',
-    issuer: 'Google',
-    date: 'Sep 2026',
-    skills: ['Google Cloud Platform'],
-    credentialId: '27541494',
-  },
-  {
-    title: 'HTML Essentials',
-    issuer: 'Cisco',
-    date: 'Sep 2026',
-    skills: ['HTML', 'Responsive Web Design'],
-  },
-]
 
 export const school = {
   name: 'Pamantasan ng Lungsod ng Pasig',
@@ -343,6 +319,20 @@ export const schoolShs = {
   period: '2021 – 2023',
   status: 'Graduated',
 }
+
+export const certifications = [
+  { name: 'Microsoft Azure Fundamentals (AZ-900)', issuer: 'DataCamp', issued: 'Nov 2026', skills: 'Microsoft Azure', id: 'd558ad5c66e393d04cfa674bb333d45332e082be' },
+  { name: 'Understanding Microsoft Azure Architecture and Services', issuer: 'DataCamp', issued: 'Nov 2026', skills: 'Microsoft Azure', id: 'bfceebb6cc2b8671de8df83602d6d0a919c65080' },
+  { name: 'AWS Foundations: Machine Learning Basics', issuer: 'FutureLearn · AWS', issued: 'Oct 2026', skills: 'Amazon Web Services' },
+  { name: 'Foundations of Software Testing and Validation', issuer: 'FutureLearn · Univ. of Leeds', issued: 'Oct 2026', skills: 'Software Testing, SDLC' },
+  { name: 'Understanding Machine Learning', issuer: 'DataCamp', issued: 'Oct 2026', skills: 'Machine Learning', id: '6fed34d4c5402d8d13379f89facced93415fbcf9' },
+  { name: 'Cybersecurity', issuer: 'Asian Development Bank Institute', issued: 'Oct 2026', skills: 'Cybersecurity', id: '204345-179-258-0758' },
+  { name: 'Understanding Artificial Intelligence', issuer: 'DataCamp', issued: 'Oct 2026', skills: 'Artificial Intelligence', id: '6d9b6a6fb2385d3b453ee65a1c934a7fdf226c8a' },
+  { name: 'Digital Skills: User Experience', issuer: 'FutureLearn · Accenture', issued: 'Oct 2026', skills: 'UX, Responsive Web Design' },
+  { name: 'Introduction to SQL', issuer: 'DataCamp', issued: 'Oct 2026', skills: 'SQL', id: '746c3ff83580decb09ca9077e8c805102b9bea4b' },
+  { name: 'Google Cloud Fundamentals: Core Infrastructure', issuer: 'Google', issued: 'Sep 2026', skills: 'Google Cloud Platform', id: '27541494' },
+  { name: 'HTML Essentials', issuer: 'Cisco', issued: 'Sep 2026', skills: 'HTML, Responsive Web Design' },
+]
 
 export const socials = [
   { label: 'GitHub', href: 'https://github.com/jalzoren', icon: 'github' },

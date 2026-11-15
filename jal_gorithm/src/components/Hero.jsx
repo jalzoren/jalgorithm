@@ -1,10 +1,10 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../lib/gsap.js'
-import DotGrid from './DotGrid.jsx'
+import Dither from './Dither.jsx'
 import DraggableStickers from './DraggableStickers.jsx'
 import FlipCard from './FlipCard.jsx'
 import CounterBadge from './CounterBadge.jsx'
-import TextReveal from './TextReveal.jsx'
+import CipherReveal from './CipherReveal.jsx'
 import { marqueeItems, profile } from '../content.js'
 import { ArrowDownIcon, ArrowUpRightIcon } from './icons.jsx'
 
@@ -63,7 +63,22 @@ function Hero({ ready }) {
 
   return (
     <section id="home" ref={heroRef} className="hero" aria-labelledby="hero-title">
-      <DotGrid className="hero-dot-grid" />
+      <div className="hero-dither" aria-hidden="true">
+        <Dither
+          waveColor="#b8b8b8"
+          backgroundColor="#ffffff"
+          ditherMode="bayer"
+          colorNum={3}
+          pixelSize={3}
+          waveSpeed={0.03}
+          waveFrequency={2.6}
+          waveAmplitude={0.32}
+          brightness={-0.08}
+          mouseEffect="erase"
+          mouseRadius={0.28}
+          trail={0.6}
+        />
+      </div>
       <DraggableStickers stickers={[
         { id: 'home-build', shape: 'burst', position: 'top-right', label: 'BUILD N CREATE', mark: '++' },
       ]} />
@@ -83,16 +98,14 @@ function Hero({ ready }) {
       {/* two-column layout */}
       <div className="hero-inner">
         <div className="hero-copy">
-          <TextReveal
+          <CipherReveal
             as="h1"
             id="hero-title"
             className="hero-name"
             text="Frontend developer. UI/UX, and fiddly-bits."
-            split="word"
             accent="fiddly-bits."
             play={ready}
-            stagger={0.055}
-            duration={0.9}
+            duration={1.5}
             delay={0.1}
           />
 
@@ -101,11 +114,11 @@ function Hero({ ready }) {
           <p className="hero-role mono">{profile.roleLine}</p>
 
           <div className="hero-actions">
-            <a className="btn btn-primary" href="#projects">
+            <a className="btn btn-primary" href="#projects" data-cursor-label="Projects">
               View projects
               <ArrowUpRightIcon size={14} />
             </a>
-            <a className="btn btn-ghost" href="#contact">
+            <a className="btn btn-ghost" href="#contact" data-cursor-label="Contact">
               Let&apos;s talk
             </a>
           </div>
