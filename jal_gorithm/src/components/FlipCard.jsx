@@ -1,5 +1,17 @@
-import { useState } from 'react'
-import { profile, school, schoolShs, certifications } from '../content.js'
+import { useEffect, useRef, useState } from 'react'
+import { profile, school, schoolShs, certifications, socials } from '../content.js'
+import { CheckIcon, CopyIcon, GithubIcon, LinkedinIcon } from './icons.jsx'
+
+const quickLinks = socials.filter((item) => item.icon === 'github' || item.icon === 'linkedin')
+
+const formatTime = () =>
+  new Intl.DateTimeFormat('en-GB', {
+    timeZone: profile.timezone,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(new Date())
 
 /**
  * FlipCard — single card in the hero with two faces:
@@ -10,6 +22,29 @@ import { profile, school, schoolShs, certifications } from '../content.js'
  */
 function FlipCard() {
   const [flipped, setFlipped] = useState(false)
+  const [time, setTime] = useState(formatTime)
+  const [copied, setCopied] = useState(false)
+  const copyTimer = useRef(0)
+
+  /* live local time, so the card says something that is true right now */
+  useEffect(() => {
+    const id = window.setInterval(() => setTime(formatTime()), 1000)
+    return () => window.clearInterval(id)
+  }, [])
+  useEffect(() => () => clearTimeout(copyTimer.current), [])
+
+  const stop = (e) => e.stopPropagation()
+  const copyEmail = async (e) => {
+    e.stopPropagation()
+    try {
+      await navigator.clipboard.writeText(profile.email)
+      setCopied(true)
+      clearTimeout(copyTimer.current)
+      copyTimer.current = window.setTimeout(() => setCopied(false), 1800)
+    } catch {
+      window.location.href = `mailto:${profile.email}`
+    }
+  }
 
   const toggle = () => setFlipped((f) => !f)
   const onKey = (e) => {
@@ -38,9 +73,13 @@ function FlipCard() {
           </div>
 
           <div className="flip-front-body">
-            <div className="flip-avatar" aria-hidden="true">
+            <figure className="flip-avatar">
               <img src="/jal.jpg" alt="" />
-            </div>
+              <figcaption className="flip-clock mono" title={`Local time in ${profile.location}`}>
+                <span className="flip-clock-time">{time}</span>
+                <span className="flip-clock-zone">PHT</span>
+              </figcaption>
+            </figure>
 
             <div className="flip-fields">
               <div className="flip-field">
@@ -59,19 +98,48 @@ function FlipCard() {
                 <span>{school.degree} · {school.shortName}</span>
               </div>
               <div className="flip-field">
-                <span className="mono">FOCUS</span>
-                <span>Frontend · UI/UX · Backend</span>
-              </div>
-              <div className="flip-field">
                 <span className="mono">STATUS</span>
                 <span>
                   <span className="status-dot" aria-hidden="true" />
                   {profile.availability}
                 </span>
               </div>
+              <ul className="flip-focus" aria-label="Focus areas">
+                {['Frontend', 'UI/UX', 'Backend'].map((item) => (
+                  <li key={item} className="mono">{item}</li>
+                ))}
+              </ul>
             </div>
           </div>
 
+          <div className="flip-actions" onClick={stop} onKeyDown={stop}>
+            {quickLinks.map((link) => {
+              const Icon = link.icon === 'github' ? GithubIcon : LinkedinIcon
+              return (
+                <a
+                  key={link.label}
+                  className="flip-action"
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  tabIndex={flipped ? -1 : 0}
+                >
+                  <Icon size={13} />
+                  {link.label}
+                </a>
+              )
+            })}
+            <button
+              type="button"
+              className="flip-action"
+              onClick={copyEmail}
+              tabIndex={flipped ? -1 : 0}
+              aria-label={copied ? 'Email copied' : `Copy email address ${profile.email}`}
+            >
+              {copied ? <CheckIcon size={13} /> : <CopyIcon size={13} />}
+              <span aria-live="polite">{copied ? 'Copied' : 'Copy email'}</span>
+            </button>
+          </div>
           {/* Barcode footer */}
           <div className="flip-front-foot">
             <div className="flip-barcode" aria-hidden="true">
